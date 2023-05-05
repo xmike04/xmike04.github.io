@@ -2,23 +2,55 @@
 body, html {
     margin: 0;
     padding: 0;
+    font-family: Arial, sans-serif;
 }
 
 section {
-    min-height: 100vh; /* Set the minimum height of each section to the full viewport height */
+    min-height: 100vh;
     width: 100%;
     box-sizing: border-box;
     padding: 2rem;
 }
 
 header {
-    background-color: #f1f1f1;
+    background-color: #1e3d58;
     padding: 1rem;
+    color: white;
+}
+
+/* Background colors for each section */
+#about {
+    background-color: #3c6e71;
+    color: white;
+}
+
+#skills {
+    background-color: #669db3;
+    color: white;
+}
+
+#projects {
+    background-color: #a4c3b2;
+    color: white;
+}
+
+#certifications {
+    background-color: #e9ecef;
+    color: #1e3d58;
+}
+
+#education {
+    background-color: #669db3;
+    color: white;
+}
+
+#contact {
+    background-color: #3c6e71;
+    color: white;
 }
 
 /* Responsive Styles */
 @media only screen and (max-width: 600px) {
-    /* Add your mobile-specific styles here */
     section {
         padding: 1rem;
     }
