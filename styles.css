@@ -101,6 +101,19 @@ header {
     background-color: #3c6e71;
     color: white;
 }
+.profile-image-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
 
 #skills {
     background-color: #669db3;
