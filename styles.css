@@ -1,3 +1,81 @@
+/* Hamburger menu and slide-out navigation styles */
+.menu-toggle {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 2;
+}
+
+.hamburger,
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    width: 30px;
+    height: 4px;
+    background-color: white;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.hamburger::before {
+    transform: translateY(-8px);
+}
+
+.hamburger::after {
+    transform: translateY(4px);
+}
+
+.nav-menu {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 300px;
+    height: 100%;
+    background-color: rgba(30, 61, 88, 0.95);
+    overflow-y: auto;
+    transition: right 0.3s;
+    z-index: 1;
+}
+
+.nav-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nav-menu li {
+    margin: 1rem 0;
+}
+
+.nav-menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+}
+
+.nav-menu a:hover {
+    background-color: #3c6e71;
+    border-radius: 4px;
+}
+
+/* Hamburger menu and slide-out navigation styles for mobile */
+@media only screen and (max-width: 600px) {
+    .menu-toggle {
+        display: block;
+    }
+}
+
+
 /* General Styles */
 body, html {
     margin: 0;
