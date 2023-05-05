@@ -1,4 +1,15 @@
 /* Hamburger menu and slide-out navigation styles */
+.typewriter {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    color: white;
+}
+
+.typed-text {
+    white-space: pre;
+}
+
+
 .menu-toggle {
     cursor: pointer;
     display: flex;
