@@ -122,10 +122,42 @@ header {
     color: white;
 }
 
+
+/* Contact Section */
 #contact {
     background-color: #3c6e71;
     color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
+
+.contact-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.contact-link {
+    display: flex;
+    align-items: center;
+    margin: 0.5rem 1rem;
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+.contact-link i {
+    margin-right: 0.5rem;
+    font-size: 1.5rem;
+}
+
+.contact-link:hover {
+    color: #a4c3b2;
+}
+
 
 /* Responsive Styles */
 @media only screen and (max-width: 600px) {
