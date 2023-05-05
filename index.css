@@ -1,0 +1,25 @@
+/* General Styles */
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+section {
+    min-height: 100vh; /* Set the minimum height of each section to the full viewport height */
+    width: 100%;
+    box-sizing: border-box;
+    padding: 2rem;
+}
+
+header {
+    background-color: #f1f1f1;
+    padding: 1rem;
+}
+
+/* Responsive Styles */
+@media only screen and (max-width: 600px) {
+    /* Add your mobile-specific styles here */
+    section {
+        padding: 1rem;
+    }
+}
