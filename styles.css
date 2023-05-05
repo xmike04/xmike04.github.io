@@ -99,12 +99,17 @@ section {
     width: 100%;
     box-sizing: border-box;
     padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 header {
     background-color: #1e3d58;
     padding: 1rem;
     color: white;
+    text-align: center;
 }
 
 /* Background colors for each section */
@@ -151,11 +156,9 @@ header {
 #contact {
     background-color: #3c6e71;
     color: white;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
 }
 
 .contact-container {
