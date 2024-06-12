@@ -1,194 +1,20 @@
-/* Hamburger menu and slide-out navigation styles */
-.typewriter {
-    font-size: 1.5rem;
-    margin-top: 1rem;
-    color: white;
-}
-
-.typed-text {
-    white-space: pre;
-}
-
-
-.menu-toggle {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 40px;
-    width: 40px;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    z-index: 2;
-}
-
-.hamburger,
-.hamburger::before,
-.hamburger::after {
-    content: '';
-    width: 30px;
-    height: 4px;
-    background-color: white;
-    border-radius: 4px;
-    transition: all 0.3s;
-}
-
-.hamburger::before {
-    transform: translateY(-8px);
-}
-
-.hamburger::after {
-    transform: translateY(4px);
-}
-
-.nav-menu {
-    position: fixed;
-    top: 0;
-    right: -300px;
-    width: 300px;
-    height: 100%;
-    background-color: rgba(30, 61, 88, 0.95);
-    overflow-y: auto;
-    transition: right 0.3s;
-    z-index: 1;
-}
-
-.nav-menu ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.nav-menu li {
-    margin: 1rem 0;
-}
-
-.nav-menu a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.1rem;
-    padding: 0.5rem 1rem;
-}
-
-.nav-menu a:hover {
-    background-color: #3c6e71;
-    border-radius: 4px;
-}
-
-/* Hamburger menu and slide-out navigation styles for mobile */
-@media only screen and (max-width: 600px) {
-    .menu-toggle {
-        display: block;
-    }
-}
-
-
-/* General Styles */
-body, html {
-    margin: 0;
-    padding: 0;
+/* style.css */
+body {
     font-family: Arial, sans-serif;
+    line-height: 1.6;
 }
-
-section {
-    min-height: 100vh;
-    width: 100%;
-    box-sizing: border-box;
-    padding: 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+.navbar {
+    margin-bottom: 20px;
 }
-
-header {
-    background-color: #1e3d58;
-    padding: 1rem;
-    color: white;
+.jumbotron {
     text-align: center;
 }
-
-/* Background colors for each section */
-#about {
-    background-color: #3c6e71;
-    color: white;
+.container {
+    max-width: 1000px;
+    margin: auto;
 }
-.profile-image-container {
+.contact-info {
     display: flex;
-    justify-content: center;
-    margin-bottom: 2rem;
-}
-
-.profile-image {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-
-#skills {
-    background-color: #669db3;
-    color: white;
-}
-
-#projects {
-    background-color: #a4c3b2;
-    color: white;
-}
-
-#certifications {
-    background-color: #e9ecef;
-    color: #1e3d58;
-}
-
-#education {
-    background-color: #669db3;
-    color: white;
-}
-
-
-/* Contact Section */
-#contact {
-    background-color: #3c6e71;
-    color: white;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem;
-}
-
-.contact-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.contact-link {
-    display: flex;
-    align-items: center;
-    margin: 0.5rem 1rem;
-    color: white;
-    text-decoration: none;
-    font-size: 1.2rem;
-}
-
-.contact-link i {
-    margin-right: 0.5rem;
-    font-size: 1.5rem;
-}
-
-.contact-link:hover {
-    color: #a4c3b2;
-}
-
-
-/* Responsive Styles */
-@media only screen and (max-width: 600px) {
-    section {
-        padding: 1rem;
-    }
+    justify-content: space-around;
+    margin-top: 20px;
 }
