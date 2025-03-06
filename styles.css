@@ -83,6 +83,34 @@
     background-color: var(--dark-color);
   }
   
+  /* Chatbot Styles */
+  .chat-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 14px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1050;
+  }
+  
+  .user-message {
+    text-align: right;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  
+  .bot-message {
+    text-align: left;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  
   /* Responsive Adjustments */
   @media (max-width: 768px) {
     .hero {
