@@ -1,4 +1,3 @@
-// script.js
 document.addEventListener('DOMContentLoaded', function() {
     console.log('JavaScript loaded');
   
@@ -78,5 +77,4 @@ document.addEventListener('DOMContentLoaded', function() {
         behavior: 'smooth'
       });
     });
-  });
-  
+});

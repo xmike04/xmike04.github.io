@@ -7,125 +7,124 @@
     --dark-color: #343a40;
     --light-color: #f8f9fa;
     --font-family: 'Montserrat', sans-serif;
-  }
+}
   
-  /* Global Styles */
-  * {
+/* Global Styles */
+* {
     box-sizing: border-box;
     scroll-behavior: smooth;
-  }
+}
   
-  body {
+body {
     font-family: var(--font-family);
     line-height: 1.6;
     color: var(--dark-color);
     background-color: var(--light-color);
     margin-top: 70px; /* Account for fixed navbar height */
-  }
+}
   
-  /* Navbar Styles */
-  .navbar {
+/* Navbar Styles */
+.navbar {
     transition: background-color 0.3s ease;
-  }
+}
   
-  .navbar-brand {
+.navbar-brand {
     font-weight: 600;
-  }
+}
   
-  .nav-link {
+.nav-link {
     transition: color 0.3s ease;
-  }
+}
   
-  .nav-link:hover,
-  .nav-link.active {
+.nav-link:hover,
+.nav-link.active {
     color: var(--primary-color);
-  }
+}
   
-  /* Hero Section */
-  .hero {
+/* Hero Section */
+.hero {
     height: 80vh;
     background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
     color: #fff;
     display: flex;
     align-items: center;
-  }
+}
   
-  /* Section Headings */
-  h2 {
+/* Section Headings */
+h2 {
     font-weight: 600;
     margin-bottom: 20px;
-  }
+}
   
-  /* Card Styles */
-  .card {
+/* Card Styles */
+.card {
     border: none;
     border-radius: 10px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
+}
   
-  .card:hover {
+.card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-  }
+}
   
-  /* Contact Button Styles */
-  .contact-info a {
+/* Contact Button Styles */
+.contact-info a {
     transition: background-color 0.3s ease, transform 0.3s ease;
-  }
+}
   
-  .contact-info a:hover {
+.contact-info a:hover {
     background-color: var(--primary-color);
     color: #fff;
     transform: scale(1.05);
-  }
+}
   
-  /* Footer Styling */
-  footer {
+/* Footer Styling */
+footer {
     background-color: var(--dark-color);
-  }
+}
   
-  /* Chatbot Styles */
-  .chat-btn {
+/* Chatbot Styles */
+.chat-btn {
     position: fixed;
     bottom: 20px;
     right: 20px;
     border-radius: 50%;
     width: 60px;
     height: 60px;
-    font-size: 14px;
+    font-size: 24px; /* Increased for better icon visibility */
     padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 1050;
-  }
+}
   
-  /* Chat messages */
-  .user-message {
+/* Chat messages */
+.user-message {
     text-align: right;
     margin-bottom: 8px;
     font-weight: 500;
-  }
+}
   
-  .bot-message {
+.bot-message {
     text-align: left;
     margin-bottom: 8px;
     font-weight: 500;
-  }
+}
   
-  /* Back-to-Top Button */
-  .back-to-top {
+/* Back-to-Top Button */
+.back-to-top {
     position: fixed;
     bottom: 100px;
     right: 20px;
     display: none;
     z-index: 1050;
-  }
+}
   
-  /* Responsive Adjustments */
-  @media (max-width: 768px) {
+/* Responsive Adjustments */
+@media (max-width: 768px) {
     .hero {
-      height: 60vh;
+        height: 60vh;
     }
-  }
-  
+}
