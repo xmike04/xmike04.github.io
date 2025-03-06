@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": "Bearer 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" // Replace with your actual API key or proxy endpoint
+          "Authorization": "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" // Replace with your actual API key or proxy endpoint
         },
         body: JSON.stringify({
           model: "gpt-3.5-turbo",
