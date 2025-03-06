@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', function() {
   
     // Smooth scroll for navigation links
     const navLinks = document.querySelectorAll('.nav-link');
-    
     navLinks.forEach(link => {
       link.addEventListener('click', function(e) {
         e.preventDefault();
@@ -12,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const targetElement = document.getElementById(targetId);
         if (targetElement) {
           window.scrollTo({
-            top: targetElement.offsetTop - 60, // Adjust for fixed navbar height
+            top: targetElement.offsetTop - 70, // Adjust for fixed navbar height
             behavior: 'smooth'
           });
         }
@@ -61,6 +60,23 @@ document.addEventListener('DOMContentLoaded', function() {
       if (e.key === "Enter") {
         handleSend();
       }
+    });
+  
+    // Back to Top button functionality
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', function() {
+      if (window.pageYOffset > 300) {
+        backToTop.style.display = "block";
+      } else {
+        backToTop.style.display = "none";
+      }
+    });
+    
+    backToTop.addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
     });
   });
   

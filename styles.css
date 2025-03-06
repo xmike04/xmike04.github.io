@@ -36,7 +36,8 @@
     transition: color 0.3s ease;
   }
   
-  .nav-link:hover {
+  .nav-link:hover,
+  .nav-link.active {
     color: var(--primary-color);
   }
   
@@ -99,6 +100,7 @@
     z-index: 1050;
   }
   
+  /* Chat messages */
   .user-message {
     text-align: right;
     margin-bottom: 8px;
@@ -109,6 +111,15 @@
     text-align: left;
     margin-bottom: 8px;
     font-weight: 500;
+  }
+  
+  /* Back-to-Top Button */
+  .back-to-top {
+    position: fixed;
+    bottom: 100px;
+    right: 20px;
+    display: none;
+    z-index: 1050;
   }
   
   /* Responsive Adjustments */
