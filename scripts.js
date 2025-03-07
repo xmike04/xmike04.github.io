@@ -76,14 +76,6 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
 
-  function appendMessage(sender, message) {
-    const messageElem = document.createElement('div');
-    messageElem.className = sender;
-    messageElem.textContent = message;
-    chatLog.appendChild(messageElem);
-    chatLog.scrollTop = chatLog.scrollHeight;  // Ensure chat auto-scrolls
-  }
-
 
 
   sendChat.addEventListener('click', handleSend);

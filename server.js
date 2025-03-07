@@ -2,25 +2,35 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const axios = require('axios');
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// Apply rate limiter before other middlewares
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // Limit each IP to 100 requests per window
+});
+
 app.use(cors());
 app.use(express.json());
-const helmet = require('helmet');
 app.use(helmet());
+app.use(limiter);
 
-
-app.use(helmet.contentSecurityPolicy({
-    directives: {
-        defaultSrc: ["'self'"],
-        scriptSrc: ["'self'", "https://cdn.jsdelivr.net"],
-        styleSrc: ["'self'", "https://fonts.googleapis.com"],
-        fontSrc: ["'self'", "https://fonts.gstatic.com"],
-        imgSrc: ["'self'", "data:"]
-    }
+app.use(cors({
+    origin: "https://xmike04-github-io.onrender.com", // Allow only your frontend
+    methods: "POST",
+    allowedHeaders: ["Content-Type", "Authorization"]
 }));
+
+
+// ✅ Ensure OpenAI API key is present before making requests
+if (!process.env.OPENAI_API_KEY) {
+    console.error(" OpenAI API Key is missing! Set it in Render environment variables.");
+    process.exit(1);
+}
 
 app.post('/api/chatbot', async (req, res) => {
     try {
@@ -41,7 +51,7 @@ app.post('/api/chatbot', async (req, res) => {
                     { role: 'system', content: systemPrompt },
                     { role: 'user', content: message }
                 ],
-                max_tokens: 250,
+                max_tokens: 300,  // Increased token limit
                 temperature: 0.7,
             },
             {
@@ -54,20 +64,11 @@ app.post('/api/chatbot', async (req, res) => {
 
         res.json({ response: response.data.choices[0].message.content });
     } catch (error) {
-        console.error('Error calling OpenAI API.');
-
+        console.error('Error calling OpenAI API:', error);
         res.status(500).json({ error: 'Failed to generate response' });
     }
 });
 
-const rateLimit = require('express-rate-limit');
-const limiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 100, // limit each IP to 100 requests per windowMs
-});
-app.use(limiter);
-
-
 app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+    console.log(`✅ Server running on port ${PORT}`);
 });
