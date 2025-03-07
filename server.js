@@ -20,10 +20,11 @@ app.use(helmet());
 app.use(limiter);
 
 app.use(cors({
-    origin: "https://xmike04-github-io.onrender.com", // Allow only your frontend
+    origin: ["https://xmike04.github.io", "https://xmike04-github-io.onrender.com"], // ✅ Allow both frontends
     methods: "POST",
     allowedHeaders: ["Content-Type", "Authorization"]
 }));
+
 
 
 // ✅ Ensure OpenAI API key is present before making requests
