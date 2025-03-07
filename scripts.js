@@ -32,7 +32,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Async function to call the Render backend
   async function getBotResponse(userMessage) {
-      const backendUrl = "https://xmike04-github-io.onrender.com"; 
+    const backendUrl = "https://xmike04-github-io.onrender.com/api/chatbot";
+
 
       try {
           const response = await fetch(backendUrl, {
@@ -49,7 +50,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
           const data = await response.json();
           return data.response;
-      } catch (error) {
+      } 
+      catch (error) {
           console.error(error);
           return "Oops! I'm having trouble fetching a response right now. Try again later.";
       }
@@ -57,15 +59,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Function to handle sending messages
   async function handleSend() {
-      const userMessage = chatInput.value.trim();
-      if (userMessage === "") return;
+    const userMessage = chatInput.value.trim();
+    if (userMessage === "") return;
 
-      appendMessage("user-message", "You: " + userMessage);
-      chatInput.value = "";
+    appendMessage("user-message", "You: " + userMessage);
+    chatInput.value = "";
 
-      const botResponse = await getBotResponse(userMessage);
-      appendMessage("bot-message", "AI: " + botResponse);
+    appendMessage("bot-message", "AI is typing...");  // Temporary loading text
+    
+    const botResponse = await getBotResponse(userMessage);
+    
+    chatLog.removeChild(chatLog.lastChild); // Remove "AI is typing..."
+    appendMessage("bot-message", "AI: " + botResponse);
   }
+
 
   sendChat.addEventListener('click', handleSend);
   chatInput.addEventListener('keypress', function(e) {

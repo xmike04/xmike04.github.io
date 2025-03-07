@@ -98,6 +98,8 @@ footer {
     align-items: center;
     justify-content: center;
     z-index: 1050;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+
 }
   
 /* Chat messages */
@@ -127,4 +129,12 @@ footer {
     .hero {
         height: 60vh;
     }
+}
+
+#chatLog {
+    height: 300px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    padding: 10px;
+    scroll-behavior: smooth;
 }

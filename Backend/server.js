@@ -8,8 +8,19 @@ const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
+const helmet = require('helmet');
+app.use(helmet());
+app.use(helmet.contentSecurityPolicy({
+    directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", "https://cdn.jsdelivr.net"],
+        styleSrc: ["'self'", "https://fonts.googleapis.com"],
+        fontSrc: ["'self'", "https://fonts.gstatic.com"],
+        imgSrc: ["'self'", "data:"]
+    }
+}));
 
-app.post('/api/chat', async (req, res) => {
+app.post('/api/chatbot', async (req, res) => {
     try {
         const { message } = req.body;
 
@@ -28,7 +39,7 @@ app.post('/api/chat', async (req, res) => {
                     { role: 'system', content: systemPrompt },
                     { role: 'user', content: message }
                 ],
-                max_tokens: 150,
+                max_tokens: 250,
                 temperature: 0.7,
             },
             {
@@ -41,7 +52,8 @@ app.post('/api/chat', async (req, res) => {
 
         res.json({ response: response.data.choices[0].message.content });
     } catch (error) {
-        console.error('Error calling OpenAI API:', error);
+        console.error('Error calling OpenAI API.');
+
         res.status(500).json({ error: 'Failed to generate response' });
     }
 });
