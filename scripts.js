@@ -64,14 +64,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
     appendMessage("user-message", "You: " + userMessage);
     chatInput.value = "";
+    sendChat.disabled = true;  // Disable send button while AI is typing
 
-    appendMessage("bot-message", "AI is typing...");  // Temporary loading text
+    appendMessage("bot-message", "AI is typing...");
     
     const botResponse = await getBotResponse(userMessage);
     
-    chatLog.removeChild(chatLog.lastChild); // Remove "AI is typing..."
+    chatLog.removeChild(chatLog.lastChild);
     appendMessage("bot-message", "AI: " + botResponse);
+    sendChat.disabled = false;  // Re-enable send button
   }
+
+
+  function appendMessage(sender, message) {
+    const messageElem = document.createElement('div');
+    messageElem.className = sender;
+    messageElem.textContent = message;
+    chatLog.appendChild(messageElem);
+    chatLog.scrollTop = chatLog.scrollHeight;  // Ensure chat auto-scrolls
+  }
+
 
 
   sendChat.addEventListener('click', handleSend);

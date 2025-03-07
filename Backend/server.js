@@ -10,6 +10,9 @@ app.use(cors());
 app.use(express.json());
 const helmet = require('helmet');
 app.use(helmet());
+app.use(limiter);
+
+
 app.use(helmet.contentSecurityPolicy({
     directives: {
         defaultSrc: ["'self'"],
@@ -57,6 +60,14 @@ app.post('/api/chatbot', async (req, res) => {
         res.status(500).json({ error: 'Failed to generate response' });
     }
 });
+
+const rateLimit = require('express-rate-limit');
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // limit each IP to 100 requests per windowMs
+});
+
+
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
