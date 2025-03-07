@@ -14,11 +14,15 @@ const limiter = rateLimit({
     max: 100, // Limit each IP to 100 requests per window
 });
 
+
 app.use(cors({
-    origin: ["https://xmike04.github.io", "https://xmike04-github-io.onrender.com"], // ✅ Allow both frontends
-    methods: "POST",
-    allowedHeaders: ["Content-Type", "Authorization"]
+    origin: ["https://xmike04.github.io"], // ✅ Allow GitHub Pages
+    methods: ["POST", "GET", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true
 }));
+
+app.options('*', cors()); // ✅ Allow preflight requests
 
 
 app.use(cors());
