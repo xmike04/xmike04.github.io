@@ -1,17 +1,22 @@
+
 "use client";
 
 import { useRef, useEffect, useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Briefcase, Rocket } from 'lucide-react';
+import { Briefcase, Rocket, ArrowRight } from 'lucide-react';
+import Link from 'next/link';
+import { Button } from './ui/button';
 
 interface TimelineItemProps {
   item: {
+    id: string;
     type: 'work' | 'project';
     title: string;
     company: string;
     date: string;
     description: string[];
+    detailedContent?: string;
   };
   index: number;
 }
@@ -74,6 +79,15 @@ const TimelineItem = ({ item, index }: TimelineItemProps) => {
             ))}
           </ul>
         </CardContent>
+        {item.detailedContent && (
+          <CardFooter className={index % 2 !== 0 ? 'md:justify-end' : ''}>
+            <Button asChild variant="link" className="p-0 h-auto">
+              <Link href={`/item/${item.id}`}>
+                See More <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </CardFooter>
+        )}
       </Card>
     </div>
   );
