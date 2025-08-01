@@ -49,6 +49,16 @@ body {
     display: flex;
     align-items: center;
 }
+
+/* Profile Image */
+.profile-img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
   
 /* Section Headings */
 h2 {
