@@ -5,11 +5,12 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowLeft, Briefcase, Rocket, Link as LinkIcon } from 'lucide-react';
 
 export default function ItemPage({ params }: { params: { id: string } }) {
   const allItems = [...resumeData.workExperience, ...resumeData.projects];
-  const item = allItems.find(i => i.id === params.id);
+  const item = allItems.find(i => i.id === params.id) as (typeof allItems[number] & { logo?: string, logoAiHint?: string});
 
   if (!item) {
     notFound();
@@ -37,8 +38,20 @@ export default function ItemPage({ params }: { params: { id: string } }) {
             <div className="flex justify-center items-center gap-4 mb-4">
               <Icon className="w-12 h-12 text-primary" />
             </div>
-            <h1 className="font-headline text-4xl md:text-5xl font-bold mb-2">{item.title}</h1>
-            <p className="text-xl text-muted-foreground mb-4">{item.company}</p>
+            <div className="flex justify-center items-center gap-4">
+              <h1 className="font-headline text-4xl md:text-5xl font-bold">{item.title}</h1>
+              {item.logo && (
+                <Image 
+                  src={item.logo}
+                  alt={`${item.company} logo`}
+                  width={160}
+                  height={40}
+                  className="object-contain"
+                  data-ai-hint={item.logoAiHint}
+                />
+              )}
+            </div>
+            <p className="text-xl text-muted-foreground mt-2 mb-4">{item.company}</p>
             <Badge variant="secondary">{item.date}</Badge>
           </header>
 

@@ -34,6 +34,8 @@ export const resumeData = {
       company: "Mr. Cooper Group",
       location: "Dallas, TX",
       date: "May 2025",
+      logo: "https://placehold.co/200x50.png",
+      logoAiHint: "company logo",
       description: [
         "Selected for a competitive 10-week internship with the Product Management AI/ML team.",
         "Contributing to the development and support of internal Agentic AI products to help automate customer service.",
@@ -41,7 +43,7 @@ export const resumeData = {
         "Exposure to tools such as Azure DevOps, MySQL, Microsoft Copilot, Google Cloud Services(GCS), and LucidChart in support of digital transformation and intelligent automation efforts.",
       ],
       detailedContent: `
-As a Product Analyst Intern on the AI/ML team at Mr. Cooper, I am immersed in the lifecycle of enterprise-grade AI products. My primary focus is on supporting the development of Agentic AI systems designed to automate and enhance customer service interactions.
+As a Product Analyst Intern on the AI/ML team at Mr. Cooper, I am immersed in the lifecycle of enterprise-grade AI products. My primary focus is on supporting the development of Agentic AI systems designed to enhance customer service interactions.
 
 Key Responsibilities & Learnings:
 - **Product Definition:** I contribute to product strategy by writing user stories and defining feature requirements in Azure DevOps, ensuring that development aligns with business objectives and user needs.
