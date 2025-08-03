@@ -6,7 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowLeft, Briefcase, Rocket, Link as LinkIcon } from 'lucide-react';
+import { ArrowLeft, Briefcase, Rocket, Link as LinkIcon, CheckCircle2 } from 'lucide-react';
 
 export default function ItemPage({ params }: { params: { id: string } }) {
   const allItems = [...resumeData.workExperience, ...resumeData.projects];
@@ -17,6 +17,14 @@ export default function ItemPage({ params }: { params: { id: string } }) {
   }
 
   const Icon = item.type === 'work' ? Briefcase : Rocket;
+  
+  const contentParts = item.detailedContent?.trim().split('Key Responsibilities & Learnings:');
+  const intro = contentParts?.[0] || '';
+  const responsibilities = contentParts?.[1]?.split('- ').filter(r => r.trim()).map(r => {
+      const [title, ...description] = r.split(':');
+      return { title: title.trim(), description: description.join(':').trim() };
+  }) || [];
+
 
   return (
     <div className="bg-background text-foreground min-h-screen">
@@ -44,18 +52,36 @@ export default function ItemPage({ params }: { params: { id: string } }) {
             <Badge variant="secondary">{item.date}</Badge>
           </header>
 
-          <Card className="shadow-lg border-2 border-primary/10">
+          <Card className="shadow-lg border-2 border-primary/10 mb-12">
             <CardContent className="p-8">
-              <div className="prose prose-lg dark:prose-invert max-w-none mx-auto text-muted-foreground leading-relaxed">
-                {item.detailedContent?.trim().split('\n').map((paragraph, index) => (
-                  <p key={index}>{paragraph}</p>
-                ))}
-              </div>
+              <p className="prose prose-lg dark:prose-invert max-w-none mx-auto text-muted-foreground leading-relaxed">
+                {intro}
+              </p>
             </CardContent>
           </Card>
 
+          {responsibilities.length > 0 && (
+            <div>
+              <h3 className="font-headline text-2xl md:text-3xl font-bold mb-8 text-center">Key Responsibilities & Learnings</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {responsibilities.map((resp, index) => (
+                  <Card key={index} className="shadow-md hover:shadow-xl transition-shadow duration-300">
+                    <CardHeader className="flex flex-row items-center gap-4">
+                      <CheckCircle2 className="w-8 h-8 text-primary" />
+                      <CardTitle className="font-headline text-xl">{resp.title}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-muted-foreground">{resp.description}</p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          )}
+
+
           {item.links && item.links.length > 0 && (
-            <div className="mt-12 text-center">
+            <div className="mt-16 text-center">
               <h3 className="font-headline text-2xl font-bold mb-4">Project Links</h3>
               <div className="flex justify-center gap-4">
                 {item.links.map((link, index) => (

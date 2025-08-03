@@ -46,11 +46,11 @@ export const resumeData = {
 As a Product Analyst Intern on the AI/ML team at Mr. Cooper, I am immersed in the lifecycle of enterprise-grade AI products. My primary focus is on supporting the development of Agentic AI systems designed to enhance customer service interactions.
 
 Key Responsibilities & Learnings:
-- **Product Definition:** I contribute to product strategy by writing user stories and defining feature requirements in Azure DevOps, ensuring that development aligns with business objectives and user needs.
-- **User-Centric Validation:** I actively participate in user testing sessions, gathering feedback to iterate on product features and improve the user experience. This has honed my ability to translate user insights into actionable development tasks.
-- **Model & System Evaluation:** I assist in the evaluation of AI models, analyzing performance metrics to ensure they meet our standards for accuracy and reliability.
-- **Cross-Functional Collaboration:** I work closely with a diverse team of designers, software engineers, and business stakeholders. This has taught me how to effectively communicate technical concepts and product vision across different domains.
-- **Technology Exposure:** I'm gaining hands-on experience with a modern tech stack, including Azure DevOps for project management, MySQL for data analysis, Microsoft Copilot for AI-assisted development, and Google Cloud Services (GCS) for cloud infrastructure. I also use LucidChart for creating process flows and diagrams to support our digital transformation initiatives.
+- Product Definition: I contribute to product strategy by writing user stories and defining feature requirements in Azure DevOps, ensuring that development aligns with business objectives and user needs.
+- User-Centric Validation: I actively participate in user testing sessions, gathering feedback to iterate on product features and improve the user experience. This has honed my ability to translate user insights into actionable development tasks.
+- Model & System Evaluation: I assist in the evaluation of AI models, analyzing performance metrics to ensure they meet our standards for accuracy and reliability.
+- Cross-Functional Collaboration: I work closely with a diverse team of designers, software engineers, and business stakeholders. This has taught me how to effectively communicate technical concepts and product vision across different domains.
+- Technology Exposure: I am gaining hands-on experience with a modern tech stack, including Azure DevOps for project management, MySQL for data analysis, Microsoft Copilot for AI-assisted development, and Google Cloud Services (GCS) for cloud infrastructure. I also use LucidChart for creating process flows and diagrams to support our digital transformation initiatives.
       `,
     },
   ],
