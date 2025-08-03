@@ -34,33 +34,14 @@ export default function ItemPage({ params }: { params: { id: string } }) {
 
       <main className="container mx-auto px-4 py-16 md:py-24">
         <article className="max-w-4xl mx-auto">
-          <header className="mb-12">
+          <header className="mb-12 text-center">
             <div className="flex justify-center items-center gap-4 mb-8">
               <Icon className="w-12 h-12 text-primary" />
             </div>
             
-            <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-4">
-              <div className="flex-1 text-center md:text-left">
-                <h1 className="font-headline text-4xl md:text-5xl font-bold">{item.title}</h1>
-              </div>
-              {item.logo && (
-                <div className="flex-1 flex justify-center md:justify-end">
-                    <Image 
-                      src={item.logo}
-                      alt={`${item.company} logo`}
-                      width={160}
-                      height={40}
-                      className="object-contain"
-                      data-ai-hint={item.logoAiHint}
-                    />
-                </div>
-              )}
-            </div>
-
-            <div className="text-center">
-                <p className="text-xl text-muted-foreground mt-2 mb-4">{item.company}</p>
-                <Badge variant="secondary">{item.date}</Badge>
-            </div>
+            <h1 className="font-headline text-4xl md:text-5xl font-bold">{item.title}</h1>
+            <p className="text-xl text-muted-foreground mt-2 mb-4">{item.company}</p>
+            <Badge variant="secondary">{item.date}</Badge>
           </header>
 
           <Card className="shadow-lg border-2 border-primary/10">
