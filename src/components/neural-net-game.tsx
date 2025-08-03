@@ -1,6 +1,7 @@
+
 "use client";
 
-import { useState } from 'react';
+import { useState, Fragment } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 import { BrainCircuit } from 'lucide-react';
@@ -77,8 +78,8 @@ export default function NeuralNetGame() {
       <CardContent className="p-8 bg-muted/20">
         <div className="flex justify-between items-center min-h-[250px]">
           {layers.map((layer, layerIndex) => (
-            <>
-              <div key={layer.id} className="flex flex-col justify-around h-full gap-6">
+            <Fragment key={layer.id}>
+              <div className="flex flex-col justify-around h-full gap-6">
                 {Array.from({ length: layer.count }).map((_, nodeIndex) => {
                   const nodeId = `${layer.id}-${nodeIndex}`;
                   return (
@@ -103,7 +104,7 @@ export default function NeuralNetGame() {
                    <Line isHighlighted={!!hoveredNode} />
                 </div>
               )}
-            </>
+            </Fragment>
           ))}
         </div>
       </CardContent>
