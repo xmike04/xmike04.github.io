@@ -1,3 +1,4 @@
+
 import { Mail, Github, Linkedin, Phone, Code, BrainCircuit, Rocket, Briefcase, GraduationCap, Building, Link as LinkIcon } from 'lucide-react';
 import { resumeData, resumeText } from '@/lib/resume-data';
 import { Button } from '@/components/ui/button';
@@ -152,7 +153,7 @@ export default function Home() {
             <Link href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors"><Linkedin className="w-6 h-6" /></Link>
             <Link href={`tel:${resumeData.contact.phone}`} className="hover:text-primary transition-colors"><Phone className="w-6 h-6" /></Link>
         </div>
-        <p>&copy; {new Date().getFullYear()} Michael E. Marin. All Rights Reserved.</p>
+        <p>&copy; 2024 Michael E. Marin. All Rights Reserved.</p>
       </footer>
       
       <ChatBot resume={resumeText} />

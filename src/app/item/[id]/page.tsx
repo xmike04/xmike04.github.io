@@ -84,7 +84,7 @@ export default function ItemPage({ params }: { params: { id: string } }) {
       </main>
 
       <footer className="bg-foreground text-muted-foreground text-center p-6 mt-16">
-        <p>&copy; {new Date().getFullYear()} Michael E. Marin. All Rights Reserved.</p>
+        <p>&copy; 2024 Michael E. Marin. All Rights Reserved.</p>
       </footer>
     </div>
   );
