@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import AnimatedTimeline from '@/components/animated-timeline';
-import NeuralNetGame from '@/components/neural-net-game';
+import AiPlayground from '@/components/ai-playground';
 import ChatBot from '@/components/chat-bot';
 import type { ElementType } from 'react';
 import Link from 'next/link';
@@ -107,7 +107,7 @@ export default function Home() {
         </Section>
 
         <Section id="playground" title="AI Playground" icon={Rocket} className="bg-muted/10">
-          <NeuralNetGame />
+          <AiPlayground />
         </Section>
         
         <Section id="education" title="Education" icon={GraduationCap}>
