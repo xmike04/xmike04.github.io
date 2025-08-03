@@ -34,8 +34,8 @@ export default function AiPlayground() {
           <CarouselItem key={index}>{game}</CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious className="hidden md:flex" />
-      <CarouselNext className="hidden md:flex" />
+      <CarouselPrevious />
+      <CarouselNext />
     </Carousel>
   );
 }
