@@ -18,7 +18,8 @@ export default function ItemPage({ params }: { params: { id: string } }) {
 
   const Icon = item.type === 'work' ? Briefcase : Rocket;
   
-  const contentParts = item.detailedContent?.trim().split('Key Responsibilities & Learnings:');
+  const contentKey = item.type === 'work' ? 'Key Responsibilities & Learnings:' : 'Key Contributions & Technical Details:';
+  const contentParts = item.detailedContent?.trim().split(contentKey);
   const intro = contentParts?.[0] || '';
   const responsibilities = contentParts?.[1]?.split('- ').filter(r => r.trim()).map(r => {
       const [title, ...description] = r.split(':');
@@ -62,7 +63,7 @@ export default function ItemPage({ params }: { params: { id: string } }) {
 
           {responsibilities.length > 0 && (
             <div>
-              <h3 className="font-headline text-2xl md:text-3xl font-bold mb-8 text-center">Key Responsibilities & Learnings</h3>
+              <h3 className="font-headline text-2xl md:text-3xl font-bold mb-8 text-center">{contentKey.replace(':', '')}</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {responsibilities.map((resp, index) => (
                   <Card key={index} className="shadow-md hover:shadow-xl transition-shadow duration-300">

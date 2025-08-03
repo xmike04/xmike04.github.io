@@ -73,10 +73,10 @@ Key Responsibilities & Learnings:
 The "Waving: From Space to Ocean" project is a capstone initiative in collaboration with NASA, the University of Maryland, and the University of North Texas. As the team lead, I guided a group of five students to build a comprehensive data visualization and analysis platform for NASA's PACE (Plankton, Aerosol, Cloud, ocean Ecosystem) satellite mission.
 
 Key Contributions & Technical Details:
-- **Interactive Data Visualization:** We developed a sophisticated front-end using React and TypeScript, allowing scientists and researchers to perform real-time analytics on complex oceanographic and atmospheric data. The visualizations are designed to be intuitive and interactive, facilitating new discoveries.
-- **Full-Stack Cloud Architecture:** I was responsible for architecting and implementing a full-stack application that connects to NASA's data pipelines. This involved setting up cloud infrastructure capable of handling large-scale scientific computations and data streaming.
-- **Optimized User Workflow:** To streamline the setup process for researchers, I designed and built a Setup Wizard using ImGui and OpenCV. This tool automates the configuration of the analysis environment, significantly reducing setup time and potential for errors.
-- **Scalable Data Integration:** We implemented a robust backend with scalable APIs and GraphQL endpoints to ensure seamless data integration from various sources and across different platforms.
+- Interactive Data Visualization: We developed a sophisticated front-end using React and TypeScript, allowing scientists and researchers to perform real-time analytics on complex oceanographic and atmospheric data. The visualizations are designed to be intuitive and interactive, facilitating new discoveries.
+- Full-Stack Cloud Architecture: I was responsible for architecting and implementing a full-stack application that connects to NASA's data pipelines. This involved setting up cloud infrastructure capable of handling large-scale scientific computations and data streaming.
+- Optimized User Workflow: To streamline the setup process for researchers, I designed and built a Setup Wizard using ImGui and OpenCV. This tool automates the configuration of the analysis environment, significantly reducing setup time and potential for errors.
+- Scalable Data Integration: We implemented a robust backend with scalable APIs and GraphQL endpoints to ensure seamless data integration from various sources and across different platforms.
 
 This project is not only a technical achievement but also a significant contribution to the scientific community. It is currently being showcased at the Kennedy Museum in Washington D.C. and is scheduled to tour other museums, bringing the science of the PACE mission to the public.
         `,
