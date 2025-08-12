@@ -23,17 +23,19 @@ interface SectionProps {
   className?: string;
 }
 
-const Section = ({ id, title, icon: Icon, children, className = '' }: SectionProps) => (
-  <section id={id} className={`py-16 md:py-24 ${className}`}>
-    <div className="container mx-auto px-4">
-      <h2 className="font-headline text-3xl md:text-5xl font-bold mb-12 text-center flex items-center justify-center gap-4">
-        <Icon className="w-8 h-8 md:w-10 md:h-10 text-primary" />
-        {title}
-      </h2>
-      {children}
-    </div>
-  </section>
-);
+const Section = ({ id, title, icon: Icon, children, className = '' }: SectionProps) => {
+  return (
+    <section id={id} className={cn('py-16 md:py-24', className)}>
+      <div className="container mx-auto px-4">
+        <h2 className="font-headline text-3xl md:text-5xl font-bold mb-12 text-center flex items-center justify-center gap-4">
+          <Icon className="w-8 h-8 md:w-10 md:h-10 text-primary" />
+          {title}
+        </h2>
+        {children}
+      </div>
+    </section>
+  );
+};
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -56,7 +58,7 @@ export default function Home() {
                 <Link href={href}>{label}</Link>
               </Button>
             ))}
-            <Button variant="accent" asChild><Link href="#contact">Contact</Link></Button>
+            <Button asChild><Link href="#contact">Contact</Link></Button>
           </nav>
           <div className="md:hidden">
             <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -151,7 +153,9 @@ export default function Home() {
         </Section>
 
         <Section id="playground" title="AI Playground" icon={Rocket} className="bg-muted/10">
-          <AiPlayground />
+          <div className="container mx-auto px-4">
+            <AiPlayground />
+          </div>
         </Section>
         
         <Section id="education" title="Education" icon={GraduationCap}>
