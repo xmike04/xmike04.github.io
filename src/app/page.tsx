@@ -13,6 +13,7 @@ import type { ElementType } from 'react';
 import Link from 'next/link';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
+import Image from 'next/image';
 
 interface SectionProps {
   id: string;
@@ -50,9 +51,11 @@ export default function Home() {
         <div className="container mx-auto flex justify-between items-center">
           <Link href="#hero" className="font-headline text-2xl font-bold text-primary">Marin Insights</Link>
           <nav className="hidden md:flex items-center gap-1">
-            <Button variant="ghost" asChild><Link href="#about">About</Link></Button>
-            <Button variant="ghost" asChild><Link href="#experience">Experience</Link></Button>
-            <Button variant="ghost" asChild><Link href="#skills">Skills</Link></Button>
+            {navLinks.map(({ href, label }) => (
+              <Button key={href} variant="ghost" asChild>
+                <Link href={href}>{label}</Link>
+              </Button>
+            ))}
             <Button variant="accent" asChild><Link href="#contact">Contact</Link></Button>
           </nav>
           <div className="md:hidden">
@@ -73,14 +76,26 @@ export default function Home() {
                         <Link href={href}>{label}</Link>
                     </Button>
                 ))}
+                 <Button variant="accent" className="w-full" asChild onClick={() => setIsMenuOpen(false)}>
+                    <Link href="#contact">Contact</Link>
+                </Button>
             </nav>
         </div>
       </header>
 
       <main>
-        <section id="hero" className="h-screen min-h-[600px] flex items-center justify-center relative overflow-hidden">
+        <section id="hero" className="h-screen min-h-[700px] flex items-center justify-center relative overflow-hidden">
           <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
           <div className="relative z-10 text-center container mx-auto px-4">
+             <Image
+              src="https://placehold.co/200x200.png"
+              alt="Michael E. Marin"
+              data-ai-hint="headshot professional"
+              width={200}
+              height={200}
+              className="rounded-full mx-auto mb-8 border-4 border-primary/20 shadow-lg"
+              priority
+            />
             <h1 className="font-headline text-4xl md:text-7xl lg:text-8xl font-bold mb-4">
               Michael E. Marin
             </h1>
@@ -169,7 +184,7 @@ export default function Home() {
               I'm actively seeking opportunities in AI/ML and Product Management. Let's connect!
             </p>
             <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full shadow-lg">
-              <a href={`mailto:${resumeData.contact.email}`}>Send me an email</a>
+              <a href="mailto:miked24977@gmail.com">Send me an email</a>
             </Button>
           </div>
         </Section>
@@ -177,10 +192,10 @@ export default function Home() {
 
       <footer className="bg-foreground text-muted-foreground text-center p-6">
         <div className="flex justify-center gap-6 mb-4">
-            <Link href={`mailto:${resumeData.contact.email}`} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors"><Mail className="w-6 h-6" /></Link>
+            <Link href="mailto:miked24977@gmail.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors"><Mail className="w-6 h-6" /></Link>
             <Link href="https://github.com/xmike04" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors"><Github className="w-6 h-6" /></Link>
             <Link href="https://linkedin.com/in/xmike04" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors"><Linkedin className="w-6 h-6" /></Link>
-            <Link href={`tel:${resumeData.contact.phone}`} className="hover:text-primary transition-colors"><Phone className="w-6 h-6" /></Link>
+            <Link href="tel:4699800069" className="hover:text-primary transition-colors"><Phone className="w-6 h-6" /></Link>
         </div>
         <p>&copy; 2024 Michael E. Marin. All Rights Reserved.</p>
       </footer>
@@ -189,3 +204,5 @@ export default function Home() {
     </div>
   );
 }
+
+    
