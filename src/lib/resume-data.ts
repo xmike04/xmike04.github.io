@@ -3,7 +3,7 @@ export const resumeData = {
   name: "Michael E. Marin",
   contact: {
     email: "miked24977@gmail.com",
-    phone: "+1 (469) 980 0069",
+    phone: "4699800069",
     location: "Dallas, TX",
   },
   summary:
@@ -81,8 +81,8 @@ Key Contributions & Technical Details:
 This project is not only a technical achievement but also a significant contribution to the scientific community. It is currently being showcased at the Kennedy Museum in Washington D.C. and is scheduled to tour other museums, bringing the science of the PACE mission to the public.
         `,
         links: [
-          { label: "Live Demo", url: "#" },
-          { label: "GitHub Repository", url: "#" }
+          { label: "Live Demo", url: "https://linkedin.com/in/xmike04" },
+          { label: "GitHub Repository", url: "https://github.com/xmike04" }
         ]
     }
   ],
@@ -114,7 +114,7 @@ This project is not only a technical achievement but also a significant contribu
 export const resumeText = `
 Michael E. Marin
 Dallas, TX
-Cell: +1 (469) 980 0069
+Cell: 4699800069
 Email: miked24977@gmail.com
 
 SUMMARY

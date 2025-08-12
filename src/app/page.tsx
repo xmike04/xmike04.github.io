@@ -68,9 +68,9 @@ export default function Home() {
             </div>
             <div className="flex justify-center gap-6 mt-12">
               <Link href="mailto:miked24977@gmail.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors"><Mail className="w-7 h-7" /></Link>
-              <Link href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors"><Github className="w-7 h-7" /></Link>
-              <Link href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors"><Linkedin className="w-7 h-7" /></Link>
-              <Link href="tel:+14699800069" className="text-muted-foreground hover:text-primary transition-colors"><Phone className="w-7 h-7" /></Link>
+              <Link href="https://github.com/xmike04" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors"><Github className="w-7 h-7" /></Link>
+              <Link href="https://linkedin.com/in/xmike04" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors"><Linkedin className="w-7 h-7" /></Link>
+              <Link href="tel:4699800069" className="text-muted-foreground hover:text-primary transition-colors"><Phone className="w-7 h-7" /></Link>
             </div>
           </div>
         </section>
@@ -149,8 +149,8 @@ export default function Home() {
       <footer className="bg-foreground text-muted-foreground text-center p-6">
         <div className="flex justify-center gap-6 mb-4">
             <Link href={`mailto:${resumeData.contact.email}`} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors"><Mail className="w-6 h-6" /></Link>
-            <Link href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors"><Github className="w-6 h-6" /></Link>
-            <Link href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors"><Linkedin className="w-6 h-6" /></Link>
+            <Link href="https://github.com/xmike04" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors"><Github className="w-6 h-6" /></Link>
+            <Link href="https://linkedin.com/in/xmike04" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors"><Linkedin className="w-6 h-6" /></Link>
             <Link href={`tel:${resumeData.contact.phone}`} className="hover:text-primary transition-colors"><Phone className="w-6 h-6" /></Link>
         </div>
         <p>&copy; 2024 Michael E. Marin. All Rights Reserved.</p>
