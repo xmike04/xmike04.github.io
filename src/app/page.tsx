@@ -88,9 +88,8 @@ export default function Home() {
           <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
           <div className="relative z-10 text-center container mx-auto px-4">
              <Image
-              src="https://placehold.co/200x200.png"
+              src="/headshot.png"
               alt="Michael E. Marin"
-              data-ai-hint="headshot professional"
               width={200}
               height={200}
               className="rounded-full mx-auto mb-8 border-4 border-primary/20 shadow-lg"
