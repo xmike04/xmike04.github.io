@@ -1,5 +1,7 @@
 
-import { Mail, Github, Linkedin, Phone, Code, BrainCircuit, Rocket, Briefcase, GraduationCap, Building, Link as LinkIcon } from 'lucide-react';
+'use client';
+
+import { Mail, Github, Linkedin, Phone, Code, BrainCircuit, Rocket, Briefcase, GraduationCap, Building, Link as LinkIcon, Menu, X } from 'lucide-react';
 import { resumeData, resumeText } from '@/lib/resume-data';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -9,6 +11,8 @@ import AiPlayground from '@/components/ai-playground';
 import ChatBot from '@/components/chat-bot';
 import type { ElementType } from 'react';
 import Link from 'next/link';
+import { useState } from 'react';
+import { cn } from '@/lib/utils';
 
 interface SectionProps {
   id: string;
@@ -19,10 +23,10 @@ interface SectionProps {
 }
 
 const Section = ({ id, title, icon: Icon, children, className = '' }: SectionProps) => (
-  <section id={id} className={`py-20 md:py-28 ${className}`}>
+  <section id={id} className={`py-16 md:py-24 ${className}`}>
     <div className="container mx-auto px-4">
-      <h2 className="font-headline text-4xl md:text-5xl font-bold mb-12 text-center flex items-center justify-center gap-4">
-        <Icon className="w-10 h-10 text-primary" />
+      <h2 className="font-headline text-3xl md:text-5xl font-bold mb-12 text-center flex items-center justify-center gap-4">
+        <Icon className="w-8 h-8 md:w-10 md:h-10 text-primary" />
         {title}
       </h2>
       {children}
@@ -31,38 +35,63 @@ const Section = ({ id, title, icon: Icon, children, className = '' }: SectionPro
 );
 
 export default function Home() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const navLinks = [
+    { href: '#about', label: 'About' },
+    { href: '#experience', label: 'Experience' },
+    { href: '#skills', label: 'Skills' },
+    { href: '#contact', label: 'Contact' },
+  ];
+
   return (
     <div className="bg-background text-foreground min-h-screen">
-      <header className="fixed top-0 left-0 right-0 p-4 z-20 bg-background/80 backdrop-blur-sm">
+      <header className="fixed top-0 left-0 right-0 p-4 z-30 bg-background/80 backdrop-blur-sm">
         <div className="container mx-auto flex justify-between items-center">
           <Link href="#hero" className="font-headline text-2xl font-bold text-primary">Marin Insights</Link>
-          <nav className="hidden md:flex items-center gap-2">
+          <nav className="hidden md:flex items-center gap-1">
             <Button variant="ghost" asChild><Link href="#about">About</Link></Button>
             <Button variant="ghost" asChild><Link href="#experience">Experience</Link></Button>
             <Button variant="ghost" asChild><Link href="#skills">Skills</Link></Button>
             <Button variant="accent" asChild><Link href="#contact">Contact</Link></Button>
           </nav>
           <div className="md:hidden">
-            {/* Mobile menu can be added here if needed */}
+            <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+              {isMenuOpen ? <X /> : <Menu />}
+              <span className="sr-only">Toggle Menu</span>
+            </Button>
           </div>
+        </div>
+        {/* Mobile Menu */}
+        <div className={cn(
+          "md:hidden absolute top-full left-0 w-full bg-background/95 backdrop-blur-sm transition-all duration-300 ease-in-out overflow-hidden",
+          isMenuOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
+        )}>
+            <nav className="flex flex-col items-center p-4 gap-2">
+                {navLinks.map(({href, label}) => (
+                    <Button key={href} variant="ghost" className="w-full" asChild onClick={() => setIsMenuOpen(false)}>
+                        <Link href={href}>{label}</Link>
+                    </Button>
+                ))}
+            </nav>
         </div>
       </header>
 
       <main>
-        <section id="hero" className="h-screen min-h-[700px] flex items-center justify-center relative overflow-hidden">
+        <section id="hero" className="h-screen min-h-[600px] flex items-center justify-center relative overflow-hidden">
           <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
           <div className="relative z-10 text-center container mx-auto px-4">
-            <h1 className="font-headline text-5xl md:text-7xl lg:text-8xl font-bold mb-4">
+            <h1 className="font-headline text-4xl md:text-7xl lg:text-8xl font-bold mb-4">
               Michael E. Marin
             </h1>
-            <p className="text-xl md:text-2xl text-primary font-medium mb-8">
+            <p className="text-lg md:text-2xl text-primary font-medium mb-8">
               AI/ML Engineer & Product Innovator
             </p>
-            <div className="flex justify-center items-center gap-4 mb-8">
-              <Button asChild variant="default" size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full shadow-lg">
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-8">
+              <Button asChild variant="default" size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full shadow-lg w-full sm:w-auto">
                 <Link href="#experience">View My Work</Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="rounded-full shadow-lg">
+              <Button asChild variant="outline" size="lg" className="rounded-full shadow-lg w-full sm:w-auto">
                 <Link href="#contact">Get In Touch</Link>
               </Button>
             </div>
@@ -77,8 +106,8 @@ export default function Home() {
 
         <Section id="about" title="About Me" icon={BrainCircuit}>
           <Card className="max-w-4xl mx-auto shadow-lg border-2 border-primary/10">
-            <CardContent className="p-8">
-              <p className="text-lg md:text-xl text-center text-muted-foreground leading-relaxed">
+            <CardContent className="p-6 md:p-8">
+              <p className="text-base md:text-xl text-center text-muted-foreground leading-relaxed">
                 {resumeData.summary}
               </p>
             </CardContent>
@@ -86,7 +115,7 @@ export default function Home() {
         </Section>
 
         <Section id="skills" title="Technical Skills" icon={Code} className="bg-muted/10">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {resumeData.skills.map((skillCategory) => (
               <Card key={skillCategory.category} className="shadow-md hover:shadow-xl transition-shadow duration-300">
                 <CardHeader>
@@ -115,12 +144,12 @@ export default function Home() {
             {resumeData.education.map((edu, index) => (
               <Card key={index} className="shadow-md">
                 <CardHeader>
-                  <div className="flex justify-between items-start">
+                  <div className="flex flex-col sm:flex-row justify-between items-start gap-2">
                     <div>
                       <CardTitle className="font-headline text-xl">{edu.degree}</CardTitle>
                       <CardDescription>{edu.school}</CardDescription>
                     </div>
-                    <Badge variant="outline">{edu.date}</Badge>
+                    <Badge variant="outline" className="mt-2 sm:mt-0">{edu.date}</Badge>
                   </div>
                 </CardHeader>
                 <CardContent>
@@ -136,7 +165,7 @@ export default function Home() {
         
         <Section id="contact" title="Get In Touch" icon={Mail} className="bg-foreground text-background">
           <div className="max-w-2xl mx-auto text-center">
-            <p className="text-xl text-muted-foreground mb-8">
+            <p className="text-lg md:text-xl text-muted-foreground mb-8">
               I'm actively seeking opportunities in AI/ML and Product Management. Let's connect!
             </p>
             <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full shadow-lg">
@@ -160,25 +189,3 @@ export default function Home() {
     </div>
   );
 }
-
-// A simple decorative pattern
-const GridPattern = () => (
-  <svg
-    aria-hidden="true"
-    className="absolute inset-0 h-full w-full"
-  >
-    <defs>
-      <pattern
-        id="grid-pattern"
-        width="72"
-        height="72"
-        patternUnits="userSpaceOnUse"
-        x="50%"
-        y="50%"
-      >
-        <path d="M.5 71.5V.5H71.5" fill="none" className="stroke-primary/20" />
-      </pattern>
-    </defs>
-    <rect width="100%" height="100%" fill="url(#grid-pattern)" />
-  </svg>
-);

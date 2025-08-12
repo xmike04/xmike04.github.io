@@ -54,7 +54,7 @@ export default function ItemPage({ params }: { params: { id: string } }) {
           </header>
 
           <Card className="shadow-lg border-2 border-primary/10 mb-12">
-            <CardContent className="p-8">
+            <CardContent className="p-6 md:p-8">
               <p className="prose prose-lg dark:prose-invert max-w-none mx-auto text-muted-foreground leading-relaxed">
                 {intro}
               </p>
@@ -68,7 +68,7 @@ export default function ItemPage({ params }: { params: { id: string } }) {
                 {responsibilities.map((resp, index) => (
                   <Card key={index} className="shadow-md hover:shadow-xl transition-shadow duration-300">
                     <CardHeader className="flex flex-row items-center gap-4">
-                      <CheckCircle2 className="w-8 h-8 text-primary" />
+                      <CheckCircle2 className="w-8 h-8 text-primary shrink-0" />
                       <CardTitle className="font-headline text-xl">{resp.title}</CardTitle>
                     </CardHeader>
                     <CardContent>
@@ -84,7 +84,7 @@ export default function ItemPage({ params }: { params: { id: string } }) {
           {item.links && item.links.length > 0 && (
             <div className="mt-16 text-center">
               <h3 className="font-headline text-2xl font-bold mb-4">Project Links</h3>
-              <div className="flex justify-center gap-4">
+              <div className="flex flex-wrap justify-center gap-4">
                 {item.links.map((link, index) => (
                   <Button asChild key={index} variant="outline">
                     <Link href={link.url} target="_blank" rel="noopener noreferrer">

@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useRef, useEffect, type FormEvent } from "react";
@@ -75,16 +76,16 @@ export default function ChatBot({ resume }: { resume: string }) {
   return (
     <>
       <Button
-        className="fixed bottom-6 right-6 h-16 w-16 rounded-full shadow-2xl z-20"
+        className="fixed bottom-4 right-4 md:bottom-6 md:right-6 h-14 w-14 md:h-16 md:w-16 rounded-full shadow-2xl z-20"
         size="icon"
         onClick={() => setIsOpen(true)}
         aria-label="Open AI Chatbot"
       >
-        <MessageSquare className="h-8 w-8" />
+        <MessageSquare className="h-7 w-7 md:h-8 md:w-8" />
       </Button>
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="sm:max-w-[425px] h-[70vh] flex flex-col p-0 gap-0">
+        <DialogContent className="sm:max-w-[90vw] md:max-w-[425px] h-[80vh] flex flex-col p-0 gap-0">
           <DialogHeader className="p-4 border-b">
             <DialogTitle className="flex items-center gap-2 font-headline">
               <Bot className="text-primary"/>
@@ -95,7 +96,7 @@ export default function ChatBot({ resume }: { resume: string }) {
             {messages.map((message, index) => (
               <div key={index} className={cn("flex items-start gap-3", message.role === 'user' ? 'justify-end' : 'justify-start')}>
                 {message.role === 'ai' && (
-                  <Avatar className="h-8 w-8">
+                  <Avatar className="h-8 w-8 shrink-0">
                     <AvatarFallback className="bg-primary text-primary-foreground"><Bot size={20} /></AvatarFallback>
                   </Avatar>
                 )}
@@ -103,7 +104,7 @@ export default function ChatBot({ resume }: { resume: string }) {
                   <p className="whitespace-pre-wrap">{message.content}</p>
                 </div>
                  {message.role === 'user' && (
-                  <Avatar className="h-8 w-8">
+                  <Avatar className="h-8 w-8 shrink-0">
                     <AvatarFallback className="bg-accent text-accent-foreground"><User size={20} /></AvatarFallback>
                   </Avatar>
                 )}
@@ -111,7 +112,7 @@ export default function ChatBot({ resume }: { resume: string }) {
             ))}
              {loading && (
               <div className="flex items-start gap-3 justify-start">
-                <Avatar className="h-8 w-8">
+                <Avatar className="h-8 w-8 shrink-0">
                   <AvatarFallback className="bg-primary text-primary-foreground"><Bot size={20} /></AvatarFallback>
                 </Avatar>
                 <div className="bg-muted rounded-lg p-3 flex items-center space-x-2">
