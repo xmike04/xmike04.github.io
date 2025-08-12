@@ -88,11 +88,12 @@ export default function Home() {
           <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
           <div className="relative z-10 text-center container mx-auto px-4">
              <Image
-              src="/headshot.png"
+              src="/headshot.jpeg"
               alt="Michael E. Marin"
               width={200}
               height={200}
-              className="rounded-full mx-auto mb-8 border-4 border-primary/20 shadow-lg"
+              className="rounded-full w-[200px] h-[200px] object-cover mx-auto mb-8 border-4 border-primary/20 shadow-lg"
+              style={{ objectPosition: 'center' }}
               priority
             />
             <h1 className="font-headline text-4xl md:text-7xl lg:text-8xl font-bold mb-4">
@@ -186,7 +187,7 @@ export default function Home() {
               <a href="mailto:miked24977@gmail.com">Send me an email</a>
             </Button>
           </div>
-        </Section>
+        </section>
       </main>
 
       <footer className="bg-foreground text-muted-foreground text-center p-6">
@@ -203,5 +204,3 @@ export default function Home() {
     </div>
   );
 }
-
-    
