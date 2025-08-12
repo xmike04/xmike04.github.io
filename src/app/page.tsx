@@ -23,7 +23,7 @@ interface SectionProps {
   className?: string;
 }
 
-const Section = ({ id, title, icon: Icon, children, className = '' }: SectionProps) => {
+function Section({ id, title, icon: Icon, children, className = '' }: SectionProps) {
   return (
     <section id={id} className={cn('py-16 md:py-24', className)}>
       <div className="container mx-auto px-4">
@@ -35,7 +35,7 @@ const Section = ({ id, title, icon: Icon, children, className = '' }: SectionPro
       </div>
     </section>
   );
-};
+}
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
