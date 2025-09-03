@@ -1,4 +1,3 @@
-
 'use client';
 
 import { Mail, Github, Linkedin, Phone, Code, BrainCircuit, Rocket, Briefcase, GraduationCap, Building, Link as LinkIcon, Menu, X } from 'lucide-react';
@@ -90,12 +89,11 @@ export default function Home() {
           <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
           <div className="relative z-10 text-center container mx-auto px-4">
              <Image
-              src="/headshot.jpeg"
+              src="https://picsum.photos/200/200"
               alt="Michael E. Marin"
               width={200}
               height={200}
               className="rounded-full w-[200px] h-[200px] object-cover mx-auto mb-8 border-4 border-primary/20 shadow-lg"
-              style={{ objectPosition: 'center' }}
               priority
             />
             <h1 className="font-headline text-4xl md:text-7xl lg:text-8xl font-bold mb-4">
