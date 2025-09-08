@@ -1,3 +1,4 @@
+
 'use client';
 
 import { Mail, Github, Linkedin, Phone, Code, BrainCircuit, Rocket, Briefcase, GraduationCap, Building, Link as LinkIcon, Menu, X } from 'lucide-react';
@@ -14,28 +15,6 @@ import { useState } from 'react';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 
-interface SectionProps {
-  id: string;
-  title: string;
-  icon: ElementType;
-  children: React.ReactNode;
-  className?: string;
-}
-
-function Section({ id, title, icon: Icon, children, className = '' }: SectionProps) {
-  return (
-    <section id={id} className={cn('py-16 md:py-24', className)}>
-      <div className="container mx-auto px-4">
-        <h2 className="font-headline text-3xl md:text-5xl font-bold mb-12 text-center flex items-center justify-center gap-4">
-          <Icon className="w-8 h-8 md:w-10 md:h-10 text-primary" />
-          {title}
-        </h2>
-        {children}
-      </div>
-    </section>
-  );
-}
-
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -45,6 +24,28 @@ export default function Home() {
     { href: '#skills', label: 'Skills' },
     { href: '#contact', label: 'Contact' },
   ];
+
+  interface SectionProps {
+    id: string;
+    title: string;
+    icon: ElementType;
+    children: React.ReactNode;
+    className?: string;
+  }
+
+  function Section({ id, title, icon: Icon, children, className = '' }: SectionProps) {
+    return (
+      <section id={id} className={cn('py-16 md:py-24', className)}>
+        <div className="container mx-auto px-4">
+          <h2 className="font-headline text-3xl md:text-5xl font-bold mb-12 text-center flex items-center justify-center gap-4">
+            <Icon className="w-8 h-8 md:w-10 md:h-10 text-primary" />
+            {title}
+          </h2>
+          {children}
+        </div>
+      </section>
+    );
+  }
 
   return (
     <div className="bg-background text-foreground min-h-screen">
@@ -94,6 +95,7 @@ export default function Home() {
               width={200}
               height={200}
               className="rounded-full w-[200px] h-[200px] object-cover mx-auto mb-8 border-4 border-primary/20 shadow-lg"
+              data-ai-hint="headshot"
               priority
             />
             <h1 className="font-headline text-4xl md:text-7xl lg:text-8xl font-bold mb-4">
@@ -189,7 +191,7 @@ export default function Home() {
               <a href="mailto:miked24977@gmail.com">Send me an email</a>
             </Button>
           </div>
-        </section>
+        </Section>
       </main>
 
       <footer className="bg-foreground text-muted-foreground text-center p-6">
