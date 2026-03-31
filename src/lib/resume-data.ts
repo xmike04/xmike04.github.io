@@ -1,4 +1,7 @@
 
+import type { CaseStudy } from '@/components/case-study-view';
+export type { CaseStudy };
+
 export const resumeData = {
   name: "Michael E. Marin",
   contact: {
@@ -111,7 +114,38 @@ Key Contributions & Technical Details:
       `,
       links: [
         { label: "GitHub Repository", url: "https://github.com/xmike04" }
-      ]
+      ],
+      caseStudy: {
+        problem:
+          "Naive RAG systems built on embedding-only retrieval suffer from poor recall on out-of-distribution queries, context pollution from irrelevant chunks, and zero visibility into why a given answer was produced. There was no systematic way to measure or improve retrieval quality over time.",
+        constraints: [
+          "Heterogeneous document formats (PDF, markdown, HTML) required a unified ingestion pipeline",
+          "Query latency budget: end-to-end response under 3 seconds including reranking",
+          "Cost per query had to remain viable for self-hosted, single-tenant use",
+          "Evaluation required ground-truth labels — 150 QA pairs curated manually",
+          "No managed vector database; pgvector on PostgreSQL to keep the stack minimal",
+        ],
+        approach:
+          "Replaced single-stage dense retrieval with a three-stage pipeline: (1) dual retrieval combining pgvector ANN search with BM25-style lexical matching, (2) score fusion to merge candidate lists, and (3) a cross-encoder reranker applied to the top-k candidates before passing context to the LLM. Chunking strategy was switched from fixed-size to semantic boundaries to improve chunk coherence. A fallback gate rejects low-confidence queries rather than hallucinating. Evaluation was embedded into the development loop — every pipeline change was measured against the 150-query benchmark before merging.",
+        architectureNote:
+          "Ingestion → Chunker → Embedder → pgvector + BM25 index → Fusion → Cross-encoder reranker → LLM generation → Traced response",
+        metrics: [
+          { label: "Recall@10", baseline: "~58%", achieved: "~81%" },
+          { label: "Answer precision (manual)", baseline: "62%", achieved: "84%" },
+          { label: "Irrelevant context rate", baseline: "31%", achieved: "11%" },
+          { label: "Avg query latency", baseline: "1.1 s", achieved: "2.4 s (reranker added)" },
+          { label: "Benchmark queries", baseline: "0", achieved: "150 QA pairs" },
+        ],
+        productImpact:
+          "RAGOps functions as a self-hostable knowledge-base Q&A system for domain-specific document corpora. The observability dashboard lets an operator debug retrieval failures without re-running experiments manually. The evaluation framework enables confident iteration — any retrieval change is quantified before deployment, treating the LLM application as infrastructure rather than a prototype.",
+        techStack: [
+          "Python", "FastAPI", "PostgreSQL", "pgvector", "Redis", "Celery",
+          "Next.js", "TypeScript", "BM25", "Cross-encoder reranker", "LLM API",
+        ],
+        links: [
+          { label: "GitHub Repository", url: "https://github.com/xmike04" },
+        ],
+      } satisfies CaseStudy,
     }
   ],
   education: [
