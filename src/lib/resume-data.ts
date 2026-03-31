@@ -23,7 +23,7 @@ export const resumeData = {
     },
     {
       category: "Backend Development",
-      technologies: ["Node.js", "Flask", "PostgreSQL", "Firebase", "RESTful APIs"],
+      technologies: ["Node.js", "FastAPI", "Flask", "PostgreSQL", "pgvector", "Redis", "Firebase", "RESTful APIs"],
     },
   ],
   workExperience: [
@@ -84,6 +84,34 @@ This project is not only a technical achievement but also a significant contribu
           { label: "Live Demo", url: "https://linkedin.com/in/xmike04" },
           { label: "GitHub Repository", url: "https://github.com/xmike04" }
         ]
+    },
+    {
+      id: 'ragops-platform',
+      type: 'project',
+      title: "RAGOps: Production-Grade RAG Platform",
+      company: "Personal Project",
+      location: "",
+      date: "2024 – 2025",
+      description: [
+        "Built a production-grade RAG platform with hybrid retrieval (vector + BM25), cross-encoder reranking, and citation-based answer generation.",
+        "Designed end-to-end LLM pipeline: document ingestion, semantic chunking, embedding, hybrid retrieval, and generation using FastAPI and PostgreSQL (pgvector).",
+        "Implemented observability layer tracking retrieval latency, token usage, cost, and per-query diagnostics via an admin dashboard.",
+        "Developed evaluation framework with 150+ benchmark queries measuring Recall@k, MRR, and answer correctness.",
+        "Hybrid retrieval improved Recall@10 significantly over dense-only baseline; reranking reduced irrelevant context and improved answer precision.",
+      ],
+      detailedContent: `
+RAGOps is a production-oriented Retrieval-Augmented Generation platform built to address core limitations of naive LLM systems: poor retrieval quality, hallucinations, lack of observability, and no evaluation framework. The system enables users to create domain-specific knowledge bases from unstructured documents and query them through a fully instrumented RAG pipeline that prioritizes grounded responses, retrieval transparency, and measurable performance.
+
+Key Contributions & Technical Details:
+- Hybrid Retrieval Architecture: Moved beyond naive embedding-only retrieval by combining dense vector search (semantic similarity via pgvector) with lexical retrieval (BM25-style keyword matching), then fusing results with a cross-encoder reranker. This multi-stage pipeline significantly improved Recall@10 and answer precision over the dense-only baseline.
+- End-to-End LLM Pipeline: Designed the full ingestion-to-generation stack — PDF/markdown/HTML parsing, semantic chunking with configurable overlap, embedding generation, and indexing into PostgreSQL with pgvector. Queries flow through retrieval, reranking, and structured prompt construction before LLM generation.
+- Observability & Tracing: Implemented a full query tracing layer capturing retrieval latency vs generation latency, token usage, cost per query, retrieved document distribution, reranker impact, and failure rates. All traces are inspectable in an admin dashboard for debugging and optimization.
+- Evaluation Framework: Developed a structured benchmark pipeline with 150+ curated question-answer pairs and ground-truth documents. Metrics include Recall@k, MRR, citation accuracy, answer correctness, latency, and cost. Used experiments (dense vs hybrid, with/without reranking, fixed vs semantic chunking) to drive iterative improvements.
+- Hallucination Prevention: Fallback mechanism rejects low-evidence queries rather than generating ungrounded responses. Responses include source citations and retrieved supporting passages.
+      `,
+      links: [
+        { label: "GitHub Repository", url: "https://github.com/xmike04" }
+      ]
     }
   ],
   education: [
@@ -153,6 +181,14 @@ Collaborated with NASA Goddard Program, University of Maryland, and UNT | Jan 20
 • Designed a Setup Wizard using ImGui and OpenCV, optimizing user configuration workflows.
 • Implemented scalable APIs and GraphQL endpoints for cross-platform data integration.
 • Currently being showcases at Kennedy Museum in Washington D.C.; Set to travel to different museums across the country.
+
+RAGOps: Production-Grade RAG Platform
+Personal Project | 2024 – 2025
+• Built a production-grade RAG platform with hybrid retrieval (vector + BM25), cross-encoder reranking, and citation-based answer generation.
+• Designed end-to-end LLM pipeline including document ingestion, chunking, embedding, retrieval, and generation using FastAPI and PostgreSQL (pgvector).
+• Implemented observability layer tracking latency, token usage, cost, and retrieval diagnostics per query.
+• Developed evaluation framework with 150+ benchmark queries measuring Recall@k, MRR, and answer correctness.
+• Hybrid retrieval improved Recall@10 significantly over dense-only baseline; reranking reduced irrelevant context and improved answer precision.
 
 CERTIFICATIONS, TECHNICAL SKILLS & INTERESTS
 • Intro to Web Development with HTML, CSS, & Bootstrap
