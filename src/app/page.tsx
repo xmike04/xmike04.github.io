@@ -111,7 +111,7 @@ export default function Home() {
                 <Link href="#experience">View Projects</Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="rounded-full shadow-lg w-full sm:w-auto px-8">
-                <a href="/resume.pdf" download aria-label="Download resume as PDF">Download Resume</a>
+                <Link href="/resume" target="_blank" rel="noopener noreferrer" aria-label="View and download resume (opens in new tab)">Download Resume</Link>
               </Button>
             </div>
             <div className="flex justify-center items-center gap-6 flex-wrap" role="list" aria-label="Contact and social links">
@@ -187,6 +187,41 @@ export default function Home() {
           </div>
         </Section>
         
+        <Section id="highlights" title="Resume Highlights" icon={Rocket} className="bg-muted/10">
+          <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                metric: "81%",
+                label: "Recall@10",
+                detail: "Achieved in production RAG system vs 58% dense-only baseline",
+              },
+              {
+                metric: "NASA",
+                label: "PACE Satellite",
+                detail: "Real-time oceanographic data visualization for NASA's PACE mission",
+              },
+              {
+                metric: "5-person",
+                label: "Team Lead",
+                detail: "Led cross-functional engineering team on NASA capstone project",
+              },
+              {
+                metric: "150+",
+                label: "Benchmark Queries",
+                detail: "Human-labeled evaluation dataset built to measure LLM system quality",
+              },
+            ].map((h) => (
+              <Card key={h.label} className="shadow-md text-center">
+                <CardContent className="p-6 flex flex-col gap-2">
+                  <p className="font-headline text-4xl font-bold text-primary">{h.metric}</p>
+                  <p className="font-semibold text-sm uppercase tracking-wide">{h.label}</p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{h.detail}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </Section>
+
         <Section id="education" title="Education" icon={GraduationCap}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {resumeData.education.map((edu, index) => (

@@ -151,16 +151,16 @@ Key Contributions & Technical Details:
   education: [
     {
       school: "The University of North Texas (UNT)",
+      degree: "MS, Artificial Intelligence (Machine Learning Focus)",
+      date: "Expected May 2027",
+      grade: "In Progress",
+    },
+    {
+      school: "The University of North Texas (UNT)",
       degree: "BS, Computer Science Engineering",
       date: "May 2025",
       grade: "Graduated",
       gpa: "3.25 (4.0 Scale)",
-    },
-    {
-      school: "The University of North Texas (UNT)",
-      degree: "MS, Artificial Intelligence (focus in ML)",
-      date: "May 2025",
-      grade: "Year 1 of 2",
     },
   ],
   certifications: [
