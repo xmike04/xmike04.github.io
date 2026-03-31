@@ -154,6 +154,8 @@ Key Contributions & Technical Details:
         ],
         approach:
           "Replaced single-stage dense retrieval with a three-stage pipeline: (1) dual retrieval combining pgvector ANN search with BM25-style lexical matching, (2) score fusion to merge candidate lists, and (3) a cross-encoder reranker applied to the top-k candidates before passing context to the LLM. Chunking strategy was switched from fixed-size to semantic boundaries to improve chunk coherence. A fallback gate rejects low-confidence queries rather than hallucinating. Evaluation was embedded into the development loop — every pipeline change was measured against the 150-query benchmark before merging.",
+        architectureImageSrc: '/diagrams/ragops-architecture.png',
+        architectureImageAlt: 'RAGOps system architecture: document ingestion through hybrid retrieval, reranking, and LLM generation with observability tracing',
         architectureNote:
           "Ingestion → Chunker → Embedder → pgvector + BM25 index → Fusion → Cross-encoder reranker → LLM generation → Traced response",
         metrics: [

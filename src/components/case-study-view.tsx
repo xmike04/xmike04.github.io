@@ -2,6 +2,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ExternalLink, ImageIcon } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 
 export interface CaseStudyMetric {
@@ -14,7 +15,9 @@ export interface CaseStudy {
   problem: string;
   constraints: string[];
   approach: string;
-  architectureNote?: string; // caption shown inside the diagram placeholder
+  architectureNote?: string;      // caption for placeholder or below the image
+  architectureImageSrc?: string;  // path relative to /public, e.g. '/diagrams/ragops.png'
+  architectureImageAlt?: string;  // descriptive alt text for the diagram
   metrics: CaseStudyMetric[];
   productImpact: string;
   techStack: string[];
@@ -72,19 +75,38 @@ export default function CaseStudyView({ data }: { data: CaseStudy }) {
 
       {/* 04 — Architecture */}
       <Section number="04" title="Architecture">
-        <div
-          className="rounded-lg border-2 border-dashed border-border bg-muted/30 flex flex-col items-center justify-center gap-3 py-14 px-6 text-center"
-          role="img"
-          aria-label={data.architectureNote ?? 'Architecture diagram placeholder'}
-        >
-          <ImageIcon className="w-8 h-8 text-muted-foreground/50" aria-hidden="true" />
-          <p className="text-sm text-muted-foreground font-medium">
-            {data.architectureNote ?? 'Architecture diagram — add image here'}
-          </p>
-          <p className="text-xs text-muted-foreground/60">
-            Replace this block with an image or diagram
-          </p>
-        </div>
+        {data.architectureImageSrc ? (
+          <figure className="rounded-lg overflow-hidden border border-border bg-muted/20">
+            <div className="relative w-full" style={{ aspectRatio: '16/9' }}>
+              <Image
+                src={data.architectureImageSrc}
+                alt={data.architectureImageAlt ?? 'System architecture diagram'}
+                fill
+                className="object-contain"
+                sizes="(max-width: 768px) 100vw, 768px"
+              />
+            </div>
+            {data.architectureNote && (
+              <figcaption className="text-xs text-muted-foreground text-center px-4 py-3 border-t border-border">
+                {data.architectureNote}
+              </figcaption>
+            )}
+          </figure>
+        ) : (
+          <div
+            className="rounded-lg border-2 border-dashed border-border bg-muted/30 flex flex-col items-center justify-center gap-3 py-14 px-6 text-center"
+            role="img"
+            aria-label={data.architectureNote ?? 'Architecture diagram placeholder'}
+          >
+            <ImageIcon className="w-8 h-8 text-muted-foreground/50" aria-hidden="true" />
+            <p className="text-sm text-muted-foreground font-medium">
+              {data.architectureNote ?? 'Architecture diagram — add image here'}
+            </p>
+            <p className="text-xs text-muted-foreground/60">
+              Replace this block with an image or diagram
+            </p>
+          </div>
+        )}
       </Section>
 
       {/* 05 — Metrics */}
