@@ -13,7 +13,6 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
-import { positiveChatbotAction } from "@/lib/actions";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { cn } from "@/lib/utils";
 import { Separator } from "./ui/separator";
@@ -52,22 +51,12 @@ export default function ChatBot({ resume }: { resume: string }) {
     setInput('');
 
     try {
-      const result = await positiveChatbotAction({ resume, question: input });
-      if (result.response) {
-        const aiMessage: ChatMessage = { role: 'ai', content: result.response };
-        setMessages(prev => [...prev, aiMessage]);
-      } else {
-        throw new Error("Received an empty response from the AI.");
-      }
-    } catch (error) {
-      console.error("Chatbot error:", error);
-      toast({
-        variant: "destructive",
-        title: "Uh oh! Something went wrong.",
-        description: "There was a problem with the chatbot. Please try again later.",
-      });
-      // Optionally remove the user's message or add an error message to the chat
-      setMessages(prev => [...prev, { role: 'ai', content: 'Sorry, I had trouble connecting. Please try again.' }]);
+      await new Promise(resolve => setTimeout(resolve, 600));
+      const aiMessage: ChatMessage = {
+        role: 'ai',
+        content: "Thanks for reaching out! The live AI assistant is coming soon. In the meantime, feel free to explore the portfolio or contact me directly through the contact section below.",
+      };
+      setMessages(prev => [...prev, aiMessage]);
     } finally {
       setLoading(false);
     }

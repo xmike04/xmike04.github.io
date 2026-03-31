@@ -1,6 +1,11 @@
 
 import { resumeData } from '@/lib/resume-data';
 import { notFound } from 'next/navigation';
+
+export function generateStaticParams() {
+  const allItems = [...resumeData.workExperience, ...resumeData.projects];
+  return allItems.map((item) => ({ id: item.id }));
+}
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
