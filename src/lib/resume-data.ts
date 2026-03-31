@@ -86,7 +86,34 @@ This project is not only a technical achievement but also a significant contribu
         links: [
           { label: "Live Demo", url: "https://linkedin.com/in/xmike04" },
           { label: "GitHub Repository", url: "https://github.com/xmike04" }
-        ]
+        ],
+        caseStudy: {
+          problem:
+            "NASA's PACE mission produces large-scale, high-dimensional oceanographic and atmospheric satellite data that is difficult for non-experts to interpret or interact with. The goal was to transform raw satellite data into a real-time interactive system that enables scientists, educators, and general audiences to explore complex datasets through intuitive gesture-based interfaces — without requiring domain expertise.",
+          constraints: [
+            "Real-time performance requirements with multi-user simultaneous interaction",
+            "High-throughput stereo camera input (ZED SDK) requiring low-latency processing",
+            "Deployment on constrained exhibit hardware with no dedicated GPU infrastructure",
+            "Robustness across variable physical environments — lighting, spacing, and calibration",
+            "Non-technical end users: scientists, educators, and general public audiences",
+          ],
+          approach:
+            "Designed a modular pipeline combining computer vision, real-time rendering, and gesture recognition. Built gesture interaction using ZED stereo cameras and OpenCV with CUDA acceleration for tracking and interpreting user movement. Developed a configurable ImGui-based setup wizard to automate deployment, calibration, and system validation, reducing friction for non-technical operators. Integrated the full pipeline into Unity to render interactive PACE satellite visualizations across multiple display environments.",
+          architectureNote:
+            "ZED stereo camera → OpenCV + CUDA gesture pipeline → Unity rendering engine → ImGui setup wizard for calibration and validation",
+          metrics: [
+            { label: "Setup & calibration time", baseline: "Manual multi-step process", achieved: "~70% reduction via automated wizard" },
+            { label: "Gesture recognition latency", baseline: "Not real-time", achieved: "<100ms end-to-end" },
+            { label: "Simultaneous users supported", baseline: "Single user", achieved: "2–4 participants" },
+            { label: "Runtime errors", baseline: "Manual validation only", achieved: "Eliminated via automated pre-flight checks" },
+          ],
+          productImpact:
+            "Delivered an interactive exhibit system used to demonstrate NASA PACE mission data for public education and scientific outreach. Enabled intuitive exploration of satellite-derived oceanographic data without requiring domain expertise, bridging the gap between raw scientific output and accessible visualization. Improved deployment scalability so non-technical staff could independently configure and run the system. Currently exhibited at the Kennedy Space Center Museum, Washington D.C., with a scheduled national museum tour.",
+          techStack: ["C#", "C++", "Python", "Unity", "OpenCV", "ZED SDK", "CUDA", "ImGui", "OpenGL", "React", "TypeScript", "GraphQL"],
+          links: [
+            { label: "GitHub Repository", url: "https://github.com/xmike04" },
+          ],
+        } satisfies CaseStudy,
     },
     {
       id: 'ragops-platform',
