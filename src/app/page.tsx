@@ -1,7 +1,7 @@
 
 'use client';
 
-import { Mail, Github, Linkedin, Phone, Code, BrainCircuit, Rocket, Briefcase, GraduationCap, Building, Link as LinkIcon, Menu, X } from 'lucide-react';
+import { Mail, Github, Linkedin, Code, BrainCircuit, Rocket, Briefcase, GraduationCap, Building, Link as LinkIcon, Menu, X } from 'lucide-react';
 import { resumeData, resumeText } from '@/lib/resume-data';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -86,37 +86,66 @@ export default function Home() {
       </header>
 
       <main>
-        <section id="hero" className="h-screen min-h-[700px] flex items-center justify-center relative overflow-hidden">
-          <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
-          <div className="relative z-10 text-center container mx-auto px-4">
-             <Image
+        <section id="hero" aria-label="Introduction" className="h-screen min-h-[700px] flex items-center justify-center relative overflow-hidden">
+          <div className="absolute inset-0 bg-grid-pattern opacity-10" aria-hidden="true"></div>
+          <div className="relative z-10 text-center container mx-auto px-4 max-w-3xl">
+            <Image
               src="https://picsum.photos/200/200"
-              alt="Michael E. Marin"
-              width={200}
-              height={200}
-              className="rounded-full w-[200px] h-[200px] object-cover mx-auto mb-8 border-4 border-primary/20 shadow-lg"
-              data-ai-hint="headshot"
+              alt="Michael E. Marin, ML Engineer"
+              width={140}
+              height={140}
+              className="rounded-full w-[140px] h-[140px] object-cover mx-auto mb-6 border-4 border-primary/20 shadow-lg"
               priority
             />
-            <h1 className="font-headline text-4xl md:text-7xl lg:text-8xl font-bold mb-4">
-              Michael E. Marin
-            </h1>
-            <p className="text-lg md:text-2xl text-primary font-medium mb-8">
-              AI/ML Engineer & Product Innovator
+            <p className="text-xs font-semibold tracking-widest uppercase text-primary mb-4">
+              AI / ML Engineer
             </p>
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-8">
-              <Button asChild variant="default" size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full shadow-lg w-full sm:w-auto">
-                <Link href="#experience">View My Work</Link>
+            <h1 className="font-headline text-3xl md:text-5xl lg:text-[3.5rem] font-bold mb-5 leading-tight">
+              ML Engineer building production AI systems with measurable impact
+            </h1>
+            <p className="text-base md:text-lg text-muted-foreground mb-8 max-w-xl mx-auto leading-relaxed">
+              Collaborated with NASA on applied ML research. Specializing in agentic AI pipelines, full-stack systems, and models that go beyond prototypes.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-3 mb-10">
+              <Button asChild size="lg" className="rounded-full shadow-lg w-full sm:w-auto px-8">
+                <Link href="#experience">View Projects</Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="rounded-full shadow-lg w-full sm:w-auto">
-                <Link href="#contact">Get In Touch</Link>
+              <Button asChild variant="outline" size="lg" className="rounded-full shadow-lg w-full sm:w-auto px-8">
+                <a href="/resume.pdf" download aria-label="Download resume as PDF">Download Resume</a>
               </Button>
             </div>
-            <div className="flex justify-center gap-6 mt-12">
-              <Link href="mailto:miked24977@gmail.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors"><Mail className="w-7 h-7" /></Link>
-              <Link href="https://github.com/xmike04" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors"><Github className="w-7 h-7" /></Link>
-              <Link href="https://linkedin.com/in/xmike04" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors"><Linkedin className="w-7 h-7" /></Link>
-              <Link href="tel:4699800069" className="text-muted-foreground hover:text-primary transition-colors"><Phone className="w-7 h-7" /></Link>
+            <div className="flex justify-center items-center gap-6 flex-wrap" role="list" aria-label="Contact and social links">
+              <a
+                role="listitem"
+                href="mailto:miked24977@gmail.com"
+                className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors text-sm font-medium"
+                aria-label="Send email to Michael"
+              >
+                <Mail className="w-4 h-4" aria-hidden="true" />
+                miked24977@gmail.com
+              </a>
+              <a
+                role="listitem"
+                href="https://github.com/xmike04"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors text-sm font-medium"
+                aria-label="Michael's GitHub profile (opens in new tab)"
+              >
+                <Github className="w-4 h-4" aria-hidden="true" />
+                GitHub
+              </a>
+              <a
+                role="listitem"
+                href="https://linkedin.com/in/xmike04"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors text-sm font-medium"
+                aria-label="Michael's LinkedIn profile (opens in new tab)"
+              >
+                <Linkedin className="w-4 h-4" aria-hidden="true" />
+                LinkedIn
+              </a>
             </div>
           </div>
         </section>
@@ -196,10 +225,9 @@ export default function Home() {
 
       <footer className="bg-foreground text-muted-foreground text-center p-6">
         <div className="flex justify-center gap-6 mb-4">
-            <Link href="mailto:miked24977@gmail.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors"><Mail className="w-6 h-6" /></Link>
-            <Link href="https://github.com/xmike04" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors"><Github className="w-6 h-6" /></Link>
-            <Link href="https://linkedin.com/in/xmike04" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors"><Linkedin className="w-6 h-6" /></Link>
-            <Link href="tel:4699800069" className="hover:text-primary transition-colors"><Phone className="w-6 h-6" /></Link>
+            <Link href="mailto:miked24977@gmail.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors" aria-label="Email"><Mail className="w-6 h-6" /></Link>
+            <Link href="https://github.com/xmike04" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors" aria-label="GitHub"><Github className="w-6 h-6" /></Link>
+            <Link href="https://linkedin.com/in/xmike04" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors" aria-label="LinkedIn"><Linkedin className="w-6 h-6" /></Link>
         </div>
         <p>&copy; 2024 Michael E. Marin. All Rights Reserved.</p>
       </footer>
