@@ -10,7 +10,7 @@ export function generateStaticParams() {
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import CaseStudyView from '@/components/case-study-view';
+import CaseStudyView from '@/components/sections/case-study-view';
 import Link from 'next/link';
 import { ArrowLeft, Briefcase, Rocket, Link as LinkIcon, CheckCircle2 } from 'lucide-react';
 
@@ -19,7 +19,8 @@ export default function ItemPage({ params }: { params: { id: string } }) {
   const item = allItems.find(i => i.id === params.id) as (typeof allItems[number] & {
     logo?: string;
     logoAiHint?: string;
-    caseStudy?: import('@/components/case-study-view').CaseStudy;
+    caseStudy?: import('@/components/sections/case-study-view').CaseStudy;
+    links?: { label: string; url: string; }[];
   });
 
   if (!item) {

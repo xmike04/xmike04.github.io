@@ -1,5 +1,5 @@
 
-import type { CaseStudy } from '@/components/case-study-view';
+import type { CaseStudy } from '@/components/sections/case-study-view';
 export type { CaseStudy };
 
 export const resumeData = {

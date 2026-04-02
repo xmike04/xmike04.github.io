@@ -6,9 +6,9 @@ import { resumeData, resumeText } from '@/lib/resume-data';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import AnimatedTimeline from '@/components/animated-timeline';
-import AiPlayground from '@/components/ai-playground';
-import ChatBot from '@/components/chat-bot';
+import AnimatedTimeline from '@/components/sections/animated-timeline';
+import AiPlayground from '@/components/sections/ai-playground';
+import ChatBot from '@/components/sections/chat-bot';
 import type { ElementType } from 'react';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -125,7 +125,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-grid-pattern opacity-10" aria-hidden="true" />
           <div className="relative z-10 text-center container mx-auto px-4 max-w-3xl">
             <Image
-              src="https://picsum.photos/200/200"
+              src="/headshot.png"
               alt="Michael E. Marin, ML Engineer"
               width={140}
               height={140}

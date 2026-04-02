@@ -8,10 +8,10 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import NeuralNetGame from "./neural-net-game";
-import PathfindingVisualizer from "./pathfinding-visualizer";
-import ImageRecognitionGame from "./image-recognition-game";
-import GanExhibition from "./gan-exhibition";
+import NeuralNetGame from "./games/neural-net-game";
+import PathfindingVisualizer from "./games/pathfinding-visualizer";
+import ImageRecognitionGame from "./games/image-recognition-game";
+import GanExhibition from "./games/gan-exhibition";
 
 export default function AiPlayground() {
   const games = [
