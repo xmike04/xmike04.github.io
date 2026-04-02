@@ -20,6 +20,10 @@ interface ChatMessage {
   content: string;
 }
 
+interface ChatResponse {
+  response: string;
+}
+
 export default function ChatBot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([
@@ -43,17 +47,45 @@ export default function ChatBot() {
     if (!input.trim() || loading) return;
 
     const userMessage: ChatMessage = { role: 'user', content: input };
-    setMessages(prev => [...prev, userMessage]);
+    const nextMessages = [...messages, userMessage];
+    const history = messages.slice(1).slice(-6);
+
+    setMessages(nextMessages);
     setLoading(true);
     setInput('');
 
     try {
-      await new Promise(resolve => setTimeout(resolve, 600));
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          question: userMessage.content,
+          history,
+        }),
+      });
+
+      const data = (await response.json()) as ChatResponse;
+
       const aiMessage: ChatMessage = {
         role: 'ai',
-        content: "Thanks for reaching out! The live AI assistant is coming soon. In the meantime, feel free to explore the portfolio or contact me directly through the contact section below.",
+        content:
+          data.response ||
+          "I'm sorry, the live chat is unavailable right now. Please try again shortly.",
       };
       setMessages(prev => [...prev, aiMessage]);
+    } catch (error) {
+      console.error("Error submitting chat request:", error);
+
+      setMessages(prev => [
+        ...prev,
+        {
+          role: "ai",
+          content:
+            "I'm sorry, the live chat is unavailable right now. Please try again shortly.",
+        },
+      ]);
     } finally {
       setLoading(false);
     }

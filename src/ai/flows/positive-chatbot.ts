@@ -1,57 +1,116 @@
-// src/ai/flows/positive-chatbot.ts
 'use server';
 
-/**
- * @fileOverview An AI chatbot that provides positive and tailored responses based on a given resume.
- *
- * - positiveChatbot - A function that handles the chatbot interaction.
- * - PositiveChatbotInput - The input type for the positiveChatbot function.
- * - PositiveChatbotOutput - The return type for the positiveChatbot function.
- */
+import { z } from "zod";
 
-import {ai} from '@/ai/genkit';
-import {z} from 'genkit';
+import { resumeData } from "@/lib/resume-data";
 
 const PositiveChatbotInputSchema = z.object({
-  resume: z.string().describe('The resume content to base the responses on.'),
-  question: z.string().describe('The question from the employer.'),
+  question: z.string().trim().min(1).max(500),
+  history: z
+    .array(
+      z.object({
+        role: z.enum(["user", "ai"]),
+        content: z.string().trim().min(1).max(1000),
+      })
+    )
+    .max(8)
+    .optional()
+    .default([]),
 });
 export type PositiveChatbotInput = z.infer<typeof PositiveChatbotInputSchema>;
 
 const PositiveChatbotOutputSchema = z.object({
-  response: z.string().describe('The positive and tailored response from the chatbot.'),
+  response: z.string().min(1),
 });
 export type PositiveChatbotOutput = z.infer<typeof PositiveChatbotOutputSchema>;
 
-export async function positiveChatbot(input: PositiveChatbotInput): Promise<PositiveChatbotOutput> {
-  return positiveChatbotFlow(input);
+const RESUME_CONTEXT = [
+  `Candidate: ${resumeData.name}`,
+  `Summary: ${resumeData.summary}`,
+  `Skills: ${resumeData.skills
+    .map((category) => `${category.category}: ${category.technologies.join(", ")}`)
+    .join(" | ")}`,
+  `Experience: ${resumeData.workExperience
+    .map(
+      (role) =>
+        `${role.title} at ${role.company} (${role.date}) - ${role.description.join(" ")}`
+    )
+    .join(" | ")}`,
+  `Projects: ${resumeData.projects
+    .map(
+      (project) =>
+        `${project.title} (${project.date}) - ${project.description.join(" ")}`
+    )
+    .join(" | ")}`,
+  `Education: ${resumeData.education
+    .map((entry) => `${entry.degree} at ${entry.school} (${entry.date})`)
+    .join(" | ")}`,
+].join("\n");
+
+function buildConversation(history: PositiveChatbotInput["history"], question: string) {
+  const formattedHistory = history
+    .map((message) => `${message.role === "ai" ? "Assistant" : "Visitor"}: ${message.content}`)
+    .join("\n");
+
+  return [
+    "Resume context:",
+    RESUME_CONTEXT,
+    "",
+    "Conversation so far:",
+    formattedHistory || "No prior conversation.",
+    "",
+    `Latest visitor question: ${question}`,
+  ].join("\n");
 }
 
-const prompt = ai.definePrompt({
-  name: 'positiveChatbotPrompt',
-  input: {schema: PositiveChatbotInputSchema},
-  output: {schema: PositiveChatbotOutputSchema},
-  prompt: `You are a helpful and enthusiastic AI assistant designed to provide positive responses to employers asking questions about a candidate based on their resume. Your responses should be concise and under 5 sentences.
-
-  Resume:
-  {{resume}}
-
-  Question:
-  {{question}}
-
-  Provide a positive and tailored response to the employer's question, highlighting the candidate's strengths and relevant experiences. Always be enthusiastic and encouraging in your response.
-  Format the response so it is easy to read in markdown format, with line breaks to separate thoughts.
-  `,
-});
-
-const positiveChatbotFlow = ai.defineFlow(
-  {
-    name: 'positiveChatbotFlow',
-    inputSchema: PositiveChatbotInputSchema,
-    outputSchema: PositiveChatbotOutputSchema,
-  },
-  async input => {
-    const {output} = await prompt(input);
-    return output!;
+function extractResponseText(data: unknown) {
+  if (
+    data &&
+    typeof data === "object" &&
+    "output_text" in data &&
+    typeof (data as { output_text?: unknown }).output_text === "string"
+  ) {
+    return (data as { output_text: string }).output_text.trim();
   }
-);
+
+  return "";
+}
+
+export async function positiveChatbot(
+  rawInput: PositiveChatbotInput
+): Promise<PositiveChatbotOutput> {
+  const input = PositiveChatbotInputSchema.parse(rawInput);
+  const apiKey = process.env.OPENAI_API_KEY;
+
+  if (!apiKey) {
+    throw new Error("OPENAI_API_KEY is not configured.");
+  }
+
+  const response = await fetch("https://api.openai.com/v1/responses", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${apiKey}`,
+    },
+    body: JSON.stringify({
+      model: process.env.OPENAI_MODEL ?? "gpt-5.4-mini",
+      instructions:
+        "You are the portfolio assistant for Michael Marin. Answer using only the supplied resume context and conversation. Be warm, confident, and concise. Use 2 to 5 sentences, plain text only, and focus on experience, outcomes, and fit. If a question is unrelated to Michael's background or asks for information not present in the provided context, politely say you can only answer based on the portfolio and resume information available here.",
+      input: buildConversation(input.history, input.question),
+    }),
+  });
+
+  if (!response.ok) {
+    const errorBody = await response.text();
+    throw new Error(`OpenAI request failed (${response.status}): ${errorBody}`);
+  }
+
+  const data = await response.json();
+  const text = extractResponseText(data);
+
+  return PositiveChatbotOutputSchema.parse({
+    response:
+      text ||
+      "I’m sorry, I couldn’t generate a response just now. Please try asking again.",
+  });
+}
