@@ -125,7 +125,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-grid-pattern opacity-10" aria-hidden="true" />
           <div className="relative z-10 text-center container mx-auto px-4 max-w-3xl">
             <Image
-              src="/headshot.png"
+              src="/Users/eric/Desktop/project/public/headshot.png"
               alt="Michael E. Marin, ML Engineer"
               width={140}
               height={140}
@@ -230,10 +230,10 @@ export default function Home() {
         <Section id="highlights" title="Resume Highlights" icon={Rocket}>
           <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { metric: "81%",       label: "Recall@10",        detail: "RAGOps hybrid retrieval vs 58% dense-only baseline" },
-              { metric: "NASA",      label: "PACE Satellite",   detail: "Real-time oceanographic data visualization for NASA's PACE mission" },
-              { metric: "5-person",  label: "Team Lead",        detail: "Led cross-functional engineering team on NASA capstone" },
-              { metric: "150+",      label: "Benchmark Queries", detail: "Human-labeled evaluation dataset for LLM system quality" },
+              { metric: "81%", label: "Recall@10", detail: "RAGOps hybrid retrieval vs 58% dense-only baseline" },
+              { metric: "NASA", label: "PACE Satellite", detail: "Real-time oceanographic data visualization for NASA's PACE mission" },
+              { metric: "5-person", label: "Team Lead", detail: "Led cross-functional engineering team on NASA capstone" },
+              { metric: "150+", label: "Benchmark Queries", detail: "Human-labeled evaluation dataset for LLM system quality" },
             ].map((h) => (
               <Card key={h.label} className="shadow-md text-center">
                 <CardContent className="p-6 flex flex-col gap-2">
