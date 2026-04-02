@@ -2,7 +2,7 @@
 "use client";
 
 import { useState, useRef, useEffect, type FormEvent } from "react";
-import { Bot, MessageSquare, Send, User, X, Loader2 } from "lucide-react";
+import { Bot, MessageSquare, Send, User, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -12,17 +12,15 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { useToast } from "@/hooks/use-toast";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
-import { Separator } from "./ui/separator";
 
 interface ChatMessage {
   role: 'user' | 'ai';
   content: string;
 }
 
-export default function ChatBot({ resume }: { resume: string }) {
+export default function ChatBot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
@@ -32,7 +30,6 @@ export default function ChatBot({ resume }: { resume: string }) {
   ]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
-  const { toast } = useToast();
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {

@@ -14,9 +14,10 @@ import CaseStudyView from '@/components/sections/case-study-view';
 import Link from 'next/link';
 import { ArrowLeft, Briefcase, Rocket, Link as LinkIcon, CheckCircle2 } from 'lucide-react';
 
-export default function ItemPage({ params }: { params: { id: string } }) {
+export default async function ItemPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   const allItems = [...resumeData.workExperience, ...resumeData.projects];
-  const item = allItems.find(i => i.id === params.id) as (typeof allItems[number] & {
+  const item = allItems.find(i => i.id === id) as (typeof allItems[number] & {
     logo?: string;
     logoAiHint?: string;
     caseStudy?: import('@/components/sections/case-study-view').CaseStudy;

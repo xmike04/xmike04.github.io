@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter }
 import { Badge } from "@/components/ui/badge";
 import { Briefcase, Rocket, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
-import { Button } from './ui/button';
+import { Button } from "@/components/ui/button";
 
 interface TimelineItemProps {
   item: {

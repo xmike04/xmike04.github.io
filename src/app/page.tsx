@@ -2,7 +2,7 @@
 'use client';
 
 import { Mail, Github, Linkedin, Code, BrainCircuit, Rocket, Briefcase, GraduationCap, Star, ArrowRight, Menu, X } from 'lucide-react';
-import { resumeData, resumeText } from '@/lib/resume-data';
+import { resumeData } from '@/lib/resume-data';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
@@ -125,7 +125,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-grid-pattern opacity-10" aria-hidden="true" />
           <div className="relative z-10 text-center container mx-auto px-4 max-w-3xl">
             <Image
-              src="/Users/eric/Desktop/project/public/headshot.png"
+              src="/headshot.png"
               alt="Michael E. Marin, ML Engineer"
               width={140}
               height={140}
@@ -324,7 +324,7 @@ export default function Home() {
         <p>&copy; 2024 Michael E. Marin. All Rights Reserved.</p>
       </footer>
 
-      <ChatBot resume={resumeText} />
+      <ChatBot />
     </div>
   );
 }
