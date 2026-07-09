@@ -39,6 +39,8 @@ next-env.d.ts
 
 .genkit/*
 .env*
+# ...but keep the committed, secret-free template:
+!.env.example
 
 # firebase
 firebase-debug.log
