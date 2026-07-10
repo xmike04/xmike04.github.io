@@ -111,7 +111,7 @@ export default function SiteNav() {
       <div
         id="mobile-nav"
         className={cn(
-          'glass absolute left-0 top-full w-full overflow-hidden transition-all duration-300 ease-in-out md:hidden',
+          'glass absolute inset-x-0 top-full overflow-hidden transition-all duration-300 ease-in-out md:hidden',
           isMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
         )}
       >

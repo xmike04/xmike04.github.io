@@ -77,6 +77,9 @@
   }
   body {
     @apply bg-background text-foreground antialiased;
+    /* Entrance animations translate elements on the x-axis before they reveal;
+       transforms create scrollable overflow, so clip it at the root. */
+    overflow-x: clip;
   }
   ::selection {
     background: hsl(var(--primary) / 0.25);

@@ -1,3 +1,4 @@
+import 'server-only';
 /**
  * Slim GitHub REST client for the homepage showcase.
  * Server-only: called from the GithubShowcase server component with 6h ISR.

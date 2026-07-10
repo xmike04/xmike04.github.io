@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Component, useEffect, useState, type ReactNode } from 'react';
 import dynamic from 'next/dynamic';
 
 /** Always-present base layer — also serves as the reduced-motion visual. */
@@ -10,6 +10,21 @@ function StaticBackdrop() {
       <div className="grid-bg absolute inset-0 opacity-40" />
     </div>
   );
+}
+
+/**
+ * A crashed background must never take the page down with it — WebGL support
+ * varies across devices/drivers, so any render error here degrades to the
+ * StaticBackdrop that is already painted underneath.
+ */
+class VisualErrorBoundary extends Component<{ children: ReactNode }, { failed: boolean }> {
+  state = { failed: false };
+  static getDerivedStateFromError() {
+    return { failed: true };
+  }
+  render() {
+    return this.state.failed ? null : this.props.children;
+  }
 }
 
 const NeuralField3D = dynamic(() => import('./neural-field-3d'), {
@@ -65,7 +80,9 @@ export default function HeroVisual() {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
       <StaticBackdrop />
-      {mode === 'webgl' ? <NeuralField3D /> : mode === 'canvas2d' ? <HeroCanvasFallback /> : null}
+      <VisualErrorBoundary>
+        {mode === 'webgl' ? <NeuralField3D /> : mode === 'canvas2d' ? <HeroCanvasFallback /> : null}
+      </VisualErrorBoundary>
       {/* Fade the field into the page background so the section hand-off is seamless */}
       <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-background" />
     </div>

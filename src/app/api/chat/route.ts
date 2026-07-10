@@ -54,6 +54,10 @@ export async function POST(request: Request) {
       },
     });
   } catch (streamError) {
+    // Don't spend a second completion on a caller that already hung up.
+    if (request.signal.aborted) {
+      return NextResponse.json({ response: UNAVAILABLE_MESSAGE }, { status: 499 });
+    }
     console.error("Streaming chat failed, retrying without streaming:", streamError);
 
     try {

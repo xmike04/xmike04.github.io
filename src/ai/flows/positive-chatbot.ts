@@ -1,3 +1,4 @@
+import 'server-only';
 /**
  * Server-only chatbot flow. Called from the /api/chat route handler —
  * OPENAI_API_KEY is read here on the server and never reaches the browser.

@@ -26,7 +26,9 @@ let sessionPromise: Promise<{ ort: Ort; session: OrtSession }> | null = null;
 export function getMnistSession(): Promise<{ ort: Ort; session: OrtSession }> {
   if (!sessionPromise) {
     sessionPromise = (async () => {
-      const ort = await import('onnxruntime-web');
+      // The wasm-only bundle: the default entry probes the WebGPU (jsep)
+      // loader in capable browsers, which we neither ship nor need.
+      const ort = await import('onnxruntime-web/wasm');
       // Self-hosted wasm assets (see /public/ort/) — no CDN request.
       ort.env.wasm.wasmPaths = '/ort/';
       // Single-threaded: the page is not cross-origin isolated, so threads
