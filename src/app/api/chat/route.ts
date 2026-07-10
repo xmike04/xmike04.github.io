@@ -22,6 +22,17 @@ const chatRequestSchema = z.object({
 const UNAVAILABLE_MESSAGE =
   "I'm sorry, the live chat is unavailable right now. Please try again in a moment or reach out through the contact section below.";
 
+/**
+ * Derive a short, secret-free diagnostic tag from an upstream failure so the
+ * live endpoint can be probed (via the x-chat-diag header) without exposing
+ * the key or the raw error body. e.g. "OpenAI request failed (401): ..." -> "upstream-401".
+ */
+function diagFromError(error: unknown): string {
+  const message = error instanceof Error ? error.message : String(error);
+  const status = message.match(/failed \((\d{3})\)/)?.[1];
+  return status ? `upstream-${status}` : "upstream-error";
+}
+
 export async function POST(request: Request) {
   let input: z.infer<typeof chatRequestSchema>;
 
@@ -38,7 +49,10 @@ export async function POST(request: Request) {
 
   if (!process.env.OPENAI_API_KEY) {
     // Friendly message instead of a 500 — the key simply isn't configured.
-    return NextResponse.json({ response: UNAVAILABLE_MESSAGE }, { status: 503 });
+    return NextResponse.json(
+      { response: UNAVAILABLE_MESSAGE },
+      { status: 503, headers: { "x-chat-diag": "missing-key" } }
+    );
   }
 
   try {
@@ -66,7 +80,10 @@ export async function POST(request: Request) {
       return NextResponse.json(output);
     } catch (fallbackError) {
       console.error("Error in /api/chat:", fallbackError);
-      return NextResponse.json({ response: UNAVAILABLE_MESSAGE }, { status: 503 });
+      return NextResponse.json(
+        { response: UNAVAILABLE_MESSAGE },
+        { status: 503, headers: { "x-chat-diag": diagFromError(fallbackError) } }
+      );
     }
   }
 }
