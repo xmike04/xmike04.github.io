@@ -61,6 +61,20 @@ export default function RootLayout({
     jobTitle: 'ML Engineer',
     url: siteUrl,
     email: 'miked24977@gmail.com',
+    address: { '@type': 'PostalAddress', addressLocality: 'Dallas', addressRegion: 'TX' },
+    alumniOf: {
+      '@type': 'CollegeOrUniversity',
+      name: 'University of North Texas',
+    },
+    worksFor: { '@type': 'Organization', name: 'Mr. Cooper Group' },
+    knowsAbout: [
+      'Machine Learning',
+      'Retrieval-Augmented Generation',
+      'LLM Evaluation',
+      'Computer Vision',
+      'Data Visualization',
+      'MLOps',
+    ],
     sameAs: [
       'https://github.com/xmike04',
       'https://linkedin.com/in/xmike04',
