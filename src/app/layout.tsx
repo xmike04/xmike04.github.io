@@ -1,8 +1,9 @@
 
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
+import { ThemeProvider } from "@/components/theme/theme-provider";
 import { cn } from "@/lib/utils";
 
 const fontBody = Inter({
@@ -15,8 +16,14 @@ const fontHeadline = Space_Grotesk({
   variable: "--font-headline",
 });
 
+const fontMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+});
 
-const siteUrl = 'https://xmike04.github.io';
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://xmike04.github.io');
 
 export const metadata: Metadata = {
   title: 'ML Engineer | AI Systems | Michael Marin',
@@ -32,7 +39,7 @@ export const metadata: Metadata = {
     siteName: 'Michael Marin — Portfolio',
   },
   twitter: {
-    card: 'summary',
+    card: 'summary_large_image',
     title: 'ML Engineer | AI Systems | Michael Marin',
     description:
       'ML Engineer building production AI systems. NASA PACE collaboration, RAG pipelines, agentic AI. Based in Dallas, TX.',
@@ -50,7 +57,7 @@ export default function RootLayout({
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Person',
-    name: 'Michael Marin',
+    name: 'Michael E. Marin',
     jobTitle: 'ML Engineer',
     url: siteUrl,
     email: 'miked24977@gmail.com',
@@ -61,7 +68,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className="!scroll-smooth">
+    <html lang="en" className="!scroll-smooth" suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"
@@ -72,11 +79,14 @@ export default function RootLayout({
         className={cn(
           "font-body antialiased",
           fontBody.variable,
-          fontHeadline.variable
+          fontHeadline.variable,
+          fontMono.variable
         )}
       >
-        {children}
-        <Toaster />
+        <ThemeProvider>
+          {children}
+          <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   );

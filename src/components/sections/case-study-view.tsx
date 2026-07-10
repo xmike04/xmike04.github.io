@@ -11,17 +11,34 @@ export interface CaseStudyMetric {
   achieved: string;
 }
 
+/** Numeric before/after pair rendered as an animated delta chart. */
+export interface CaseStudyMetricDelta {
+  label: string;
+  baseline: number;
+  achieved: number;
+  unit?: string;
+  /** e.g. error rates, where the achieved bar being smaller is the win */
+  lowerIsBetter?: boolean;
+}
+
+/** Keys into the animated SVG diagram registry (see src/components/diagrams/). */
+export type ArchitectureDiagramKey = 'ragops' | 'nasa' | 'simlyfe';
+
 export interface CaseStudy {
   problem: string;
   constraints: string[];
   approach: string;
-  architectureNote?: string;      // caption for placeholder or below the image
-  architectureImageSrc?: string;  // path relative to /public, e.g. '/diagrams/ragops.png'
+  architectureNote?: string;      // caption for placeholder or below the diagram
+  architectureDiagram?: ArchitectureDiagramKey; // animated SVG component key
+  architectureImageSrc?: string;  // legacy: path relative to /public
   architectureImageAlt?: string;  // descriptive alt text for the diagram
   metrics: CaseStudyMetric[];
+  metricsChart?: CaseStudyMetricDelta[];
   productImpact: string;
   techStack: string[];
   links: { label: string; url: string }[];
+  /** Shown under links, e.g. repo-publication status — keeps the site honest without fake URLs. */
+  linksNote?: string;
 }
 
 interface SectionProps {
