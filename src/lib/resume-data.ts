@@ -378,7 +378,7 @@ Key Contributions & Technical Details:
     "Web Development with JavaScript & APIs",
   ],
   interests: [
-    "Treasurer of UNT AI Club (2023-Current) – Led AI/ML workshops and hackathon participation.",
+    "Treasurer of UNT AI Club (2023–Present) — led AI/ML workshops and hackathon participation.",
   ],
 };
 

@@ -1,9 +1,15 @@
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { ExternalLink, ImageIcon } from 'lucide-react';
+import type { ComponentType, ReactNode } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { ExternalLink, ImageIcon, ShieldAlert } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Reveal } from '@/components/motion/reveal';
+import MetricDeltaChart from '@/components/charts/metric-delta-chart';
+import RagPipelineDiagram from '@/components/diagrams/rag-pipeline-diagram';
+import NasaPipelineDiagram from '@/components/diagrams/nasa-pipeline-diagram';
+import SimlyfeDiagram from '@/components/diagrams/simlyfe-diagram';
+import { cn } from '@/lib/utils';
 
 export interface CaseStudyMetric {
   label: string;
@@ -41,45 +47,78 @@ export interface CaseStudy {
   linksNote?: string;
 }
 
+/** Animated SVG diagram registry, keyed by ArchitectureDiagramKey. */
+const DIAGRAMS: Record<ArchitectureDiagramKey, ComponentType> = {
+  ragops: RagPipelineDiagram,
+  nasa: NasaPipelineDiagram,
+  simlyfe: SimlyfeDiagram,
+};
+
 interface SectionProps {
   number: string;
   title: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 function Section({ number, title, children }: SectionProps) {
   return (
-    <section aria-labelledby={`cs-section-${number}`} className="mb-12">
-      <div className="flex items-baseline gap-3 mb-4 border-b border-border pb-2">
-        <span className="text-xs font-mono text-primary font-bold">{number}</span>
-        <h2
-          id={`cs-section-${number}`}
-          className="font-headline text-xl md:text-2xl font-bold"
-        >
-          {title}
-        </h2>
-      </div>
-      {children}
-    </section>
+    <Reveal direction="up">
+      <section aria-labelledby={`cs-section-${number}`} className="mb-14">
+        <div className="mb-5 flex items-baseline gap-3">
+          <span className="gradient-text font-mono text-sm font-bold" aria-hidden="true">
+            {number}
+          </span>
+          <h2
+            id={`cs-section-${number}`}
+            className="font-headline text-xl font-bold tracking-tight md:text-2xl"
+          >
+            {title}
+          </h2>
+          <span
+            className="ml-1 h-px flex-1 self-center bg-gradient-to-r from-border to-transparent"
+            aria-hidden="true"
+          />
+        </div>
+        {children}
+      </section>
+    </Reveal>
+  );
+}
+
+function ProseCard({ children }: { children: ReactNode }) {
+  return (
+    <div className="glass rounded-xl p-5 md:p-6">
+      <p className="leading-relaxed text-muted-foreground">{children}</p>
+    </div>
   );
 }
 
 export default function CaseStudyView({ data }: { data: CaseStudy }) {
+  const Diagram = data.architectureDiagram
+    ? DIAGRAMS[data.architectureDiagram]
+    : undefined;
+
   return (
-    <div className="max-w-3xl mx-auto space-y-2">
+    <div className="mx-auto max-w-3xl">
 
       {/* 01 — Problem */}
       <Section number="01" title="Problem">
-        <p className="text-muted-foreground leading-relaxed">{data.problem}</p>
+        <ProseCard>{data.problem}</ProseCard>
       </Section>
 
       {/* 02 — Constraints */}
       <Section number="02" title="Constraints">
-        <ul className="space-y-2" role="list">
-          {data.constraints.map((c, i) => (
-            <li key={i} className="flex items-start gap-2 text-muted-foreground">
-              <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary shrink-0" aria-hidden="true" />
-              {c}
+        <ul className="grid gap-3" role="list">
+          {data.constraints.map((constraint, i) => (
+            <li
+              key={i}
+              className="glass flex items-start gap-3 rounded-lg px-4 py-3 text-sm leading-relaxed text-muted-foreground"
+            >
+              <ShieldAlert
+                className="mt-0.5 h-4 w-4 shrink-0 text-primary"
+                aria-hidden="true"
+              />
+              <span>{constraint}</span>
             </li>
           ))}
         </ul>
@@ -87,13 +126,22 @@ export default function CaseStudyView({ data }: { data: CaseStudy }) {
 
       {/* 03 — Approach */}
       <Section number="03" title="Approach">
-        <p className="text-muted-foreground leading-relaxed">{data.approach}</p>
+        <ProseCard>{data.approach}</ProseCard>
       </Section>
 
       {/* 04 — Architecture */}
       <Section number="04" title="Architecture">
-        {data.architectureImageSrc ? (
-          <figure className="rounded-lg overflow-hidden border border-border bg-muted/20">
+        {Diagram ? (
+          <figure className="glass relative overflow-hidden rounded-xl p-4 md:p-6">
+            <Diagram />
+            {data.architectureNote && (
+              <figcaption className="mt-4 border-t border-border/60 pt-3 text-center font-mono text-xs leading-relaxed text-muted-foreground">
+                {data.architectureNote}
+              </figcaption>
+            )}
+          </figure>
+        ) : data.architectureImageSrc ? (
+          <figure className="glass overflow-hidden rounded-xl">
             <div className="relative w-full" style={{ aspectRatio: '16/9' }}>
               <Image
                 src={data.architectureImageSrc}
@@ -104,23 +152,20 @@ export default function CaseStudyView({ data }: { data: CaseStudy }) {
               />
             </div>
             {data.architectureNote && (
-              <figcaption className="text-xs text-muted-foreground text-center px-4 py-3 border-t border-border">
+              <figcaption className="border-t border-border/60 px-4 py-3 text-center font-mono text-xs text-muted-foreground">
                 {data.architectureNote}
               </figcaption>
             )}
           </figure>
         ) : (
           <div
-            className="rounded-lg border-2 border-dashed border-border bg-muted/30 flex flex-col items-center justify-center gap-3 py-14 px-6 text-center"
+            className="flex flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed border-border bg-muted/20 px-6 py-14 text-center"
             role="img"
             aria-label={data.architectureNote ?? 'Architecture diagram placeholder'}
           >
-            <ImageIcon className="w-8 h-8 text-muted-foreground/50" aria-hidden="true" />
-            <p className="text-sm text-muted-foreground font-medium">
-              {data.architectureNote ?? 'Architecture diagram — add image here'}
-            </p>
-            <p className="text-xs text-muted-foreground/60">
-              Replace this block with an image or diagram
+            <ImageIcon className="h-8 w-8 text-muted-foreground/50" aria-hidden="true" />
+            <p className="text-sm font-medium text-muted-foreground">
+              {data.architectureNote ?? 'Architecture diagram coming soon'}
             </p>
           </div>
         )}
@@ -128,21 +173,32 @@ export default function CaseStudyView({ data }: { data: CaseStudy }) {
 
       {/* 05 — Metrics */}
       <Section number="05" title="Metrics">
-        <div className="overflow-x-auto rounded-lg border border-border">
+        {data.metricsChart && data.metricsChart.length > 0 && (
+          <div className="glass mb-5 rounded-xl p-4 md:p-6">
+            <MetricDeltaChart data={data.metricsChart} />
+          </div>
+        )}
+        <div className="glass overflow-x-auto rounded-xl">
           <table className="w-full text-sm" aria-label="Performance metrics">
             <thead>
-              <tr className="bg-muted/50">
-                <th scope="col" className="text-left px-4 py-3 font-semibold text-foreground">Metric</th>
-                <th scope="col" className="text-left px-4 py-3 font-semibold text-muted-foreground">Baseline</th>
-                <th scope="col" className="text-left px-4 py-3 font-semibold text-primary">Achieved</th>
+              <tr className="border-b border-border/60 bg-muted/30">
+                <th scope="col" className="px-4 py-3 text-left font-semibold text-foreground">
+                  Metric
+                </th>
+                <th scope="col" className="px-4 py-3 text-left font-semibold text-muted-foreground">
+                  Baseline
+                </th>
+                <th scope="col" className="px-4 py-3 text-left font-semibold text-primary">
+                  Achieved
+                </th>
               </tr>
             </thead>
             <tbody>
-              {data.metrics.map((m, i) => (
-                <tr key={i} className="border-t border-border">
-                  <td className="px-4 py-3 font-medium text-foreground">{m.label}</td>
-                  <td className="px-4 py-3 text-muted-foreground">{m.baseline}</td>
-                  <td className="px-4 py-3 text-primary font-semibold">{m.achieved}</td>
+              {data.metrics.map((metric, i) => (
+                <tr key={i} className="border-t border-border/40 first:border-t-0">
+                  <td className="px-4 py-3 font-medium text-foreground">{metric.label}</td>
+                  <td className="px-4 py-3 text-muted-foreground">{metric.baseline}</td>
+                  <td className="px-4 py-3 font-semibold text-primary">{metric.achieved}</td>
                 </tr>
               ))}
             </tbody>
@@ -152,31 +208,50 @@ export default function CaseStudyView({ data }: { data: CaseStudy }) {
 
       {/* 06 — Product Impact */}
       <Section number="06" title="Product Impact">
-        <p className="text-muted-foreground leading-relaxed">{data.productImpact}</p>
+        <ProseCard>{data.productImpact}</ProseCard>
       </Section>
 
       {/* 07 — Tech Stack */}
       <Section number="07" title="Tech Stack">
         <div className="flex flex-wrap gap-2" role="list" aria-label="Technologies used">
           {data.techStack.map((tech) => (
-            <Badge key={tech} variant="secondary" role="listitem">{tech}</Badge>
+            <Badge
+              key={tech}
+              variant="secondary"
+              role="listitem"
+              className="font-mono text-xs font-normal"
+            >
+              {tech}
+            </Badge>
           ))}
         </div>
       </Section>
 
       {/* 08 — Links */}
-      {data.links.length > 0 && (
+      {(data.links.length > 0 || data.linksNote) && (
         <Section number="08" title="Links">
-          <div className="flex flex-wrap gap-3">
-            {data.links.map((link, i) => (
-              <Button key={i} asChild variant="outline" size="sm">
-                <Link href={link.url} target="_blank" rel="noopener noreferrer">
-                  <ExternalLink className="w-3.5 h-3.5 mr-2" aria-hidden="true" />
-                  {link.label}
-                </Link>
-              </Button>
-            ))}
-          </div>
+          {data.links.length > 0 && (
+            <div className="flex flex-wrap gap-3">
+              {data.links.map((link, i) => (
+                <Button key={i} asChild variant="outline" size="sm">
+                  <Link href={link.url} target="_blank" rel="noopener noreferrer">
+                    <ExternalLink className="mr-2 h-3.5 w-3.5" aria-hidden="true" />
+                    {link.label}
+                  </Link>
+                </Button>
+              ))}
+            </div>
+          )}
+          {data.linksNote && (
+            <p
+              className={cn(
+                'text-sm italic leading-relaxed text-muted-foreground',
+                data.links.length > 0 && 'mt-4'
+              )}
+            >
+              {data.linksNote}
+            </p>
+          )}
         </Section>
       )}
 

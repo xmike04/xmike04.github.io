@@ -1,10 +1,8 @@
-
-"use client";
+'use client';
 
 import { useState } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
+import { CheckCircle, RefreshCw, RotateCcw, XCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Brain, RefreshCw, CheckCircle, XCircle, RotateCcw } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface Question {
@@ -98,8 +96,8 @@ function shuffle<T>(arr: T[]): T[] {
   return a;
 }
 
-export default function MLConceptsQuiz() {
-  const [questions] = useState(() => shuffle(QUESTIONS));
+export default function MlQuiz() {
+  const [questions, setQuestions] = useState(() => shuffle(QUESTIONS));
   const [index, setIndex] = useState(0);
   const [selected, setSelected] = useState<string | null>(null);
   const [score, setScore] = useState(0);
@@ -111,19 +109,20 @@ export default function MLConceptsQuiz() {
   const handleSelect = (choice: string) => {
     if (selected) return;
     setSelected(choice);
-    if (choice === q.correct) setScore(s => s + 1);
+    if (choice === q.correct) setScore((s) => s + 1);
   };
 
   const handleNext = () => {
     if (index + 1 >= questions.length) {
       setDone(true);
     } else {
-      setIndex(i => i + 1);
+      setIndex((i) => i + 1);
       setSelected(null);
     }
   };
 
   const handleRestart = () => {
+    setQuestions(shuffle(QUESTIONS));
     setIndex(0);
     setSelected(null);
     setScore(0);
@@ -131,55 +130,69 @@ export default function MLConceptsQuiz() {
   };
 
   const pct = Math.round((score / questions.length) * 100);
+  const answered = done ? questions.length : index + (selected ? 1 : 0);
 
   return (
-    <Card className="max-w-4xl mx-auto shadow-lg overflow-hidden">
-      <CardHeader>
-        <div className="flex items-center gap-4">
-          <Brain className="w-8 h-8 text-primary" />
-          <div>
-            <CardTitle className="font-headline">ML Concepts Quiz</CardTitle>
-            <CardDescription>
-              {done
-                ? `Quiz complete — ${score}/${questions.length} correct`
-                : `Question ${index + 1} of ${questions.length} · Score: ${score}`}
-            </CardDescription>
-          </div>
+    <div className="space-y-4">
+      {/* Progress */}
+      <div className="space-y-1.5">
+        <div className="flex items-center justify-between font-mono text-xs text-muted-foreground">
+          <span>
+            {done
+              ? `Complete — ${score}/${questions.length} correct`
+              : `Question ${index + 1} of ${questions.length}`}
+          </span>
+          <span>Score: {score}</span>
         </div>
-      </CardHeader>
+        <div className="h-1.5 overflow-hidden rounded-full bg-muted/60">
+          <div
+            className="h-full rounded-full bg-primary motion-safe:transition-[width] motion-safe:duration-300"
+            style={{ width: `${(answered / questions.length) * 100}%` }}
+          />
+        </div>
+      </div>
 
-      <CardContent className="p-6 space-y-4 min-h-[280px]">
+      <div className="min-h-[280px] space-y-4">
         {done ? (
-          <div className="flex flex-col items-center justify-center h-full py-8 space-y-3">
-            <p className="text-5xl font-bold tabular-nums">{score}/{questions.length}</p>
-            <p className="text-muted-foreground text-lg">
+          <div className="flex flex-col items-center justify-center space-y-3 py-10">
+            <p className="font-headline text-5xl font-bold tabular-nums">
+              <span className="text-primary">{score}</span>/{questions.length}
+            </p>
+            <p className="text-lg text-muted-foreground">
               {pct === 100
                 ? 'Perfect. You know your ML.'
                 : pct >= 75
-                ? 'Solid fundamentals.'
-                : pct >= 50
-                ? 'Getting there — review the misses.'
-                : 'Time to hit the textbooks.'}
+                  ? 'Solid fundamentals.'
+                  : pct >= 50
+                    ? 'Getting there — review the misses.'
+                    : 'Time to hit the textbooks.'}
             </p>
           </div>
         ) : (
           <>
-            <div className="bg-muted/40 rounded-lg p-4">
-              <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-1.5">Scenario</p>
+            <div className="rounded-lg border border-border/60 bg-muted/30 p-4">
+              <p className="mb-1.5 text-xs font-medium uppercase tracking-wider text-primary">
+                Scenario
+              </p>
               <p className="text-sm leading-relaxed">{q.scenario}</p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-              {q.options.map(option => (
+            <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+              {q.options.map((option) => (
                 <Button
                   key={option}
                   variant="outline"
                   onClick={() => handleSelect(option)}
                   disabled={!!selected}
                   className={cn(
-                    'h-auto py-3 px-4 text-left justify-start whitespace-normal text-sm font-mono',
-                    selected && option === q.correct && 'bg-green-500/15 border-green-500 text-green-700 dark:text-green-400',
-                    selected && option === selected && !isCorrect && 'bg-red-500/15 border-red-500 text-red-700 dark:text-red-400',
+                    'h-auto justify-start whitespace-normal px-4 py-3 text-left font-mono text-sm',
+                    selected &&
+                      option === q.correct &&
+                      'border-emerald-500 bg-emerald-500/15 text-emerald-700 disabled:opacity-100 dark:text-emerald-400',
+                    selected &&
+                      option === selected &&
+                      !isCorrect &&
+                      'border-rose-500 bg-rose-500/15 text-rose-700 disabled:opacity-100 dark:text-rose-400'
                   )}
                 >
                   {option}
@@ -187,43 +200,53 @@ export default function MLConceptsQuiz() {
               ))}
             </div>
 
-            {selected && (
+            {selected ? (
               <div
                 className={cn(
-                  'flex items-start gap-2 rounded-lg p-3 text-sm',
-                  isCorrect ? 'bg-green-500/10' : 'bg-red-500/10'
+                  'flex items-start gap-2 rounded-lg border p-3 text-sm',
+                  isCorrect
+                    ? 'border-emerald-500/30 bg-emerald-500/10'
+                    : 'border-rose-500/30 bg-rose-500/10'
                 )}
+                role="status"
               >
-                {isCorrect
-                  ? <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
-                  : <XCircle className="w-4 h-4 text-red-500 mt-0.5 shrink-0" />}
+                {isCorrect ? (
+                  <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" aria-hidden />
+                ) : (
+                  <XCircle className="mt-0.5 h-4 w-4 shrink-0 text-rose-500" aria-hidden />
+                )}
                 <span className="text-muted-foreground">{q.explanation}</span>
               </div>
-            )}
+            ) : null}
           </>
         )}
-      </CardContent>
+      </div>
 
-      <CardFooter className="flex justify-center gap-3 p-4">
+      <div className="flex justify-center gap-3">
         {done ? (
           <Button onClick={handleRestart}>
-            <RotateCcw className="mr-2 w-4 h-4" />
-            Try Again
+            <RotateCcw className="mr-1.5" />
+            Try again
           </Button>
         ) : (
           selected && (
             <Button onClick={handleNext}>
-              {index + 1 >= questions.length ? 'See Results' : 'Next →'}
+              {index + 1 >= questions.length ? 'See results' : 'Next →'}
             </Button>
           )
         )}
         {!done && (
-          <Button variant="ghost" size="sm" onClick={handleRestart} className="text-muted-foreground">
-            <RefreshCw className="mr-1.5 w-3 h-3" />
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={handleRestart}
+            className="text-muted-foreground"
+          >
+            <RefreshCw className="mr-1.5" />
             Restart
           </Button>
         )}
-      </CardFooter>
-    </Card>
+      </div>
+    </div>
   );
 }
