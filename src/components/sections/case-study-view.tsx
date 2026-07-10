@@ -6,7 +6,6 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Reveal } from '@/components/motion/reveal';
 import MetricDeltaChart from '@/components/charts/metric-delta-chart';
-import RagPipelineDiagram from '@/components/diagrams/rag-pipeline-diagram';
 import NasaPipelineDiagram from '@/components/diagrams/nasa-pipeline-diagram';
 import SimlyfeDiagram from '@/components/diagrams/simlyfe-diagram';
 import { cn } from '@/lib/utils';
@@ -28,7 +27,7 @@ export interface CaseStudyMetricDelta {
 }
 
 /** Keys into the animated SVG diagram registry (see src/components/diagrams/). */
-export type ArchitectureDiagramKey = 'ragops' | 'nasa' | 'simlyfe';
+export type ArchitectureDiagramKey = 'nasa' | 'simlyfe';
 
 export interface CaseStudy {
   problem: string;
@@ -49,7 +48,6 @@ export interface CaseStudy {
 
 /** Animated SVG diagram registry, keyed by ArchitectureDiagramKey. */
 const DIAGRAMS: Record<ArchitectureDiagramKey, ComponentType> = {
-  ragops: RagPipelineDiagram,
   nasa: NasaPipelineDiagram,
   simlyfe: SimlyfeDiagram,
 };

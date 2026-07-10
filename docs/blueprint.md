@@ -8,7 +8,7 @@ Personal AI/ML engineering portfolio built with Next.js 15 (App Router), React 1
 - **About terminal**: Terminal-styled about section with typing effects.
 - **Skills**: Categorized skill groups plus a self-assessed proficiency radar chart (`resumeData.skillsRadar`).
 - **Experience timeline**: Work history rendered from `resumeData.workExperience`.
-- **Flagship project case studies**: NASA PACE "Wave: From Space to Ocean" exhibit (premiered at the Kennedy Center in Washington, D.C.), RAGOps hybrid-retrieval platform, and SIMLYFE LLM-driven life simulator — each with problem/constraints/approach narrative, architecture diagrams, and baseline-vs-achieved metric charts.
+- **Flagship project case studies**: NASA PACE "Wave: From Space to Ocean" exhibit (premiered at the Kennedy Center in Washington, D.C.) and SIMLYFE LLM-driven life simulator — each with problem/constraints/approach narrative, architecture diagrams, and baseline-vs-achieved metric charts.
 - **ML Lab**: Interactive in-browser ML demos (`src/components/lab/`).
 - **GitHub showcase**: Live repository data from the GitHub REST API (optional `GITHUB_TOKEN` raises the rate limit).
 - **Press section**: Third-party coverage links (NASA PACE, UMD) from `resumeData.press`.
@@ -28,6 +28,6 @@ Personal AI/ML engineering portfolio built with Next.js 15 (App Router), React 1
 
 - No fabricated metrics, links, or claims — everything traces back to `resumeData`.
 - The NASA exhibit venue is the **Kennedy Center, Washington, D.C.** (never "Kennedy Space Center").
-- RAGOps has **no public repository** — never link one; a reference implementation is being prepared (see its `linksNote`).
+- The RAGOps project is temporarily removed from the site (owner will restore it when finished) — don't re-add it or cite its metrics (Recall@10, 150-query benchmark) until then.
 - SIMLYFE links: https://simlyfe.vercel.app and https://github.com/xmike04/SIMLYFE.
 - The site is titled with the owner's name, "Michael E. Marin" — the legacy working title "Marin Insights" must not appear anywhere.

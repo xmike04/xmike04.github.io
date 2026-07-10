@@ -103,7 +103,8 @@ export default function AboutTerminal() {
             <h2 className="mb-5 font-headline text-3xl font-bold md:text-4xl">
               About <span className="gradient-text">Me</span>
             </h2>
-            <p className="text-base leading-relaxed text-muted-foreground md:text-lg">{resumeData.summary}</p>
+            <p className="text-base leading-relaxed text-foreground/90 md:text-lg">{resumeData.personalBio}</p>
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{resumeData.summary}</p>
           </div>
         </Reveal>
       </div>

@@ -75,8 +75,9 @@ export default function HeroSection() {
 
           <RevealItem>
             <p className="mx-auto mb-9 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg lg:mx-0">
-              Led the NASA PACE satellite-data exhibit shown at the Kennedy Center in Washington, D.C. Now building
-              agentic AI at {cooper.company} while pursuing an M.S. in Artificial Intelligence at UNT ({masters.date}).
+              I turn research-grade ML ideas into things people can actually use — real-time interfaces,
+              LLM-powered products, and agentic tools. Currently building agentic AI at {cooper.company} while
+              finishing an M.S. in Artificial Intelligence at UNT ({masters.date}).
             </p>
           </RevealItem>
 

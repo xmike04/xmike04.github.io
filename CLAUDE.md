@@ -26,7 +26,7 @@ When adding work experience, projects, skills, education, or press, this is the 
 ### Data Flow
 
 1. **Homepage** (`src/app/page.tsx`) renders sections (Hero, Stats, About, Skills, Experience, Flagship Projects, ML Lab, GitHub Showcase, Press, Education, Contact) from `resumeData`
-2. **Detail pages** (`src/app/item/[id]/page.tsx`) use dynamic routing — `[id]` must match entry IDs defined in `resume-data.ts` (`mr-cooper-internship`, `nasa-waving-project`, `ragops-platform`, `simlyfe`)
+2. **Detail pages** (`src/app/item/[id]/page.tsx`) use dynamic routing — `[id]` must match entry IDs defined in `resume-data.ts` (`mr-cooper-internship`, `nasa-waving-project`, `simlyfe`)
 3. **Resume page** (`src/app/resume/page.tsx`) renders an ATS-friendly printable resume entirely from `resumeData`
 4. **Chatbot**: Client UI (`src/components/sections/chat-bot.tsx`) → `POST /api/chat` (`src/app/api/chat/route.ts`) → `positiveChatbotStream` / `positiveChatbot` (`src/ai/flows/positive-chatbot.ts`) → OpenAI API. The route streams plain-text deltas and falls back to a non-streaming JSON response on error.
 
@@ -41,7 +41,7 @@ When adding work experience, projects, skills, education, or press, this is the 
 - `src/components/sections/` — homepage sections (hero stats strip, about terminal, skills, experience timeline, flagship projects, case-study view, GitHub showcase, press, education, contact, chat-bot, nav, footer)
 - `src/components/hero/` — hero visuals
 - `src/components/lab/` — interactive ML Lab demos
-- `src/components/diagrams/` — architecture diagrams for case studies (`ragops`, `nasa`, `simlyfe`)
+- `src/components/diagrams/` — architecture diagrams for case studies (`nasa`, `simlyfe`)
 - `src/components/charts/` — metric charts (Recharts)
 - `src/components/motion/` — animation primitives (Reveal, RevealGroup, CountUp, ScrollProgress, MagneticButton, SpotlightCard, TextScramble) built on `motion@12` (`motion/react`)
 - `src/components/theme/` — next-themes provider and toggle (class strategy, dark default)
@@ -58,7 +58,7 @@ When adding work experience, projects, skills, education, or press, this is the 
 
 - No fabricated metrics, links, or claims — content comes from `resumeData`
 - NASA exhibit venue is "Kennedy Center, Washington, D.C." (never "Kennedy Space Center")
-- RAGOps has no public repo — never link one (its `linksNote` explains a reference implementation is being prepared)
+- The RAGOps project was removed from the site until it's finished — do not re-add it or cite its metrics (Recall@10, 150-query benchmark) unless the owner restores it
 - The name is "Michael E. Marin"; the legacy title "Marin Insights" must not appear
 
 ### Key Config Notes

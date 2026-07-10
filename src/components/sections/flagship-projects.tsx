@@ -2,8 +2,6 @@
 
 import Link from 'next/link';
 import { ArrowRight, ExternalLink, Github, Star } from 'lucide-react';
-import { motion, useReducedMotion } from 'motion/react';
-import { CountUp } from '@/components/motion/count-up';
 import { RevealGroup, RevealItem } from '@/components/motion/reveal';
 import { SpotlightCard } from '@/components/motion/spotlight-card';
 import { Badge } from '@/components/ui/badge';
@@ -22,8 +20,6 @@ function trimAtWord(text: string, max = 220): string {
 
 /** Per-project proof panel: honest metrics only, straight from resume-data. */
 function MetricHighlight({ project }: { project: ProjectItem }) {
-  const reduced = useReducedMotion();
-
   if (project.id === 'nasa-waving-project') {
     return (
       <div className="flex h-full flex-col justify-center gap-4 rounded-xl border border-border/60 bg-background/40 p-6">
@@ -42,39 +38,6 @@ function MetricHighlight({ project }: { project: ProjectItem }) {
             <span className="font-mono text-primary">→</span> ~70% setup-time cut via automated calibration wizard
           </li>
         </ul>
-      </div>
-    );
-  }
-
-  if (project.id === 'ragops-platform') {
-    return (
-      <div className="flex h-full flex-col justify-center gap-3 rounded-xl border border-border/60 bg-background/40 p-6">
-        <p className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
-          Recall@10 · 150-query benchmark
-        </p>
-        <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-          <span className="font-mono text-sm text-muted-foreground line-through decoration-border">58%</span>
-          <ArrowRight className="h-4 w-4 self-center text-muted-foreground" aria-hidden="true" />
-          <CountUp value={81} suffix="%" className="font-headline text-4xl font-bold text-primary md:text-5xl" />
-          <span className="font-mono text-xs font-medium text-accent">+23 pts</span>
-        </div>
-        <div
-          className="relative mt-1 h-2.5 overflow-hidden rounded-full bg-muted/60"
-          role="img"
-          aria-label="Recall at 10 improved from a 58 percent dense-only baseline to 81 percent with hybrid retrieval"
-        >
-          <motion.div
-            className="h-full rounded-full bg-gradient-to-r from-primary/70 to-primary"
-            initial={{ width: reduced ? '81%' : '58%' }}
-            whileInView={{ width: '81%' }}
-            viewport={{ once: true, amount: 0.6 }}
-            transition={{ duration: reduced ? 0 : 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
-          />
-          <span className="absolute inset-y-0 left-[58%] w-px bg-foreground/40" aria-hidden="true" />
-        </div>
-        <p className="text-xs leading-relaxed text-muted-foreground">
-          Dense-only baseline → hybrid retrieval + cross-encoder reranking
-        </p>
       </div>
     );
   }
@@ -178,7 +141,7 @@ export default function FlagshipProjects() {
           <p className="mb-3 font-mono text-xs uppercase tracking-[0.25em] text-primary">Selected work</p>
           <h2 className="font-headline text-3xl font-bold md:text-5xl">Flagship Projects</h2>
           <p className="mt-4 text-muted-foreground">
-            A national research exhibit, retrieval infrastructure, and a shipped LLM product.
+            A national research exhibit and a shipped, LLM-driven product.
           </p>
         </div>
         <RevealGroup className="mx-auto flex max-w-5xl flex-col gap-8" stagger={0.15}>

@@ -40,6 +40,8 @@ export interface WorkItem {
   company: string;
   location: string;
   date: string;
+  /** YYYYMM of the end date (999999 = ongoing) — sorts the timeline most-recent-first. */
+  sortKey: number;
   description: string[];
   detailedContent?: string;
   links?: ItemLink[];
@@ -54,6 +56,8 @@ export interface ProjectItem {
   company: string;
   location: string;
   date: string;
+  /** YYYYMM of the end date (999999 = ongoing) — sorts the timeline most-recent-first. */
+  sortKey: number;
   description: string[];
   detailedContent?: string;
   links?: ItemLink[];
@@ -73,13 +77,16 @@ export const resumeData = {
     github: "https://github.com/xmike04",
     linkedin: "https://linkedin.com/in/xmike04",
   },
+  // Warm, first-person intro for the front page. Draft — edit freely to your voice.
+  personalBio:
+    "I'm Michael — an ML engineer based in Dallas who got hooked on AI the moment I realized a model could turn messy, real-world data into something people actually understand. I studied Computer Science Engineering at the University of North Texas, stuck around for a master's in Artificial Intelligence, and I help run the UNT AI Club as its treasurer. Whether it's a NASA satellite exhibit, an LLM-driven game, or an agentic tool at work, what I care about most is the moment an idea stops being a notebook and becomes something someone can actually click.",
   summary:
-    "ML engineer focused on production AI systems — retrieval pipelines, evaluation frameworks, and real-time interactive visualization. Led a 5-person team building a NASA PACE satellite-data exhibit shown at the Kennedy Center in Washington, D.C., built a hybrid-retrieval RAG platform that raised Recall@10 from 58% to 81% across a 150-query benchmark, and shipped an LLM-driven life simulator with 350+ automated test assertions. Currently pursuing an M.S. in Artificial Intelligence (ML focus) at the University of North Texas while working on agentic AI products at Mr. Cooper.",
+    "ML engineer focused on production AI systems — real-time interactive visualization, LLM-powered products, and the evaluation discipline that keeps them honest. Led a 5-person team building a NASA PACE satellite-data exhibit shown at the Kennedy Center in Washington, D.C., and shipped SIMLYFE, an LLM-driven life simulator with 350+ automated test assertions. Currently pursuing an M.S. in Artificial Intelligence (ML focus) at the University of North Texas while building agentic AI products at Mr. Cooper.",
   heroStats: [
-    { value: 81, suffix: "%", label: "Recall@10", sub: "hybrid retrieval, up from 58%" },
-    { value: 150, suffix: "+", label: "Benchmark queries", sub: "RAG evaluation framework" },
+    { value: 6, label: "In-browser ML demos", sub: "live in the ML Lab below" },
     { value: 350, suffix: "+", label: "Test assertions", sub: "SIMLYFE engine + LLM modules" },
     { value: 5, label: "Person team led", sub: "NASA PACE capstone exhibit" },
+    { value: 2027, label: "M.S. AI", sub: "expected — UNT, ML focus" },
   ] as HeroStat[],
   skills: [
     {
@@ -119,6 +126,7 @@ export const resumeData = {
       company: "Mr. Cooper Group",
       location: "Dallas, TX",
       date: "May 2025 – Present",
+      sortKey: 999999,
       description: [
         "Selected for a competitive 10-week internship with the Product Management AI/ML team.",
         "Contributing to the development and support of internal Agentic AI products to help automate customer service.",
@@ -146,6 +154,7 @@ Key Responsibilities & Learnings:
         company: "NASA PACE · University of Maryland IMD · University of North Texas",
         location: "",
         date: "Jan 2024 – May 2025",
+        sortKey: 202505,
         description: [
             "Led a team of 5 building an interactive, gesture-driven exhibit visualizing live data from NASA's PACE satellite.",
             "Built full-stack applications integrating cloud data pipelines for large-scale scientific computations, with React/TypeScript visualization layers.",
@@ -202,70 +211,6 @@ The exhibit premiered at the Kennedy Center in Washington, D.C. in March 2025 an
         } satisfies CaseStudy,
     },
     {
-      id: 'ragops-platform',
-      type: 'project',
-      flagship: true,
-      title: "RAGOps: Production-Grade RAG Platform",
-      company: "Personal Project",
-      location: "",
-      date: "2024 – 2025",
-      description: [
-        "Built a production-grade RAG platform with hybrid retrieval (vector + BM25), cross-encoder reranking, and citation-based answer generation.",
-        "Designed end-to-end LLM pipeline: document ingestion, semantic chunking, embedding, hybrid retrieval, and generation using FastAPI and PostgreSQL (pgvector).",
-        "Implemented observability layer tracking retrieval latency, token usage, cost, and per-query diagnostics via an admin dashboard.",
-        "Developed evaluation framework with 150+ benchmark queries measuring Recall@k, MRR, and answer correctness.",
-        "Hybrid retrieval raised Recall@10 from ~58% to ~81% over the dense-only baseline; reranking cut irrelevant context from 31% to 11%.",
-      ],
-      detailedContent: `
-RAGOps is a production-oriented Retrieval-Augmented Generation platform built to address core limitations of naive LLM systems: poor retrieval quality, hallucinations, lack of observability, and no evaluation framework. The system enables users to create domain-specific knowledge bases from unstructured documents and query them through a fully instrumented RAG pipeline that prioritizes grounded responses, retrieval transparency, and measurable performance.
-
-Key Contributions & Technical Details:
-- Hybrid Retrieval Architecture: Moved beyond naive embedding-only retrieval by combining dense vector search (semantic similarity via pgvector) with lexical retrieval (BM25-style keyword matching), then fusing results with a cross-encoder reranker. This multi-stage pipeline significantly improved Recall@10 and answer precision over the dense-only baseline.
-- End-to-End LLM Pipeline: Designed the full ingestion-to-generation stack — PDF/markdown/HTML parsing, semantic chunking with configurable overlap, embedding generation, and indexing into PostgreSQL with pgvector. Queries flow through retrieval, reranking, and structured prompt construction before LLM generation.
-- Observability & Tracing: Implemented a full query tracing layer capturing retrieval latency vs generation latency, token usage, cost per query, retrieved document distribution, reranker impact, and failure rates. All traces are inspectable in an admin dashboard for debugging and optimization.
-- Evaluation Framework: Developed a structured benchmark pipeline with 150+ curated question-answer pairs and ground-truth documents. Metrics include Recall@k, MRR, citation accuracy, answer correctness, latency, and cost. Used experiments (dense vs hybrid, with/without reranking, fixed vs semantic chunking) to drive iterative improvements.
-- Hallucination Prevention: Fallback mechanism rejects low-evidence queries rather than generating ungrounded responses. Responses include source citations and retrieved supporting passages.
-      `,
-      links: [],
-      caseStudy: {
-        problem:
-          "Naive RAG systems built on embedding-only retrieval suffer from poor recall on out-of-distribution queries, context pollution from irrelevant chunks, and zero visibility into why a given answer was produced. There was no systematic way to measure or improve retrieval quality over time.",
-        constraints: [
-          "Heterogeneous document formats (PDF, markdown, HTML) required a unified ingestion pipeline",
-          "Query latency budget: end-to-end response under 3 seconds including reranking",
-          "Cost per query had to remain viable for self-hosted, single-tenant use",
-          "Evaluation required ground-truth labels — 150 QA pairs curated manually",
-          "No managed vector database; pgvector on PostgreSQL to keep the stack minimal",
-        ],
-        approach:
-          "Replaced single-stage dense retrieval with a three-stage pipeline: (1) dual retrieval combining pgvector ANN search with BM25-style lexical matching, (2) score fusion to merge candidate lists, and (3) a cross-encoder reranker applied to the top-k candidates before passing context to the LLM. Chunking strategy was switched from fixed-size to semantic boundaries to improve chunk coherence. A fallback gate rejects low-confidence queries rather than hallucinating. Evaluation was embedded into the development loop — every pipeline change was measured against the 150-query benchmark before merging.",
-        architectureDiagram: 'ragops',
-        architectureNote:
-          "Ingestion → Chunker → Embedder → pgvector + BM25 index → Fusion → Cross-encoder reranker → LLM generation → Traced response",
-        metrics: [
-          { label: "Recall@10", baseline: "~58%", achieved: "~81%" },
-          { label: "Answer precision (manual)", baseline: "62%", achieved: "84%" },
-          { label: "Irrelevant context rate", baseline: "31%", achieved: "11%" },
-          { label: "Avg query latency", baseline: "1.1 s", achieved: "2.4 s (reranker added)" },
-          { label: "Benchmark queries", baseline: "0", achieved: "150 QA pairs" },
-        ],
-        metricsChart: [
-          { label: "Recall@10", baseline: 58, achieved: 81, unit: "%" },
-          { label: "Answer precision", baseline: 62, achieved: 84, unit: "%" },
-          { label: "Irrelevant context", baseline: 31, achieved: 11, unit: "%", lowerIsBetter: true },
-        ],
-        productImpact:
-          "RAGOps functions as a self-hostable knowledge-base Q&A system for domain-specific document corpora. The observability dashboard lets an operator debug retrieval failures without re-running experiments manually. The evaluation framework enables confident iteration — any retrieval change is quantified before deployment, treating the LLM application as infrastructure rather than a prototype.",
-        techStack: [
-          "Python", "FastAPI", "PostgreSQL", "pgvector", "Redis", "Celery",
-          "Next.js", "TypeScript", "BM25", "Cross-encoder reranker", "LLM API",
-        ],
-        links: [],
-        linksNote:
-          "A trimmed public reference implementation is being prepared for release — code walkthrough available on request.",
-      } satisfies CaseStudy,
-    },
-    {
       id: 'simlyfe',
       type: 'project',
       flagship: true,
@@ -273,6 +218,7 @@ Key Contributions & Technical Details:
       company: "Personal Project",
       location: "",
       date: "2025 – 2026",
+      sortKey: 202612,
       description: [
         "Built and shipped a mobile-first, browser-based life simulation game where players age a character year by year through careers, relationships, finances, and procedurally generated life events.",
         "Integrated GPT-4o-mini as a life-event generation engine behind a server-side LLM proxy, keeping API keys off the client entirely.",
@@ -369,9 +315,9 @@ Key Contributions & Technical Details:
   ] satisfies PressLink[],
   suggestedQuestions: [
     "What did Michael build for NASA?",
-    "How does RAGOps' hybrid retrieval work?",
-    "What is SIMLYFE?",
+    "How does SIMLYFE use GPT-4o-mini?",
     "What is Michael studying in his master's?",
+    "What's in the interactive ML Lab?",
   ],
   certifications: [
     "Intro to Web Development with HTML, CSS, & Bootstrap",

@@ -20,9 +20,9 @@ export default function Home() {
       <main>
         <HeroSection />
         <StatsStrip />
+        <AboutTerminal />
         <FlagshipProjects />
         <MlLab />
-        <AboutTerminal />
         <ExperienceTimeline />
         <SkillsSection />
         <EducationSpotlight />

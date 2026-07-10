@@ -6,9 +6,9 @@ export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
 const stats = [
-  { value: '81%', label: 'Recall@10' },
   { value: 'NASA PACE', label: 'Kennedy Center exhibit' },
   { value: '350+', label: 'test assertions' },
+  { value: 'SIMLYFE', label: 'shipped LLM product' },
   { value: "M.S. AI '27", label: 'UNT, in progress' },
 ];
 
@@ -46,7 +46,7 @@ export default function OpengraphImage() {
             Michael E. Marin
           </div>
           <div style={{ fontSize: 34, color: '#9aa3b8', marginTop: 18, maxWidth: 940 }}>
-            Production AI systems — RAG pipelines, evaluation frameworks, real-time ML visualization
+            Production AI systems — LLM products, agentic tools, and real-time ML visualization
           </div>
         </div>
         <div style={{ display: 'flex', gap: 28 }}>

@@ -70,14 +70,16 @@ function RepoCard({ repo }: { repo: SlimRepo }) {
 function FallbackPanel() {
   return (
     <div className="glass mx-auto max-w-xl rounded-xl p-8 text-center">
-      <p className="text-sm text-muted-foreground">Live repository data is momentarily unavailable.</p>
+      <p className="text-sm text-muted-foreground">
+        See the latest repositories, activity, and code directly on GitHub.
+      </p>
       <a
         href="https://github.com/xmike04"
         target="_blank"
         rel="noopener noreferrer"
         className="mt-3 inline-flex items-center gap-1.5 font-mono text-sm text-primary transition-colors hover:text-primary/80"
       >
-        browse github.com/xmike04
+        github.com/xmike04
         <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
       </a>
     </div>

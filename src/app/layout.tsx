@@ -35,14 +35,14 @@ export const metadata: Metadata = {
     url: siteUrl,
     title: 'ML Engineer | AI Systems | Michael Marin',
     description:
-      'ML Engineer building production AI systems. NASA PACE collaboration, RAG pipelines, agentic AI. Based in Dallas, TX.',
+      'ML Engineer building production AI systems. NASA PACE collaboration, shipped LLM products, agentic AI. Based in Dallas, TX.',
     siteName: 'Michael Marin — Portfolio',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'ML Engineer | AI Systems | Michael Marin',
     description:
-      'ML Engineer building production AI systems. NASA PACE collaboration, RAG pipelines, agentic AI. Based in Dallas, TX.',
+      'ML Engineer building production AI systems. NASA PACE collaboration, shipped LLM products, agentic AI. Based in Dallas, TX.',
   },
   alternates: {
     canonical: siteUrl,

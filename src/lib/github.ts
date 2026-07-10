@@ -34,7 +34,7 @@ const EXCLUDED_REPOS = new Set(['AI-Assistant']);
  * can render a graceful fallback.
  */
 export async function getRecentRepos(): Promise<SlimRepo[]> {
-  const res = await fetch('https://api.github.com/users/xmike04/repos?sort=pushed&per_page=10', {
+  const res = await fetch('https://api.github.com/users/xmike04/repos?sort=pushed&per_page=100', {
     next: { revalidate: 21600 },
     headers: process.env.GITHUB_TOKEN ? { Authorization: `Bearer ${process.env.GITHUB_TOKEN}` } : {},
   });
