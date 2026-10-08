@@ -12,8 +12,8 @@ import {
  *
  * React 19 client → deterministic simulation core, which exchanges
  * game-state context and schema-validated events with a Supabase Edge
- * Function (server-side key proxy) fronting the GPT-4o-mini event engine.
- * Firebase cloud saves hang off the client as a side node.
+ * Function (authenticated server boundary) fronting the OpenAI event service.
+ * Firebase Auth and Firestore hang off the client as a side node.
  */
 
 const E = {
@@ -29,7 +29,7 @@ export default function SimlyfeDiagram() {
     <DiagramContainer
       viewBox="0 0 840 290"
       minWidth={720}
-      label="SIMLYFE architecture diagram. A React 19 client drives a deterministic simulation core covering economy, careers, and relationships. The core sends game-state context to a Supabase Edge Function acting as a server-side key proxy, which calls the GPT-4o-mini event engine and returns schema-validated events to the core. Firebase cloud saves persist progress from the client."
+      label="SIMLYFE architecture diagram. A React 19 client drives a deterministic simulation core covering economy, careers, and relationships. The core sends bounded game-state context to an authenticated Supabase Edge Function, which calls an OpenAI event service and returns schema-validated events to the core. Firebase Auth and Firestore provide identity and cloud saves."
       legend={[
         { label: 'Simulation loop', tone: 'primary' },
         { label: 'LLM narrative events', tone: 'accent' },
@@ -71,11 +71,11 @@ export default function SimlyfeDiagram() {
       {/* ── Main flow ── */}
       <DiagramNode x={16} y={76} width={140} height={60} title="React 19 Client" sub="mobile-first UI" tone="primary" />
       <DiagramNode x={200} y={76} width={200} height={60} title="Deterministic Sim Core" sub="economy·careers·relationships" tone="primary" />
-      <DiagramNode x={448} y={76} width={184} height={60} title="Supabase Edge Fn" sub="server-side key proxy" tone="primary" />
-      <DiagramNode x={676} y={76} width={148} height={60} title="GPT-4o-mini" sub="event engine" tone="accent" highlight />
+      <DiagramNode x={448} y={76} width={184} height={60} title="Supabase Edge Fn" sub="authenticated boundary" tone="primary" />
+      <DiagramNode x={676} y={76} width={148} height={60} title="OpenAI Service" sub="event engine" tone="accent" highlight />
 
       {/* ── Side node ── */}
-      <DiagramNode x={16} y={214} width={180} height={52} title="Firebase Cloud Saves" sub="cross-device persistence" />
+      <DiagramNode x={16} y={214} width={180} height={52} title="Firebase" sub="Auth + Firestore saves" />
     </DiagramContainer>
   );
 }

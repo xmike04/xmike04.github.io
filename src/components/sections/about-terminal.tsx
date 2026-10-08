@@ -10,8 +10,8 @@ const TERMINAL_LINES = [
   { text: '$ whoami', kind: 'cmd' },
   { text: 'ml-engineer — dallas, tx', kind: 'out' },
   { text: '$ current_focus', kind: 'cmd' },
-  { text: '→ agentic AI @ Mr. Cooper', kind: 'out' },
-  { text: '→ M.S. AI @ UNT (May 2027)', kind: 'out' },
+  { text: '→ applied AI + ML engineering', kind: 'out' },
+  { text: '→ M.S. AI @ UNT (Dec 2027)', kind: 'out' },
 ] as const;
 
 const TOTAL_CHARS = TERMINAL_LINES.reduce((n, line) => n + line.text.length, 0);

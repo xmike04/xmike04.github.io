@@ -16,9 +16,15 @@ export interface SkillCategory {
   technologies: string[];
 }
 
-export interface RadarAxis {
-  axis: string;
-  value: number; // 0–100 self-assessed proficiency, drives the skills radar chart
+export interface ProofArea {
+  title: string;
+  evidence: string;
+}
+
+export interface Certification {
+  name: string;
+  issuer: string;
+  date: string;
 }
 
 export interface PressLink {
@@ -66,27 +72,25 @@ export interface ProjectItem {
 
 export const resumeData = {
   name: "Michael E. Marin",
-  role: "ML Engineer",
-  availability: "Open to ML Engineer and AI Product roles",
+  role: "Applied AI & ML Engineer",
+  availability: "Seeking AI/ML and applied-AI internships and co-ops",
   contact: {
     email: "miked24977@gmail.com",
-    phone: "4699800069",
-    location: "Dallas, TX",
+    location: "Dallas–Fort Worth, TX",
   },
   social: {
     github: "https://github.com/xmike04",
     linkedin: "https://linkedin.com/in/xmike04",
   },
-  // Warm, first-person intro for the front page. Draft — edit freely to your voice.
   personalBio:
-    "I'm Michael — an ML engineer based in Dallas who got hooked on AI the moment I realized a model could turn messy, real-world data into something people actually understand. I studied Computer Science Engineering at the University of North Texas, stuck around for a master's in Artificial Intelligence, and I help run the UNT AI Club as its treasurer. Whether it's a NASA satellite exhibit, an LLM-driven game, or an agentic tool at work, what I care about most is the moment an idea stops being a notebook and becomes something someone can actually click.",
+    "I'm Michael, an applied AI builder in Dallas–Fort Worth. I earned a B.S. in Computer Science at the University of North Texas and am now pursuing an M.S. in Artificial Intelligence with a Machine Learning concentration, expected December 2027. I care about the point where an ML idea leaves the notebook and becomes a system people can test, evaluate, and use.",
   summary:
-    "ML engineer focused on production AI systems — real-time interactive visualization, LLM-powered products, and the evaluation discipline that keeps them honest. Led a 5-person team building a NASA PACE satellite-data exhibit shown at the Kennedy Center in Washington, D.C., and shipped SIMLYFE, an LLM-driven life simulator with 350+ automated test assertions. Currently pursuing an M.S. in Artificial Intelligence (ML focus) at the University of North Texas while building agentic AI products at Mr. Cooper.",
+    "Applied AI and machine learning engineer with 2025 AI/ML product internship experience, computer vision leadership on a NASA PACE exhibit, and a shipped AI-assisted life simulator with 350+ automated test assertions. Strongest evidence spans AI product evaluation, real-time computer vision, LLM system boundaries, and cloud engineering.",
   heroStats: [
     { value: 6, label: "In-browser ML demos", sub: "live in the ML Lab below" },
     { value: 350, suffix: "+", label: "Test assertions", sub: "SIMLYFE engine + LLM modules" },
     { value: 5, label: "Person team led", sub: "NASA PACE capstone exhibit" },
-    { value: 2027, label: "M.S. AI", sub: "expected — UNT, ML focus" },
+    { value: 2027, label: "M.S. AI", sub: "expected Dec — UNT, ML concentration" },
   ] as HeroStat[],
   skills: [
     {
@@ -110,14 +114,24 @@ export const resumeData = {
       technologies: ["React", "Next.js", "Tailwind CSS", "Data Visualization"],
     },
   ] satisfies SkillCategory[],
-  skillsRadar: [
-    { axis: "LLM / RAG", value: 88 },
-    { axis: "ML / Deep Learning", value: 75 },
-    { axis: "Backend", value: 82 },
-    { axis: "Cloud / MLOps", value: 70 },
-    { axis: "Frontend", value: 80 },
-    { axis: "Data Engineering", value: 72 },
-  ] satisfies RadarAxis[],
+  proofAreas: [
+    {
+      title: "AI product evaluation",
+      evidence: "2025 Product Analyst Intern on the Mr. Cooper AI/ML team: user validation, feature evaluation, and cross-functional delivery.",
+    },
+    {
+      title: "Computer vision",
+      evidence: "Lead Developer for a 5-person NASA PACE capstone team using OpenCV, CUDA, Unity, and ZED stereo cameras.",
+    },
+    {
+      title: "LLM systems",
+      evidence: "SIMLYFE separates deterministic simulation logic from authenticated, schema-validated OpenAI event generation.",
+    },
+    {
+      title: "Cloud engineering",
+      evidence: "AWS Machine Learning — Specialty and Google Cloud Professional Cloud Architect certifications.",
+    },
+  ] satisfies ProofArea[],
   workExperience: [
     {
       id: 'mr-cooper-internship',
@@ -125,23 +139,23 @@ export const resumeData = {
       title: "Product Analyst Intern, AI/ML team",
       company: "Mr. Cooper Group",
       location: "Dallas, TX",
-      date: "May 2025 – Present",
-      sortKey: 999999,
+      date: "2025",
+      sortKey: 202512,
       description: [
-        "Selected for a competitive 10-week internship with the Product Management AI/ML team.",
-        "Contributing to the development and support of internal Agentic AI products to help automate customer service.",
-        "Responsibilities include story writing, user testing, model evaluation, and cross-functional collaboration with design, engineering, and business units.",
-        "Exposure to tools such as Azure DevOps, MySQL, Microsoft Copilot, Google Cloud Services (GCS), and LucidChart in support of digital transformation and intelligent automation efforts.",
+        "Supported agentic AI products for customer service automation across Azure DevOps and MySQL.",
+        "Participated in product experimentation, user validation, and AI feature evaluation activities.",
+        "Collaborated with product, engineering, and business stakeholders on AI and machine learning initiatives.",
+        "Worked in a cross-functional environment translating business requirements into technical deliverables.",
       ],
       detailedContent: `
-As a Product Analyst Intern on the AI/ML team at Mr. Cooper, I am immersed in the lifecycle of enterprise-grade AI products. My primary focus is on supporting the development of Agentic AI systems designed to enhance customer service interactions.
+In 2025, I worked as a Product Analyst Intern on Mr. Cooper's AI/ML team, supporting agentic AI products for customer service automation.
 
 Key Responsibilities & Learnings:
-- Product Definition: I contribute to product strategy by writing user stories and defining feature requirements in Azure DevOps, ensuring that development aligns with business objectives and user needs.
-- User-Centric Validation: I actively participate in user testing sessions, gathering feedback to iterate on product features and improve the user experience. This has honed my ability to translate user insights into actionable development tasks.
-- Model & System Evaluation: I assist in the evaluation of AI models, analyzing performance metrics to ensure they meet our standards for accuracy and reliability.
-- Cross-Functional Collaboration: I work closely with a diverse team of designers, software engineers, and business stakeholders. This has taught me how to effectively communicate technical concepts and product vision across different domains.
-- Technology Exposure: I am gaining hands-on experience with a modern tech stack, including Azure DevOps for project management, MySQL for data analysis, Microsoft Copilot for AI-assisted development, and Google Cloud Services (GCS) for cloud infrastructure. I also use LucidChart for creating process flows and diagrams to support our digital transformation initiatives.
+- Product Definition: Translated business requirements into user stories and technical deliverables in Azure DevOps.
+- User-Centric Validation: Participated in product experimentation, user testing, and AI feature evaluation.
+- Decision Support: Contributed to data-informed product prioritization and analysis discussions.
+- Cross-Functional Collaboration: Worked with product, engineering, design, and business stakeholders on AI/ML initiatives.
+- Technology Exposure: Used Azure DevOps, MySQL, Microsoft Copilot, and Google Cloud Storage while supporting the team's product work.
       `,
     },
   ] satisfies WorkItem[],
@@ -150,28 +164,28 @@ Key Responsibilities & Learnings:
         id: 'nasa-waving-project',
         type: 'project',
         flagship: true,
-        title: "Wave: From Space to Ocean (NASA PACE Capstone)",
+        title: "WAVE: From Space to Ocean (NASA PACE Capstone)",
         company: "NASA PACE · University of Maryland IMD · University of North Texas",
         location: "",
         date: "Jan 2024 – May 2025",
         sortKey: 202505,
         description: [
-            "Led a team of 5 building an interactive, gesture-driven exhibit visualizing live data from NASA's PACE satellite.",
-            "Built full-stack applications integrating cloud data pipelines for large-scale scientific computations, with React/TypeScript visualization layers.",
-            "Designed a Setup Wizard using ImGui and OpenCV that cut exhibit setup and calibration time by roughly 70%.",
-            "Implemented scalable APIs and GraphQL endpoints for cross-platform data integration.",
-            "Premiered at the Kennedy Center in Washington, D.C. (March 2025), with a planned national museum tour.",
+            "Led a 5-person team building a real-time computer vision and interactive visualization system for NASA PACE satellite data.",
+            "Developed gesture-recognition and multi-camera tracking workflows using OpenCV, CUDA, Unity, and ZED stereo cameras.",
+            "Built interactive data visualizations for real-time oceanographic satellite analytics.",
+            "Contributed to deployment automation and technical infrastructure for the exhibit.",
+            "The WAVE installation premiered at the Kennedy Center in Washington, D.C., in March 2025.",
         ],
         detailedContent: `
-The "Wave: From Space to Ocean" project is a capstone initiative in collaboration with the NASA PACE team, the University of Maryland's Immersive Media Design program, and the University of North Texas. As the team lead, I guided a group of five students to build a comprehensive data visualization and analysis platform for NASA's PACE (Plankton, Aerosol, Cloud, ocean Ecosystem) satellite mission.
+The WAVE project was a capstone collaboration involving NASA PACE, the University of Maryland's Immersive Media Design program, and the University of North Texas. As Lead Developer, I guided a five-person UNT team building an interactive exhibit around PACE satellite data.
 
 Key Contributions & Technical Details:
-- Interactive Data Visualization: We developed a sophisticated front-end using React and TypeScript, allowing scientists and researchers to perform real-time analytics on complex oceanographic and atmospheric data. The visualizations are designed to be intuitive and interactive, facilitating new discoveries.
-- Full-Stack Cloud Architecture: I was responsible for architecting and implementing a full-stack application that connects to NASA's data pipelines. This involved setting up cloud infrastructure capable of handling large-scale scientific computations and data streaming.
-- Optimized User Workflow: To streamline the setup process for exhibit operators, I designed and built a Setup Wizard using ImGui and OpenCV. This tool automates the configuration of the analysis environment, significantly reducing setup time and potential for errors.
-- Scalable Data Integration: We implemented a robust backend with scalable APIs and GraphQL endpoints to ensure seamless data integration from various sources and across different platforms.
+- Computer Vision: Developed gesture-recognition and multi-camera tracking workflows using ZED stereo cameras, OpenCV, and CUDA.
+- Interactive Rendering: Used Unity, C#, React, and TypeScript to help turn oceanographic satellite data into an interactive public exhibit.
+- Deployment Support: Contributed to setup, calibration, and deployment automation for exhibit operators.
+- Team Leadership: Coordinated technical work across a five-person student team and multidisciplinary project partners.
 
-The exhibit premiered at the Kennedy Center in Washington, D.C. in March 2025 and is scheduled to tour other museums, bringing the science of the PACE mission to the public.
+The installation premiered at the Kennedy Center in Washington, D.C., in March 2025. NASA and UMD pages linked below independently document the exhibit and UNT's participation; the Lead Developer scope is Michael's confirmed role.
         `,
         links: [
           { label: "NASA PACE — WAVE exhibit page", url: "https://pace.oceansciences.org/wave_space_to_ocean.htm" },
@@ -179,13 +193,12 @@ The exhibit premiered at the Kennedy Center in Washington, D.C. in March 2025 an
         ],
         caseStudy: {
           problem:
-            "NASA's PACE mission produces large-scale, high-dimensional oceanographic and atmospheric satellite data that is difficult for non-experts to interpret or interact with. The goal was to transform raw satellite data into a real-time interactive system that enables scientists, educators, and general audiences to explore complex datasets through intuitive gesture-based interfaces — without requiring domain expertise.",
+            "NASA's PACE mission produces complex oceanographic and atmospheric satellite data. The capstone challenge was to make that science approachable through a real-time, gesture-driven public exhibit.",
           constraints: [
-            "Real-time performance requirements with multi-user simultaneous interaction",
-            "High-throughput stereo camera input (ZED SDK) requiring low-latency processing",
-            "Deployment on constrained exhibit hardware with no dedicated GPU infrastructure",
-            "Robustness across variable physical environments — lighting, spacing, and calibration",
-            "Non-technical end users: scientists, educators, and general public audiences",
+            "Real-time gesture recognition from ZED stereo-camera input",
+            "Reliable operation across changing exhibit lighting, spacing, and calibration",
+            "Interactive rendering of scientific data for a public audience",
+            "Setup and deployment that exhibit operators could repeat consistently",
           ],
           approach:
             "Designed a modular pipeline combining computer vision, real-time rendering, and gesture recognition. Built gesture interaction using ZED stereo cameras and OpenCV with CUDA acceleration for tracking and interpreting user movement. Developed a configurable ImGui-based setup wizard to automate deployment, calibration, and system validation, reducing friction for non-technical operators. Integrated the full pipeline into Unity to render interactive PACE satellite visualizations across multiple display environments.",
@@ -193,13 +206,12 @@ The exhibit premiered at the Kennedy Center in Washington, D.C. in March 2025 an
           architectureNote:
             "ZED stereo camera → OpenCV + CUDA gesture pipeline → Unity rendering engine → ImGui setup wizard for calibration and validation",
           metrics: [
-            { label: "Setup & calibration time", baseline: "Manual multi-step process", achieved: "~70% reduction via automated wizard" },
-            { label: "Gesture recognition latency", baseline: "Not real-time", achieved: "<100ms end-to-end" },
-            { label: "Simultaneous users supported", baseline: "Single user", achieved: "2–4 participants" },
-            { label: "Runtime errors", baseline: "Manual validation only", achieved: "Eliminated via automated pre-flight checks" },
+            { label: "Leadership scope", baseline: "UNT senior capstone", achieved: "Lead Developer for a 5-person team" },
+            { label: "Public exhibition", baseline: "Research-driven prototype", achieved: "Kennedy Center premiere, March 2025" },
+            { label: "Interaction stack", baseline: "Stereo-camera input", achieved: "OpenCV + CUDA gesture recognition in Unity" },
           ],
           productImpact:
-            "Delivered an interactive exhibit system used to demonstrate NASA PACE mission data for public education and scientific outreach. Enabled intuitive exploration of satellite-derived oceanographic data without requiring domain expertise, bridging the gap between raw scientific output and accessible visualization. Improved deployment scalability so non-technical staff could independently configure and run the system. Premiered at the Kennedy Center in Washington, D.C., with a scheduled national museum tour.",
+            "Helped deliver an interactive installation that made NASA PACE satellite science tangible for a public audience. The WAVE exhibit premiered at the Kennedy Center in Washington, D.C., in March 2025.",
           techStack: ["C#", "C++", "Python", "Unity", "OpenCV", "ZED SDK", "CUDA", "ImGui", "OpenGL", "React", "TypeScript", "GraphQL"],
           links: [
             { label: "NASA PACE — WAVE exhibit page", url: "https://pace.oceansciences.org/wave_space_to_ocean.htm" },
@@ -214,15 +226,15 @@ The exhibit premiered at the Kennedy Center in Washington, D.C. in March 2025 an
       id: 'simlyfe',
       type: 'project',
       flagship: true,
-      title: "SIMLYFE: LLM-Driven Life Simulator",
+      title: "SIMLYFE: AI-Assisted Life Simulator",
       company: "Personal Project",
       location: "",
       date: "2025 – 2026",
       sortKey: 202612,
       description: [
         "Built and shipped a mobile-first, browser-based life simulation game where players age a character year by year through careers, relationships, finances, and procedurally generated life events.",
-        "Integrated GPT-4o-mini as a life-event generation engine behind a server-side LLM proxy, keeping API keys off the client entirely.",
-        "Engineered deterministic game systems (economy, career ladders, relationship dynamics) that blend with LLM-generated narrative events.",
+        "Separated deterministic game systems from authenticated OpenAI narrative generation behind a Supabase Edge Function.",
+        "Validated bounded requests and model output at the server boundary while keeping provider credentials out of the browser.",
         "Wrote 350+ automated test assertions across the game engine, LLM integration, and market modules using Vitest.",
         "Live at simlyfe.vercel.app — React 19, Vite, Firebase cloud saves, Supabase Edge Functions.",
       ],
@@ -230,9 +242,9 @@ The exhibit premiered at the Kennedy Center in Washington, D.C. in March 2025 an
 SIMLYFE is a shipped, browser-based life simulation game — the kind of project that only works when deterministic game systems and non-deterministic LLM output are engineered to coexist.
 
 Key Contributions & Technical Details:
-- LLM Event Engine: Life events are generated by GPT-4o-mini, constrained by structured prompts that encode the character's age, career, relationships, and financial state, so generated events stay coherent with the simulation state.
-- Server-Side Key Proxy: All LLM calls route through Supabase Edge Functions, so the OpenAI API key never ships to the browser — the same key-hygiene pattern used in production systems.
-- Deterministic Core: The economy, career progression, and relationship systems are pure TypeScript modules — unit-testable, seedable, and independent of the LLM layer.
+- LLM Event Engine: Generated events receive a bounded snapshot of age, career, relationships, and finances so the narrative stays tied to the simulation state.
+- Server-Side Boundary: A Supabase Edge Function verifies Firebase identity and exact origins, enforces durable quotas, validates requests and responses, and owns the OpenAI provider credential.
+- Deterministic Core: Economy, career progression, relationships, and annual simulation live in pure JavaScript modules that can be tested independently of model calls.
 - Test Discipline: 350+ Vitest assertions cover the engine, LLM integration boundaries, and market modules, keeping refactors safe.
 - Shipped Product: Cloud saves via Firebase, mobile-first dark glassmorphism UI, deployed on Vercel.
       `,
@@ -251,10 +263,10 @@ Key Contributions & Technical Details:
           "Game logic had to remain testable independently of non-deterministic LLM output",
         ],
         approach:
-          "Split the architecture into a deterministic TypeScript simulation core (economy, careers, relationships — pure functions, fully unit-tested) and an LLM narrative layer that receives structured game-state context and returns schema-validated events. All GPT-4o-mini calls route through Supabase Edge Functions acting as a server-side proxy, keeping keys off the client. Firebase handles cloud saves. The boundary between the two layers is contract-tested so LLM misbehavior degrades to fallback events instead of corrupting state.",
+          "Split the architecture into a deterministic JavaScript simulation core and an AI narrative layer that receives a bounded game-state projection and returns schema-validated events. A Supabase Edge Function verifies Firebase identity and request origin, applies durable quotas, owns the OpenAI prompt and model configuration, and keeps provider credentials off the client. Firebase Auth and Firestore provide identity and cloud saves.",
         architectureDiagram: 'simlyfe',
         architectureNote:
-          "React 19 client → deterministic simulation core ⇄ Supabase Edge Function proxy → GPT-4o-mini event engine; Firebase cloud saves",
+          "React 19 client → deterministic simulation core ⇄ authenticated Supabase Edge Function → OpenAI event service; Firebase Auth and Firestore provide identity and saves",
         metrics: [
           { label: "Automated test assertions", baseline: "0", achieved: "350+ (engine, LLM boundary, market)" },
           { label: "Client-side API key exposure", baseline: "Common naive pattern", achieved: "Zero — server-side proxy" },
@@ -263,8 +275,8 @@ Key Contributions & Technical Details:
         productImpact:
           "A shipped, publicly playable game demonstrating production LLM integration patterns: structured prompting against live application state, server-side key management, schema validation at the LLM boundary, and a test suite that keeps deterministic and generative layers safely separated.",
         techStack: [
-          "React 19", "TypeScript", "Vite", "Supabase Edge Functions", "Firebase",
-          "OpenAI GPT-4o-mini", "Vitest", "Vercel",
+          "React 19", "JavaScript", "Vite 8", "Supabase Edge Functions", "Firebase Auth", "Firestore",
+          "OpenAI", "Vitest", "Vercel",
         ],
         links: [
           { label: "Live Demo", url: "https://simlyfe.vercel.app" },
@@ -276,10 +288,9 @@ Key Contributions & Technical Details:
   education: [
     {
       school: "The University of North Texas (UNT)",
-      degree: "MS, Artificial Intelligence (Machine Learning Focus)",
-      date: "Expected May 2027",
-      grade: "In Progress — Year 1 of 2",
-      progress: 0.25,
+      degree: "M.S., Artificial Intelligence (Machine Learning concentration)",
+      date: "Expected December 2027",
+      grade: "In progress",
       coursework: [
         "Applied Artificial Intelligence — search, heuristics, problem solving",
         "Advanced Machine Learning — supervised/unsupervised learning, deep learning fundamentals",
@@ -287,7 +298,7 @@ Key Contributions & Technical Details:
     },
     {
       school: "The University of North Texas (UNT)",
-      degree: "BS, Computer Science Engineering",
+      degree: "B.S., Computer Science",
       date: "May 2025",
       grade: "Graduated",
       gpa: "3.25 (4.0 Scale)",
@@ -315,17 +326,22 @@ Key Contributions & Technical Details:
   ] satisfies PressLink[],
   suggestedQuestions: [
     "What did Michael build for NASA?",
-    "How does SIMLYFE use GPT-4o-mini?",
-    "What is Michael studying in his master's?",
+    "How does SIMLYFE use an LLM safely?",
+    "When does Michael expect to finish his master's?",
     "What's in the interactive ML Lab?",
   ],
   certifications: [
-    "Intro to Web Development with HTML, CSS, & Bootstrap",
-    "Web Development with JavaScript & APIs",
-  ],
-  interests: [
-    "Treasurer of UNT AI Club (2023–Present) — led AI/ML workshops and hackathon participation.",
-  ],
+    {
+      name: "AWS Certified Machine Learning — Specialty",
+      issuer: "Amazon Web Services",
+      date: "Issued June 2025",
+    },
+    {
+      name: "Google Cloud Certified Professional Cloud Architect",
+      issuer: "Google Cloud",
+      date: "Issued October 2025",
+    },
+  ] satisfies Certification[],
 };
 
 export type ResumeData = typeof resumeData;

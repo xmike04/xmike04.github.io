@@ -17,7 +17,7 @@ export default function ContactSection() {
 
           <Reveal delay={0.1}>
             <p className="text-lg text-muted-foreground md:text-xl">
-              {resumeData.availability} — full-time or contract.
+              {resumeData.availability}. Based in Dallas–Fort Worth and open to strong applied-AI teams.
             </p>
           </Reveal>
 

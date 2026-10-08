@@ -1,5 +1,22 @@
-# Firebase Studio
+# Michael Marin — Applied AI & ML Portfolio
 
-This is a NextJS starter in Firebase Studio.
+Source for [michaelmportfolio.org](https://michaelmportfolio.org), an evidence-first portfolio covering applied AI engineering, computer vision, LLM system design, AI product evaluation, and cloud engineering.
 
-To get started, take a look at src/app/page.tsx.
+## Local development
+
+```bash
+npm install
+npm run dev
+```
+
+The site is built with Next.js 15 and deploys through Vercel. Public profile facts live in `src/lib/resume-data.ts`; canonical URLs and site-level metadata live in `src/lib/site.ts`.
+
+## Verification
+
+```bash
+npm run audit:profile
+npm run typecheck
+npm run build
+```
+
+The profile audit catches known stale claims, checks core identity and availability facts, and verifies the discovery metadata used by search engines and AI search products.

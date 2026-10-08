@@ -1,16 +1,7 @@
-'use client';
-
-import dynamic from 'next/dynamic';
+import { CheckCircle2 } from 'lucide-react';
 import { Reveal, RevealGroup, RevealItem } from '@/components/motion/reveal';
 import { Badge } from '@/components/ui/badge';
-import { Skeleton } from '@/components/ui/skeleton';
 import { resumeData } from '@/lib/resume-data';
-
-// recharts is heavy and this chart sits below the fold — keep it out of first-load JS
-const SkillsRadar = dynamic(() => import('@/components/charts/skills-radar'), {
-  ssr: false,
-  loading: () => <Skeleton className="h-[320px] w-full rounded-xl" />,
-});
 
 export default function SkillsSection() {
   return (
@@ -23,8 +14,20 @@ export default function SkillsSection() {
 
         <div className="mx-auto grid max-w-5xl items-start gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12">
           <Reveal direction="right" className="lg:sticky lg:top-24">
-            <div className="glass rounded-2xl p-6">
-              <SkillsRadar />
+            <div className="glass rounded-2xl p-6 md:p-7">
+              <p className="font-mono text-xs uppercase tracking-[0.2em] text-primary">Evidence behind the stack</p>
+              <h3 className="mt-3 font-headline text-2xl font-bold">Capabilities tied to shipped work</h3>
+              <div className="mt-6 space-y-5">
+                {resumeData.proofAreas.map((area) => (
+                  <div key={area.title} className="flex items-start gap-3">
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
+                    <div>
+                      <h4 className="text-sm font-semibold text-foreground">{area.title}</h4>
+                      <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{area.evidence}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </Reveal>
 

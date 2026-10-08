@@ -15,15 +15,12 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import CaseStudyView from '@/components/sections/case-study-view';
 import { ThemeToggle } from '@/components/theme/theme-toggle';
+import { SITE_URL } from '@/lib/site';
 
 const ALL_ITEMS: (WorkItem | ProjectItem)[] = [
   ...resumeData.workExperience,
   ...resumeData.projects,
 ];
-
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ??
-  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://xmike04.github.io');
 
 export function generateStaticParams() {
   return ALL_ITEMS.map((item) => ({ id: item.id }));
@@ -44,7 +41,7 @@ export async function generateMetadata({
   const item = ALL_ITEMS.find((i) => i.id === id);
   if (!item) return { title: 'Not Found' };
 
-  const title = `${item.title} | Michael E. Marin`;
+  const title = item.title;
   const description = truncate(item.caseStudy?.problem ?? item.description[0] ?? '');
 
   return {
@@ -66,12 +63,13 @@ export async function generateMetadata({
 }
 
 function buildJsonLd(item: WorkItem | ProjectItem) {
-  const url = `${siteUrl}/item/${item.id}`;
+  const url = `${SITE_URL}/item/${item.id}`;
   const description = truncate(item.caseStudy?.problem ?? item.description[0] ?? '', 300);
   const author = {
     '@type': 'Person',
+    '@id': `${SITE_URL}/#person`,
     name: 'Michael E. Marin',
-    url: siteUrl,
+    url: SITE_URL,
   };
 
   if (item.id === 'simlyfe') {
@@ -83,7 +81,7 @@ function buildJsonLd(item: WorkItem | ProjectItem) {
       url,
       author,
       codeRepository: 'https://github.com/xmike04/SIMLYFE',
-      programmingLanguage: 'TypeScript',
+      programmingLanguage: ['JavaScript', 'TypeScript'],
       runtimePlatform: 'Web browser',
     };
   }

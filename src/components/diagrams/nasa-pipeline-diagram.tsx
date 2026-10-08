@@ -66,10 +66,10 @@ export default function NasaPipelineDiagram() {
       <DiagramNode x={16} y={72} width={156} height={60} title="ZED Stereo Camera" sub="depth + RGB stream" tone="primary" />
       <DiagramNode x={220} y={72} width={180} height={60} title="Gesture Pipeline" sub="OpenCV + CUDA" tone="primary" />
       <DiagramNode x={448} y={72} width={164} height={60} title="Unity Rendering" sub="PACE data visuals" tone="primary" />
-      <DiagramNode x={660} y={72} width={164} height={60} title="Exhibit Display" sub="multi-user interaction" highlight />
+      <DiagramNode x={660} y={72} width={164} height={60} title="Exhibit Display" sub="interactive science" highlight />
 
       {/* ── Setup wizard ── */}
-      <DiagramNode x={220} y={204} width={180} height={56} title="ImGui Setup Wizard" sub="~70% faster setup" tone="accent" />
+      <DiagramNode x={220} y={204} width={180} height={56} title="ImGui Setup Wizard" sub="operator calibration" tone="accent" />
     </DiagramContainer>
   );
 }

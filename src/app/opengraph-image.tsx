@@ -1,15 +1,14 @@
 import { ImageResponse } from 'next/og';
 
-export const runtime = 'edge';
-export const alt = 'Michael E. Marin — ML Engineer building production AI systems';
+export const alt = 'Michael E. Marin — applied AI and machine learning engineer';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
 const stats = [
   { value: 'NASA PACE', label: 'Kennedy Center exhibit' },
   { value: '350+', label: 'test assertions' },
-  { value: 'SIMLYFE', label: 'shipped LLM product' },
-  { value: "M.S. AI '27", label: 'UNT, in progress' },
+  { value: 'SIMLYFE', label: 'shipped AI product' },
+  { value: 'Dec 2027', label: 'M.S. AI expected' },
 ];
 
 export default function OpengraphImage() {
@@ -40,13 +39,13 @@ export default function OpengraphImage() {
         />
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <div style={{ fontSize: 26, color: '#22d3ee', letterSpacing: 4, textTransform: 'uppercase' }}>
-            ML Engineer · Dallas, TX
+            Applied AI &amp; ML Engineer · Dallas–Fort Worth
           </div>
           <div style={{ fontSize: 74, fontWeight: 700, marginTop: 16, lineHeight: 1.05 }}>
             Michael E. Marin
           </div>
           <div style={{ fontSize: 34, color: '#9aa3b8', marginTop: 18, maxWidth: 940 }}>
-            Production AI systems — LLM products, agentic tools, and real-time ML visualization
+            Computer vision, LLM systems, AI product evaluation, and cloud engineering
           </div>
         </div>
         <div style={{ display: 'flex', gap: 28 }}>

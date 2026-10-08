@@ -5,16 +5,9 @@ import { Printer } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { resumeData } from '@/lib/resume-data';
+import { SITE_URL } from '@/lib/site';
 
 /* Everything on this page renders from resumeData — no hardcoded content. */
-
-function formatPhone(phone: string) {
-  const digits = phone.replace(/\D/g, '');
-  if (digits.length === 10) {
-    return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
-  }
-  return phone;
-}
 
 function stripProtocol(url: string) {
   return url.replace(/^https?:\/\//, '').replace(/\/$/, '');
@@ -91,12 +84,12 @@ export default function ResumePage() {
           <p className="text-sm text-gray-700 mt-1">
             {contact.location}
             &nbsp;&nbsp;|&nbsp;&nbsp;
-            <a href={`tel:${contact.phone}`} className="text-black underline">
-              {formatPhone(contact.phone)}
-            </a>
-            &nbsp;&nbsp;|&nbsp;&nbsp;
             <a href={`mailto:${contact.email}`} className="text-black underline">
               {contact.email}
+            </a>
+            &nbsp;&nbsp;|&nbsp;&nbsp;
+            <a href={SITE_URL} className="text-black underline">
+              {stripProtocol(SITE_URL)}
             </a>
             &nbsp;&nbsp;|&nbsp;&nbsp;
             <a href={social.linkedin} className="text-black underline">
@@ -214,14 +207,11 @@ export default function ResumePage() {
 
         {/* ── Certifications ── */}
         <ResumeSection id="certifications" title="Certifications">
-          <BulletList items={resumeData.certifications} />
-        </ResumeSection>
-
-        <hr className="border-gray-300 mb-4" />
-
-        {/* ── Leadership & Interests ── */}
-        <ResumeSection id="interests" title="Leadership & Interests">
-          <BulletList items={resumeData.interests} />
+          <BulletList
+            items={resumeData.certifications.map(
+              (certification) => `${certification.name} — ${certification.issuer}, ${certification.date}`
+            )}
+          />
         </ResumeSection>
       </main>
     </div>

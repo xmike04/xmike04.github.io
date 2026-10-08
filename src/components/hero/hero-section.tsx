@@ -12,7 +12,6 @@ import HeroVisual from '@/components/hero/hero-visual';
 import { resumeData } from '@/lib/resume-data';
 
 export default function HeroSection() {
-  const cooper = resumeData.workExperience[0];
   const masters = resumeData.education[0];
 
   return (
@@ -40,7 +39,7 @@ export default function HeroSection() {
               />
               <Image
                 src="/headshot.png"
-                alt="Michael E. Marin, ML Engineer"
+                alt="Michael E. Marin, applied AI and machine learning engineer"
                 width={240}
                 height={240}
                 priority
@@ -53,13 +52,13 @@ export default function HeroSection() {
         <RevealGroup className="order-2 text-center lg:order-1 lg:text-left" stagger={0.1}>
           <RevealItem>
             <p className="mb-5 font-mono text-xs text-primary sm:text-sm">
-              <TextScramble text="> ml_engineer --location dallas_tx" />
+              <TextScramble text="> applied_ai_engineer --location dfw_tx" />
             </p>
           </RevealItem>
 
           <RevealItem>
             <h1 className="text-balance mb-5 font-headline text-4xl font-bold leading-[1.08] tracking-tight md:text-6xl lg:text-[4rem]">
-              Building <span className="gradient-text">production AI systems</span> with measurable impact
+              Building <span className="gradient-text">applied AI systems</span> people can test and use
             </h1>
           </RevealItem>
 
@@ -75,9 +74,9 @@ export default function HeroSection() {
 
           <RevealItem>
             <p className="mx-auto mb-9 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg lg:mx-0">
-              I turn research-grade ML ideas into things people can actually use — real-time interfaces,
-              LLM-powered products, and agentic tools. Currently building agentic AI at {cooper.company} while
-              finishing an M.S. in Artificial Intelligence at UNT ({masters.date}).
+              I build real-time computer-vision systems, LLM-backed products, and evidence-driven AI features.
+              My experience includes a 2025 AI/ML product internship and leading a five-person NASA PACE capstone
+              team while pursuing an M.S. in Artificial Intelligence at UNT ({masters.date}).
             </p>
           </RevealItem>
 

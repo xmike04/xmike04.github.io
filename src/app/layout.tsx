@@ -5,6 +5,7 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { cn } from "@/lib/utils";
+import { SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from "@/lib/site";
 
 const fontBody = Inter({
   subsets: ["latin"],
@@ -21,31 +22,55 @@ const fontMono = JetBrains_Mono({
   variable: "--font-mono",
 });
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ??
-  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://xmike04.github.io');
-
 export const metadata: Metadata = {
-  title: 'ML Engineer | AI Systems | Michael Marin',
-  description:
-    'Michael Marin is an ML Engineer specializing in production AI systems, LLM pipelines, and agentic AI. Collaborated with NASA on real-time satellite data. Pursuing M.S. in AI at UNT.',
-  metadataBase: new URL(siteUrl),
+  title: {
+    default: SITE_TITLE,
+    template: '%s | Michael Marin',
+  },
+  description: SITE_DESCRIPTION,
+  metadataBase: new URL(SITE_URL),
+  applicationName: 'Michael Marin Portfolio',
+  authors: [{ name: 'Michael Eric Marin', url: SITE_URL }],
+  creator: 'Michael Eric Marin',
+  publisher: 'Michael Eric Marin',
+  category: 'technology',
+  keywords: [
+    'Michael Marin',
+    'applied AI engineer',
+    'machine learning engineer',
+    'AI/ML intern',
+    'computer vision',
+    'LLM evaluation',
+    'AI product',
+    'Dallas Fort Worth',
+    'University of North Texas',
+  ],
   openGraph: {
     type: 'website',
-    url: siteUrl,
-    title: 'ML Engineer | AI Systems | Michael Marin',
-    description:
-      'ML Engineer building production AI systems. NASA PACE collaboration, shipped LLM products, agentic AI. Based in Dallas, TX.',
-    siteName: 'Michael Marin — Portfolio',
+    url: SITE_URL,
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    siteName: 'Michael Marin Portfolio',
+    locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'ML Engineer | AI Systems | Michael Marin',
-    description:
-      'ML Engineer building production AI systems. NASA PACE collaboration, shipped LLM products, agentic AI. Based in Dallas, TX.',
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
   },
   alternates: {
-    canonical: siteUrl,
+    canonical: SITE_URL,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1,
+    },
   },
 };
 
@@ -56,28 +81,77 @@ export default function RootLayout({
 }>) {
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'Person',
-    name: 'Michael E. Marin',
-    jobTitle: 'ML Engineer',
-    url: siteUrl,
-    email: 'miked24977@gmail.com',
-    address: { '@type': 'PostalAddress', addressLocality: 'Dallas', addressRegion: 'TX' },
-    alumniOf: {
-      '@type': 'CollegeOrUniversity',
-      name: 'University of North Texas',
-    },
-    worksFor: { '@type': 'Organization', name: 'Mr. Cooper Group' },
-    knowsAbout: [
-      'Machine Learning',
-      'Retrieval-Augmented Generation',
-      'LLM Evaluation',
-      'Computer Vision',
-      'Data Visualization',
-      'MLOps',
-    ],
-    sameAs: [
-      'https://github.com/xmike04',
-      'https://linkedin.com/in/xmike04',
+    '@graph': [
+      {
+        '@type': 'WebSite',
+        '@id': `${SITE_URL}/#website`,
+        url: SITE_URL,
+        name: 'Michael Marin Portfolio',
+        description: SITE_DESCRIPTION,
+        inLanguage: 'en-US',
+        publisher: { '@id': `${SITE_URL}/#person` },
+      },
+      {
+        '@type': 'ProfilePage',
+        '@id': `${SITE_URL}/#profile`,
+        url: SITE_URL,
+        name: SITE_TITLE,
+        description: SITE_DESCRIPTION,
+        inLanguage: 'en-US',
+        isPartOf: { '@id': `${SITE_URL}/#website` },
+        mainEntity: { '@id': `${SITE_URL}/#person` },
+      },
+      {
+        '@type': 'Person',
+        '@id': `${SITE_URL}/#person`,
+        name: 'Michael Eric Marin',
+        alternateName: 'Michael Marin',
+        jobTitle: 'Applied AI and Machine Learning Engineer',
+        description: SITE_DESCRIPTION,
+        url: SITE_URL,
+        image: `${SITE_URL}/headshot.png`,
+        email: 'mailto:miked24977@gmail.com',
+        address: {
+          '@type': 'PostalAddress',
+          addressRegion: 'Texas',
+          addressCountry: 'US',
+        },
+        alumniOf: {
+          '@type': 'CollegeOrUniversity',
+          name: 'University of North Texas',
+          url: 'https://www.unt.edu/',
+        },
+        affiliation: {
+          '@type': 'CollegeOrUniversity',
+          name: 'University of North Texas',
+          url: 'https://www.unt.edu/',
+        },
+        hasCredential: [
+          {
+            '@type': 'EducationalOccupationalCredential',
+            name: 'AWS Certified Machine Learning — Specialty',
+            recognizedBy: { '@type': 'Organization', name: 'Amazon Web Services' },
+          },
+          {
+            '@type': 'EducationalOccupationalCredential',
+            name: 'Google Cloud Certified Professional Cloud Architect',
+            recognizedBy: { '@type': 'Organization', name: 'Google Cloud' },
+          },
+        ],
+        knowsAbout: [
+          'Applied artificial intelligence',
+          'Machine learning',
+          'LLM evaluation',
+          'Computer vision',
+          'Retrieval-augmented generation',
+          'AI product evaluation',
+          'Cloud engineering',
+        ],
+        sameAs: [
+          'https://github.com/xmike04',
+          'https://www.linkedin.com/in/xmike04',
+        ],
+      },
     ],
   };
 

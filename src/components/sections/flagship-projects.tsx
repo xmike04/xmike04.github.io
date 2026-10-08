@@ -29,13 +29,13 @@ function MetricHighlight({ project }: { project: ProjectItem }) {
         </span>
         <ul className="space-y-2 text-sm text-muted-foreground">
           <li className="flex items-baseline gap-2">
-            <span className="font-mono text-primary">→</span> Premiered March 2025 · national museum tour planned
+            <span className="font-mono text-primary">→</span> Premiered at the Kennedy Center in March 2025
           </li>
           <li className="flex items-baseline gap-2">
             <span className="font-mono text-primary">→</span> Led a 5-person capstone team
           </li>
           <li className="flex items-baseline gap-2">
-            <span className="font-mono text-primary">→</span> ~70% setup-time cut via automated calibration wizard
+            <span className="font-mono text-primary">→</span> Computer vision, stereo cameras, and interactive rendering
           </li>
         </ul>
       </div>
@@ -141,7 +141,7 @@ export default function FlagshipProjects() {
           <p className="mb-3 font-mono text-xs uppercase tracking-[0.25em] text-primary">Selected work</p>
           <h2 className="font-headline text-3xl font-bold md:text-5xl">Flagship Projects</h2>
           <p className="mt-4 text-muted-foreground">
-            A national research exhibit and a shipped, LLM-driven product.
+            A public research exhibit and a shipped, AI-assisted product.
           </p>
         </div>
         <RevealGroup className="mx-auto flex max-w-5xl flex-col gap-8" stagger={0.15}>

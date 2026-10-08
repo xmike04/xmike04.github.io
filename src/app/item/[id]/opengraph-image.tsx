@@ -3,7 +3,7 @@ import { resumeData, type ProjectItem, type WorkItem } from '@/lib/resume-data';
 
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
-export const alt = 'Michael E. Marin — ML Engineer — project case study card';
+export const alt = 'Michael E. Marin — Applied AI and ML Engineer — project case study card';
 
 // Approximations of the site's dark-theme HSL tokens (satori needs literal colors).
 const BG = '#090b12'; // hsl(228 32% 5%)
@@ -145,7 +145,7 @@ export default async function OpengraphImage({
                 Michael E. Marin
               </div>
               <div style={{ display: 'flex', fontSize: 26, color: MUTED }}>
-                — ML Engineer
+                — Applied AI &amp; ML Engineer
               </div>
             </div>
 

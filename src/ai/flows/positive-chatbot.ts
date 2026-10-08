@@ -67,8 +67,9 @@ const RESUME_CONTEXT = [
   `Press & recognition: ${resumeData.press
     .map((item) => `${item.title} (${item.outlet}) - ${item.description}`)
     .join(" | ")}`,
-  `Certifications: ${resumeData.certifications.join(" | ")}`,
-  `Leadership & interests: ${resumeData.interests.join(" | ")}`,
+  `Certifications: ${resumeData.certifications
+    .map((certification) => `${certification.name} — ${certification.issuer} (${certification.date})`)
+    .join(" | ")}`,
 ].join("\n");
 
 const SYSTEM_INSTRUCTIONS =
