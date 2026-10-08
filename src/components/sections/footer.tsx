@@ -34,7 +34,7 @@ export default function Footer() {
       <p className="text-sm">
         &copy; {new Date().getFullYear()} {resumeData.name}. All Rights Reserved.
       </p>
-      <p className="mt-2 font-mono text-xs text-muted-foreground/70">Built with Next.js 15 · Three.js · Vercel</p>
+      <p className="mt-2 font-mono text-xs text-muted-foreground/70">Built with Next.js 15 · Three.js</p>
     </footer>
   );
 }

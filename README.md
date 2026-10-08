@@ -9,7 +9,7 @@ npm install
 npm run dev
 ```
 
-The site is built with Next.js 15 and deploys through Vercel. Public profile facts live in `src/lib/resume-data.ts`; canonical URLs and site-level metadata live in `src/lib/site.ts`.
+The site is built with Next.js 15. The repository is connected to both Vercel and Firebase App Hosting; the production custom domain is served by Firebase App Hosting. Public profile facts live in `src/lib/resume-data.ts`; canonical URLs and site-level metadata live in `src/lib/site.ts`.
 
 ## Verification
 
