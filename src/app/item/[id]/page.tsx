@@ -72,6 +72,32 @@ function buildJsonLd(item: WorkItem | ProjectItem) {
     url: SITE_URL,
   };
 
+  if (item.id === 'ragops') {
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'SoftwareSourceCode',
+      name: item.title,
+      description,
+      url,
+      author,
+      codeRepository: 'https://github.com/xmike04/RAG_OPS',
+      programmingLanguage: ['Python', 'TypeScript'],
+      runtimePlatform: 'Docker Compose',
+      keywords: [
+        'RAG',
+        'FastAPI',
+        'pgvector',
+        'Redis',
+        'hybrid retrieval',
+        'information retrieval',
+        'sentence-transformers',
+        'Prometheus',
+        'React',
+        'MLOps',
+      ],
+    };
+  }
+
   if (item.id === 'simlyfe') {
     return {
       '@context': 'https://schema.org',

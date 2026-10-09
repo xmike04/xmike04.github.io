@@ -69,6 +69,9 @@
   }
   html {
     scroll-behavior: smooth;
+    /* Motion wrappers begin translated on the x-axis until they enter the viewport.
+       Clip at the document root so those off-screen transforms cannot widen mobile pages. */
+    overflow-x: clip;
   }
   @media (prefers-reduced-motion: reduce) {
     html {

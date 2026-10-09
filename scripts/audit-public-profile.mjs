@@ -11,6 +11,7 @@ const files = {
   robots: 'src/app/robots.ts',
   hero: 'src/components/hero/hero-section.tsx',
   contact: 'src/components/sections/contact-section.tsx',
+  item: 'src/app/item/[id]/page.tsx',
 };
 
 const content = Object.fromEntries(
@@ -41,6 +42,13 @@ requireMatch('Google Cloud PCA credential', content.data, /Professional Cloud Ar
 requireMatch('ProfilePage structured data', content.layout, /['"]ProfilePage['"]/);
 requireMatch('Person structured data', content.layout, /['"]Person['"]/);
 requireMatch('OpenAI search crawler access', content.robots, /OAI-SearchBot/);
+requireMatch('RAGOps flagship project', content.data, /id: ['"]ragops['"]/);
+requireMatch('RAGOps repository link', content.data, /https:\/\/github\.com\/xmike04\/RAG_OPS/);
+requireMatch('RAGOps SciFact scope', content.data, /5,183 documents.*300 held-out queries/s);
+requireMatch('RAGOps RRF result', content.data, /0\.8059 Recall@10.*0\.6816 nDCG@10/s);
+requireMatch('RAGOps local-provider limitation', content.data, /local-provider stack/);
+requireMatch('RAGOps cross-encoder negative result', content.data, /negative result/i);
+requireMatch('RAGOps SoftwareSourceCode structured data', content.item, /item\.id === ['"]ragops['"][\s\S]*SoftwareSourceCode[\s\S]*github\.com\/xmike04\/RAG_OPS/);
 
 forbidMatch('May 2027 graduation date', combined, /Expected May 2027|May 2027/);
 forbidMatch('ongoing Mr. Cooper employment', combined, /May 2025\s*[–-]\s*Present|Currently building agentic AI at/);
@@ -52,6 +60,10 @@ forbidMatch('unsupported NASA setup metric', combined, /70%.*setup|setup.*70%/i)
 forbidMatch('hard-coded SIMLYFE model', combined, /GPT-4o-mini/);
 forbidMatch('current employer structured data', content.layout, /worksFor/);
 forbidMatch('public resume phone field', content.data, /\bphone\s*:/);
+forbidMatch('retired RAGOps recall claim', combined, /58%\s*(?:→|->|to)\s*81%/i);
+forbidMatch('retired RAGOps irrelevant-context claim', combined, /31%\s*(?:→|->|to)\s*11%/i);
+forbidMatch('retired RAGOps query-count claim', combined, /150\+?[- ]?(?:query|queries)/i);
+forbidMatch('obsolete RAGOps Celery stack', content.data, /RAGOps[\s\S]{0,800}\bCelery\b/i);
 
 if (failures.length > 0) {
   console.error('Public-profile audit failed:');

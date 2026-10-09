@@ -20,6 +20,44 @@ function trimAtWord(text: string, max = 220): string {
 
 /** Per-project proof panel: honest metrics only, straight from resume-data. */
 function MetricHighlight({ project }: { project: ProjectItem }) {
+  if (project.id === 'ragops') {
+    return (
+      <div className="flex h-full flex-col justify-center gap-4 rounded-xl border border-primary/30 bg-primary/[0.06] p-6">
+        <span className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 font-mono text-xs font-medium text-primary">
+          <Star className="h-3.5 w-3.5 fill-current" aria-hidden="true" />
+          RRF led the held-out benchmark
+        </span>
+        <div className="grid grid-cols-2 gap-3">
+          <div className="rounded-lg border border-border/60 bg-background/60 p-3">
+            <p className="font-mono text-xl font-semibold text-foreground">0.8059</p>
+            <p className="mt-1 text-xs text-muted-foreground">Recall@10</p>
+          </div>
+          <div className="rounded-lg border border-border/60 bg-background/60 p-3">
+            <p className="font-mono text-xl font-semibold text-foreground">0.6816</p>
+            <p className="mt-1 text-xs text-muted-foreground">nDCG@10</p>
+          </div>
+        </div>
+        <ul className="space-y-2 text-sm text-muted-foreground">
+          <li className="flex items-baseline gap-2">
+            <span className="font-mono text-primary">→</span> 5,183 SciFact documents · 300 held-out queries
+          </li>
+          <li className="flex items-baseline gap-2">
+            <span className="font-mono text-primary">→</span> 24.56 ms p50 · 31.75 ms p95 · 9,234 local-provider requests
+          </li>
+          <li className="flex items-baseline gap-2">
+            <span className="font-mono text-primary">→</span> Cross-encoder retained as a slower, lower-quality negative result
+          </li>
+        </ul>
+        <Button asChild variant="outline" className="w-fit rounded-full">
+          <a href="https://github.com/xmike04/RAG_OPS" target="_blank" rel="noopener noreferrer">
+            <Github className="mr-2 h-3.5 w-3.5" aria-hidden="true" />
+            Repository
+          </a>
+        </Button>
+      </div>
+    );
+  }
+
   if (project.id === 'nasa-waving-project') {
     return (
       <div className="flex h-full flex-col justify-center gap-4 rounded-xl border border-border/60 bg-background/40 p-6">
@@ -42,8 +80,8 @@ function MetricHighlight({ project }: { project: ProjectItem }) {
     );
   }
 
-  // simlyfe
-  return (
+  if (project.id === 'simlyfe') {
+    return (
     <div className="flex h-full flex-col justify-center gap-4 rounded-xl border border-border/60 bg-background/40 p-6">
       <span className="inline-flex w-fit items-center gap-2 rounded-full border border-border/60 bg-background/60 px-3 py-1 font-mono text-xs text-muted-foreground">
         <span className="relative flex h-2 w-2" aria-hidden="true">
@@ -68,7 +106,10 @@ function MetricHighlight({ project }: { project: ProjectItem }) {
       </div>
       <p className="font-mono text-xs text-muted-foreground">350+ automated test assertions · Vitest</p>
     </div>
-  );
+    );
+  }
+
+  return null;
 }
 
 function FlagshipCard({ project, index }: { project: ProjectItem; index: number }) {
@@ -141,7 +182,7 @@ export default function FlagshipProjects() {
           <p className="mb-3 font-mono text-xs uppercase tracking-[0.25em] text-primary">Selected work</p>
           <h2 className="font-headline text-3xl font-bold md:text-5xl">Flagship Projects</h2>
           <p className="mt-4 text-muted-foreground">
-            A public research exhibit and a shipped, AI-assisted product.
+            A measured retrieval platform, a public computer-vision exhibit, and a shipped AI-assisted product.
           </p>
         </div>
         <RevealGroup className="mx-auto flex max-w-5xl flex-col gap-8" stagger={0.15}>

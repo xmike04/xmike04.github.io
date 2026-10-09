@@ -28,6 +28,6 @@ Personal AI/ML engineering portfolio built with Next.js 15 (App Router), React 1
 
 - No fabricated metrics, links, or claims — everything traces back to `resumeData`.
 - The NASA exhibit venue is the **Kennedy Center, Washington, D.C.** (never "Kennedy Space Center").
-- The RAGOps project is temporarily removed from the site (owner will restore it when finished) — don't re-add it or cite its metrics (Recall@10, 150-query benchmark) until then.
+- RAGOps is a flagship applied-AI/retrieval project. Keep its public claims bound to the 2026 repository evidence: 5,183 SciFact documents, 300 held-out queries, RRF at 0.8059 Recall@10 and 0.6816 nDCG@10, plus the explicitly local deterministic-provider load test. The slower, lower-quality cross-encoder is a retained negative result. Do not revive the old 58/81, 31/11, or 150-query claims or imply an enterprise production deployment.
 - SIMLYFE links: https://simlyfe.vercel.app and https://github.com/xmike04/SIMLYFE.
 - The site is titled with the owner's name, "Michael E. Marin" — the legacy working title "Marin Insights" must not appear anywhere.

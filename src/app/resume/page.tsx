@@ -13,6 +13,11 @@ function stripProtocol(url: string) {
   return url.replace(/^https?:\/\//, '').replace(/\/$/, '');
 }
 
+function resumeLinkText(label: string, url: string) {
+  const plain = stripProtocol(url);
+  return plain.length <= 56 ? plain : label;
+}
+
 // Flagship projects first, preserving the source order within each group.
 const orderedProjects = [...resumeData.projects].sort(
   (a, b) => Number(Boolean(b.flagship)) - Number(Boolean(a.flagship))
@@ -147,9 +152,8 @@ export default function ResumePage() {
                   {project.links.map((link, index) => (
                     <span key={link.url}>
                       {index > 0 && <span aria-hidden="true">&nbsp;·&nbsp;</span>}
-                      {link.label}:{' '}
-                      <a href={link.url} className="text-black underline">
-                        {stripProtocol(link.url)}
+                      <a href={link.url} className="break-words text-black underline">
+                        {resumeLinkText(link.label, link.url)}
                       </a>
                     </span>
                   ))}

@@ -58,7 +58,7 @@ When adding work experience, projects, skills, education, or press, this is the 
 
 - No fabricated metrics, links, or claims — content comes from `resumeData`
 - NASA exhibit venue is "Kennedy Center, Washington, D.C." (never "Kennedy Space Center")
-- The RAGOps project was removed from the site until it's finished — do not re-add it or cite its metrics (Recall@10, 150-query benchmark) unless the owner restores it
+- RAGOps is a restored flagship project. Use only the repository-backed 2026 evidence in `src/lib/resume-data.ts`: 5,183 SciFact documents, 300 held-out queries, RRF at 0.8059 Recall@10 and 0.6816 nDCG@10, and the explicitly local deterministic-provider load test. Preserve the slower, lower-quality cross-encoder as a negative result; never revive the old 58/81, 31/11, or 150-query claims or imply enterprise production traffic.
 - The name is "Michael E. Marin"; the legacy title "Marin Insights" must not appear
 
 ### Key Config Notes

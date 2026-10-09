@@ -85,9 +85,9 @@ export const resumeData = {
   personalBio:
     "I'm Michael, an applied AI builder in Dallas–Fort Worth. I earned a B.S. in Computer Science at the University of North Texas and am now pursuing an M.S. in Artificial Intelligence with a Machine Learning concentration, expected December 2027. I care about the point where an ML idea leaves the notebook and becomes a system people can test, evaluate, and use.",
   summary:
-    "Applied AI and machine learning engineer with 2025 AI/ML product internship experience, computer vision leadership on a NASA PACE exhibit, and a shipped AI-assisted life simulator with 350+ automated test assertions. Strongest evidence spans AI product evaluation, real-time computer vision, LLM system boundaries, and cloud engineering.",
+    "Applied AI and machine learning engineer who builds measurable systems across retrieval, evaluation, computer vision, and AI products. Built RAGOps with reproducible SciFact benchmarking and local-provider load testing; brings complementary 2025 AI/ML product internship experience, NASA PACE computer vision leadership, and a shipped AI-assisted life simulator.",
   heroStats: [
-    { value: 6, label: "In-browser ML demos", sub: "live in the ML Lab below" },
+    { value: 5183, label: "Documents benchmarked", sub: "SciFact retrieval evaluation" },
     { value: 350, suffix: "+", label: "Test assertions", sub: "SIMLYFE engine + LLM modules" },
     { value: 5, label: "Person team led", sub: "NASA PACE capstone exhibit" },
     { value: 2027, label: "M.S. AI", sub: "expected Dec — UNT, ML concentration" },
@@ -99,15 +99,15 @@ export const resumeData = {
     },
     {
       category: "AI/ML & Data Science",
-      technologies: ["PyTorch", "TensorFlow", "OpenCV", "NLP", "RAG Pipelines", "BM25 & Cross-encoder Reranking", "LLM Evaluation", "Scikit-learn"],
+      technologies: ["PyTorch", "TensorFlow", "OpenCV", "NLP", "RAG Pipelines", "BM25", "RRF", "Dense Retrieval", "Cross-encoder Reranking", "Retrieval Evaluation", "LLM Evaluation", "Scikit-learn"],
     },
     {
       category: "Cloud & DevOps",
-      technologies: ["AWS", "Google Cloud (Vertex AI, BigQuery)", "Docker", "Kubernetes", "GitHub Actions", "CI/CD pipelines", "Linux"],
+      technologies: ["AWS", "Google Cloud (Vertex AI, BigQuery)", "Docker", "Kubernetes", "GitHub Actions", "CI/CD pipelines", "Prometheus", "Grafana", "Linux"],
     },
     {
       category: "Backend",
-      technologies: ["FastAPI", "Node.js", "PostgreSQL", "pgvector", "Redis", "Flask", "Firebase", "RESTful APIs"],
+      technologies: ["FastAPI", "Node.js", "PostgreSQL", "pgvector", "Redis", "Asynchronous Ingestion", "Flask", "Firebase", "RESTful APIs"],
     },
     {
       category: "Frontend",
@@ -115,6 +115,10 @@ export const resumeData = {
     },
   ] satisfies SkillCategory[],
   proofAreas: [
+    {
+      title: "Retrieval engineering and evaluation",
+      evidence: "RAGOps benchmarked 5,183 SciFact documents and 300 held-out queries; RRF led with 0.8059 Recall@10 and 0.6816 nDCG@10.",
+    },
     {
       title: "AI product evaluation",
       evidence: "2025 Product Analyst Intern on the Mr. Cooper AI/ML team: user validation, feature evaluation, and cross-functional delivery.",
@@ -160,6 +164,62 @@ Key Responsibilities & Learnings:
     },
   ] satisfies WorkItem[],
   projects: [
+    {
+      id: 'ragops',
+      type: 'project',
+      flagship: true,
+      title: "RAGOps — Production-Style RAG Platform",
+      company: "Personal Applied-AI / Retrieval Engineering Project",
+      location: "",
+      date: "2026",
+      sortKey: 202610,
+      description: [
+        "Built a production-style RAG platform with FastAPI, PostgreSQL/pgvector, Redis, asynchronous ingestion, hybrid retrieval, reranking, Prometheus metrics, and a React operations console.",
+        "Benchmarked BM25, all-MiniLM-L6-v2 dense retrieval, RRF, and a cross-encoder trained only on SciFact's disjoint training split across 5,183 documents and 300 held-out queries; RRF led with 0.8059 Recall@10 and 0.6816 nDCG@10.",
+        "Built reproducible evaluation and load-testing pipelines with versioned datasets, artifact checksums, per-query traces, and CI quality gates; recorded 24.56 ms p50 and 31.75 ms p95 over 9,234 successful requests to the local-provider stack.",
+      ],
+      links: [
+        { label: "GitHub Repository", url: "https://github.com/xmike04/RAG_OPS" },
+        { label: "SciFact Benchmark Report", url: "https://github.com/xmike04/RAG_OPS/blob/e63df6444a8e411c7b187027dfa230c0d99f0546/benchmarks/retrieval/results/scifact/160ce708a7858938/report.md" },
+        { label: "Load-Test Summary", url: "https://github.com/xmike04/RAG_OPS/blob/e63df6444a8e411c7b187027dfa230c0d99f0546/benchmarks/load/results/summary.json" },
+      ],
+      caseStudy: {
+        problem:
+          "A RAG system is difficult to improve when ingestion, retrieval quality, latency, citations, cache behavior, and failures are hidden behind one answer endpoint. The goal was to build an operations-oriented platform where those components could be inspected, measured, and reproduced.",
+        constraints: [
+          "Keep ingestion asynchronous and observable without blocking the API",
+          "Compare sparse, dense, fused, and reranked retrieval on the same held-out query set",
+          "Prevent training leakage between SciFact's training and test splits",
+          "Retain dataset, model, run, checksum, and per-query evidence for reproducibility",
+          "Separate local deterministic-provider load evidence from claims about real production traffic",
+        ],
+        approach:
+          "Built a FastAPI service backed by PostgreSQL/pgvector and a Redis worker for asynchronous ingestion. Retrieval combines BM25 and all-MiniLM-L6-v2 dense search through reciprocal rank fusion, with optional cross-encoder reranking. Prometheus and Grafana expose service behavior while a React console makes ingestion, retrieval, citations, caches, and failures inspectable. The evaluation pipeline versions SciFact data, verifies checksums, records model provenance and run configuration, emits per-query traces, and enforces quality gates in CI.",
+        architectureDiagram: 'ragops',
+        architectureNote:
+          "React operations console → FastAPI → Redis ingestion worker + PostgreSQL/pgvector; BM25 and MiniLM candidates → RRF → optional cross-encoder; Prometheus/Grafana observe the stack",
+        metrics: [
+          { label: "Held-out retrieval quality", baseline: "BM25: 0.7740 Recall@10", achieved: "RRF: 0.8059 Recall@10 / 0.6816 nDCG@10" },
+          { label: "Evaluation scope", baseline: "Versioned BEIR SciFact", achieved: "5,183 documents / 300 held-out queries" },
+          { label: "Local-provider load test", baseline: "30 s / concurrency 8", achieved: "9,234 successes; 24.56 ms p50 / 31.75 ms p95" },
+          { label: "Cross-encoder result", baseline: "Train split only; zero test overlap", achieved: "Negative result: slower and lower held-out quality than RRF" },
+        ],
+        productImpact:
+          "RRF was the strongest tested configuration. The small train-split-only cross-encoder was much slower and reduced held-out quality, so the project retains it as a negative result instead of implying that reranking helped. The latency figures come from a 30-second, concurrency-8 local Docker Compose workload with deterministic local providers; they are reproducible engineering evidence, not a production SLO or externally served traffic.",
+        techStack: [
+          "Python", "FastAPI", "PostgreSQL", "pgvector", "Redis", "BM25", "all-MiniLM-L6-v2", "RRF",
+          "Cross-encoder", "Prometheus", "Grafana", "React", "Docker", "GitHub Actions",
+        ],
+        links: [
+          { label: "GitHub Repository", url: "https://github.com/xmike04/RAG_OPS" },
+          { label: "Retained SciFact Benchmark", url: "https://github.com/xmike04/RAG_OPS/blob/e63df6444a8e411c7b187027dfa230c0d99f0546/benchmarks/retrieval/results/scifact/160ce708a7858938/report.md" },
+          { label: "Retained Load-Test Summary", url: "https://github.com/xmike04/RAG_OPS/blob/e63df6444a8e411c7b187027dfa230c0d99f0546/benchmarks/load/results/summary.json" },
+          { label: "Successful CI Run", url: "https://github.com/xmike04/RAG_OPS/actions/runs/37844921829" },
+        ],
+        linksNote:
+          "Evidence is pinned to commit e63df6444a8e411c7b187027dfa230c0d99f0546. Production-style describes the architecture and operational discipline, not an enterprise production deployment.",
+      } satisfies CaseStudy,
+    },
     {
         id: 'nasa-waving-project',
         type: 'project',
@@ -325,6 +385,7 @@ Key Contributions & Technical Details:
     },
   ] satisfies PressLink[],
   suggestedQuestions: [
+    "How did Michael evaluate retrieval in RAGOps?",
     "What did Michael build for NASA?",
     "How does SIMLYFE use an LLM safely?",
     "When does Michael expect to finish his master's?",

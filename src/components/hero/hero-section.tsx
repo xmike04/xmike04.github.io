@@ -74,9 +74,9 @@ export default function HeroSection() {
 
           <RevealItem>
             <p className="mx-auto mb-9 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg lg:mx-0">
-              I build real-time computer-vision systems, LLM-backed products, and evidence-driven AI features.
-              My experience includes a 2025 AI/ML product internship and leading a five-person NASA PACE capstone
-              team while pursuing an M.S. in Artificial Intelligence at UNT ({masters.date}).
+              I build measurable applied-AI systems across retrieval, evaluation, computer vision, and AI products.
+              My work includes a reproducibly benchmarked RAG platform, a 2025 AI/ML product internship, and leading
+              a five-person NASA PACE capstone team while pursuing an M.S. in Artificial Intelligence at UNT ({masters.date}).
             </p>
           </RevealItem>
 
