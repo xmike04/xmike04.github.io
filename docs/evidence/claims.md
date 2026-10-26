@@ -32,10 +32,10 @@ Software results are self-produced, artifact-backed evidence unless stated other
 ## simlyfe-production
 - Wording: SIMLYFE has a public hosted application; retained production acceptance is dated September 15, 2026.
 - Verification: historical
-- Source: [Production acceptance and limits](https://github.com/xmike04/SIMLYFE/blob/e8617bbae81814da480ea28fc028bf8e4872a439/docs/operations.md#recorded-production-baseline), [Public app](https://simlyfe.vercel.app)
-- Revision: Historical accepted frontend a49a1ca4d24360142c2bc5d9879431985ef866af; generate-event version 12. Later source e8617bbae81814da480ea28fc028bf8e4872a439 is not covered by that acceptance.
+- Source: [Historical production acceptance](https://github.com/xmike04/SIMLYFE/blob/e8617bbae81814da480ea28fc028bf8e4872a439/docs/operations.md#recorded-production-baseline), [Current deployment metadata and limits](https://github.com/xmike04/SIMLYFE/blob/3d2b1bee5e65885e2d48e48e175a25862a52ff6b/docs/operations.md#october-26-2026-metadata-inspection), [Public frontend](https://simlyfe.vercel.app)
+- Revision: Historical acceptance covers frontend a49a1ca4d24360142c2bc5d9879431985ef866af / function v12. Current Vercel metadata maps the canonical frontend to e8617bbae81814da480ea28fc028bf8e4872a439; the event function is v14.
 - Scope: Historical authentication, AI event, and cloud save/reload verification documented in operations.
-- Limits: Fresh canonical production canary, deployed commit/function mapping, current provider cost, and narrative quality remain pending. A homepage or mocked CI pass does not establish them.
+- Limits: Supabase management reports the project INACTIVE while the function is listed ACTIVE. Deployed v14 source differs from the repository in Android/browser origin parsing. These metadata signals do not establish successful live requests. Fresh authenticated event/save/reload acceptance, deployed rules verification, and provider cost remain pending.
 - Checked: 2026-10-26
 
 ## nasa-role

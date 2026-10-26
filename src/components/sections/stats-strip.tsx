@@ -26,7 +26,7 @@ export default function StatsStrip() {
             >
               <a
                 href={`${EVIDENCE_LEDGER_URL}#${stat.evidenceId}`}
-                aria-label={`${stat.label}: evidence and limitations`}
+                aria-label={`${stat.prefix ?? ''}${stat.value}${stat.suffix ?? ''} ${stat.label}: evidence and limitations`}
                 className="rounded-sm font-headline text-3xl font-bold text-primary underline decoration-primary/30 underline-offset-4 hover:decoration-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 md:text-4xl"
               >
                 <CountUp value={stat.value} prefix={stat.prefix} suffix={stat.suffix} decimals={stat.decimals ?? 0} />

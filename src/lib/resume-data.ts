@@ -236,24 +236,24 @@ Key Responsibilities & Learnings:
         sortKey: 202505,
         description: [
             "Led a five-person UNT senior capstone team developing real-time computer vision and interactive visualizations for NASA PACE satellite data.",
-            "Developed gesture-recognition and multi-camera tracking workflows using OpenCV, CUDA, Unity, and ZED stereo cameras.",
-            "Built interactive data visualizations for real-time oceanographic satellite analytics.",
-            "Met regularly with NASA PACE collaborators and contributed to deployment automation and technical infrastructure for the exhibit.",
+            "The team system used gesture recognition, multi-camera tracking, OpenCV, CUDA, Unity, and ZED stereo cameras; individual subsystem authorship is pending confirmation.",
+            "The team created interactive oceanographic satellite-data visualizations for the exhibit.",
+            "Met regularly with NASA PACE collaborators; personal deployment and tooling contributions require confirmation.",
             "The WAVE installation premiered at the Kennedy Center in Washington, D.C., in March 2025.",
         ],
         detailedContent: `
 WAVE was my senior-year University of North Texas capstone project (Fall 2024–May 2025), developed in collaboration with NASA PACE and the University of Maryland's Immersive Media Design program. As Lead Developer, I guided our five-person student team and met regularly with NASA project collaborators to review requirements and integration progress.
 
 Key Contributions & Technical Details:
-- Computer Vision: Developed gesture-recognition and multi-camera tracking workflows using ZED stereo cameras, OpenCV, and CUDA.
-- Interactive Rendering: Used Unity, C#, React, and TypeScript to help turn oceanographic satellite data into an interactive public exhibit.
-- Deployment Support: Contributed to setup, calibration, and deployment automation for exhibit operators.
+- Team System: The exhibit combined ZED stereo cameras, OpenCV/CUDA gesture processing, and multi-camera tracking; this describes team components, not confirmed personal module authorship.
+- Team Rendering: Unity, C#, React, and TypeScript supported the interactive exhibit; individual interfaces and contributions are still being confirmed.
+- Contribution Review: Personal authorship of setup/calibration tooling, the ImGui wizard, and deployment tasks requires confirmation before attribution.
 - Team Leadership & Collaboration: Coordinated technical work across a five-person UNT student team and attended recurring meetings with NASA PACE collaborators.
 
 The installation premiered at the Kennedy Center in Washington, D.C., in March 2025. NASA and UMD pages linked below independently document the exhibit and UNT's participation; the Lead Developer scope is Michael's confirmed role.
         `,
         links: [
-          { label: "Individual contribution verification", url: `${EVIDENCE_LEDGER_URL}#nasa-role` },
+          { label: "Contribution scope and verification limits", url: `${EVIDENCE_LEDGER_URL}#nasa-role` },
           { label: "NASA PACE — WAVE exhibit page", url: "https://pace.oceansciences.org/wave_space_to_ocean.htm" },
           { label: "UMD coverage of the Kennedy Center premiere", url: "https://cmns.umd.edu/news-events/news/wave-exhibit-kennedy-center-pace-nasa" },
         ],
@@ -267,7 +267,7 @@ The installation premiered at the Kennedy Center in Washington, D.C., in March 2
             "Setup and deployment that exhibit operators could repeat consistently",
           ],
           approach:
-            "Designed a modular pipeline combining computer vision, real-time rendering, and gesture recognition. Built gesture interaction using ZED stereo cameras and OpenCV with CUDA acceleration for tracking and interpreting user movement. Developed a configurable ImGui-based setup wizard to automate deployment, calibration, and system validation, reducing friction for non-technical operators. Integrated the full pipeline into Unity to render interactive PACE satellite visualizations across multiple display environments.",
+            "The team system connected ZED stereo cameras, OpenCV/CUDA gesture processing, Unity rendering, and setup/calibration tooling. My confirmed role was Lead Developer for the five-person UNT capstone with recurring NASA PACE collaboration. Component-by-component personal ownership is pending confirmation; this case study does not attribute the ImGui wizard or individual integration modules to me.",
           architectureDiagram: 'nasa',
           architectureNote:
             "ZED stereo camera → OpenCV + CUDA gesture pipeline → Unity rendering engine → ImGui setup wizard for calibration and validation",
@@ -280,13 +280,13 @@ The installation premiered at the Kennedy Center in Washington, D.C., in March 2
             "Helped deliver an interactive installation that made NASA PACE satellite science tangible for a public audience. The WAVE exhibit premiered at the Kennedy Center in Washington, D.C., in March 2025.",
           techStack: ["C#", "C++", "Python", "Unity", "OpenCV", "ZED SDK", "CUDA", "ImGui", "OpenGL", "React", "TypeScript", "GraphQL"],
           links: [
-            { label: "Individual contribution verification", url: `${EVIDENCE_LEDGER_URL}#nasa-role` },
+            { label: "Contribution scope and verification limits", url: `${EVIDENCE_LEDGER_URL}#nasa-role` },
           { label: "NASA PACE — WAVE exhibit page", url: "https://pace.oceansciences.org/wave_space_to_ocean.htm" },
             { label: "UMD IMD — project feature", url: "https://imd.umd.edu/articles/wave-new-understanding-about-earths-oceans-and-atmosphere" },
             { label: "UMD CMNS — Kennedy Center premiere", url: "https://cmns.umd.edu/news-events/news/wave-exhibit-kennedy-center-pace-nasa" },
           ],
           linksNote:
-            "This was an academic UNT senior capstone involving regular NASA PACE collaboration, not an employment appointment. Exhibit code belongs to the university/NASA partnership; the NASA and UMD coverage documents the project and UNT involvement rather than individual employment.",
+            "This was an academic UNT senior capstone involving regular NASA PACE collaboration, not an employment appointment. No project code is published here; ownership and redistribution permissions require confirmation. The NASA and UMD coverage documents the project and UNT involvement rather than individual employment.",
         } satisfies CaseStudy,
     },
     {
@@ -303,7 +303,7 @@ The installation premiered at the Kennedy Center in Washington, D.C., in March 2
         "Separated deterministic game systems from authenticated OpenAI narrative generation behind a Supabase Edge Function.",
         "Validated bounded requests and model output at the server boundary while keeping provider credentials out of the browser.",
         "Verified 783 Vitest test cases across 37 files in the October 26, 2026 CI run, plus desktop/mobile browser smoke with controlled service responses.",
-        "Live at simlyfe.vercel.app — React 19, Vite, Firebase cloud saves, Supabase Edge Functions.",
+        "Public frontend at simlyfe.vercel.app; fresh AI/cloud-save production verification is pending.",
       ],
       detailedContent: `
 SIMLYFE is a shipped, browser-based life simulation game — the kind of project that only works when deterministic game systems and non-deterministic LLM output are engineered to coexist.
@@ -313,7 +313,7 @@ Key Contributions & Technical Details:
 - Server-Side Boundary: A Supabase Edge Function verifies Firebase identity and exact origins, enforces durable quotas, validates requests and responses, and owns the OpenAI provider credential.
 - Deterministic Core: Economy, career progression, relationships, and annual simulation live in pure JavaScript modules that can be tested independently of model calls.
 - Test Discipline: CI passed 783 Vitest test cases across 37 files on October 26, 2026; cases are counted separately from assertions, with controlled Firebase and event responses.
-- Shipped Product: Cloud saves via Firebase, mobile-first dark glassmorphism UI, deployed on Vercel.
+- Deployment: Public frontend hosted on Vercel; Firebase cloud saves and AI events require a fresh post-refactor production canary. Current backend availability and source drift are documented in the evidence ledger.
       `,
       links: [
         { label: "Live Demo", url: "https://simlyfe.vercel.app" },
@@ -338,10 +338,10 @@ Key Contributions & Technical Details:
         metrics: [
           { label: "Automated test cases", baseline: "CI checked Oct 26, 2026", achieved: "783 Vitest cases across 37 files" },
           { label: "Provider credential boundary", baseline: "Direct browser calls avoided", achieved: "Authenticated proxy with server-owned OpenAI credentials" },
-          { label: "Deployment", baseline: "Prototype", achieved: "Live on Vercel with cloud saves" },
+          { label: "Deployment", baseline: "Prototype", achieved: "Hosted frontend; current cloud canary pending" },
         ],
         productImpact:
-          "A shipped, publicly playable game demonstrating production LLM integration patterns: structured prompting against live application state, server-side key management, schema validation at the LLM boundary, and a test suite that keeps deterministic and generative layers safely separated.",
+          "A publicly hosted game demonstrating tested LLM integration boundaries: bounded game-state prompting, server-side key management, schema validation, and separation of deterministic and generative layers. CI validates controlled responses; fresh acceptance of the deployed AI/cloud journey remains pending.",
         techStack: [
           "React 19", "JavaScript", "Vite 8", "Supabase Edge Functions", "Firebase Auth", "Firestore",
           "OpenAI", "Vitest", "Vercel",
