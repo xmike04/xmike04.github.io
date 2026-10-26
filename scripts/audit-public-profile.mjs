@@ -65,7 +65,7 @@ forbidMatch('unlicensed client repository as portfolio showcase', content.github
 forbidMatch('ongoing Mr. Cooper employment', combined, /May 2025\s*[–-]\s*Present|Currently building agentic AI at/);
 forbidMatch('full-time or contract availability', combined, /full-time or contract/i);
 forbidMatch('incorrect degree name', combined, /Computer Science Engineering/);
-forbidMatch('obsolete GitHub Pages canonical domain', combined, /xmike04\.github\.io/);
+forbidMatch('obsolete GitHub Pages canonical URL', combined, /https?:\/\/xmike04\.github\.io/);
 forbidMatch('unsupported NASA tour claim', combined, /national museum tour/i);
 forbidMatch('unsupported NASA setup metric', combined, /70%.*setup|setup.*70%/i);
 forbidMatch('hard-coded SIMLYFE model', combined, /GPT-4o-mini/);
