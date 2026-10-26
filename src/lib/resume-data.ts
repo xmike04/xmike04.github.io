@@ -359,9 +359,8 @@ Key Contributions & Technical Details:
     {
       school: "The University of North Texas (UNT)",
       degree: "B.S., Computer Science",
-      date: "May 2025",
+      date: "2025",
       grade: "Graduated",
-      gpa: "3.25 (4.0 Scale)",
     },
   ],
   press: [

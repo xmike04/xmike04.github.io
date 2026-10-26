@@ -55,7 +55,6 @@ const RESUME_CONTEXT = [
     .map((entry) =>
       [
         `${entry.degree} at ${entry.school} (${entry.date})`,
-        entry.gpa ? `GPA ${entry.gpa}` : "",
         entry.coursework?.length
           ? `Coursework: ${entry.coursework.join("; ")}`
           : "",
