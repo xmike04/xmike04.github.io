@@ -6,6 +6,8 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
 const files = {
   data: 'src/lib/resume-data.ts',
+  socialCard: 'src/app/opengraph-image.tsx',
+  terminal: 'src/components/sections/about-terminal.tsx',
   counter: 'src/components/motion/count-up.tsx',
   chatbot: 'src/ai/flows/positive-chatbot.ts',
   github: 'src/lib/github.ts',
@@ -38,7 +40,11 @@ function forbidMatch(label, text, pattern) {
 }
 
 requireMatch('canonical portfolio domain', content.site, /https:\/\/michaelmportfolio\.org/);
-requireMatch('December 2027 graduation date', content.data, /Expected December 2027/);
+requireMatch('Summer 2027 graduation estimate', content.data, /Expected Summer 2027/);
+requireMatch('Summer 2027 social card', content.socialCard, /Summer 2027/);
+requireMatch('Summer 2027 terminal', content.terminal, /Summer 2027/);
+requireMatch('documented academic NASA capstone', content.data, /date: "Fall 2024 – May 2025"/);
+requireMatch('accurate NASA project attribution', content.data, /University of North Texas · Senior capstone \(NASA PACE \/ UMD collaboration\)/);
 requireMatch('user-confirmed B.S. graduation date', content.data, /degree: "B\.S\., Computer Science",\s*date: "May 2025"/);
 requireMatch('static counter defaults to substantive value', content.counter, /useState\(value\)/);
 requireMatch('GitHub showcase editorial allowlist', content.github, /FEATURED_REPOS = \['RAG_OPS', 'SIMLYFE', 'xmike04\.github\.io'\]/);
@@ -56,7 +62,8 @@ requireMatch('RAGOps local-provider limitation', content.data, /local-provider s
 requireMatch('RAGOps cross-encoder negative result', content.data, /negative result/i);
 requireMatch('RAGOps SoftwareSourceCode structured data', content.item, /item\.id === ['"]ragops['"][\s\S]*SoftwareSourceCode[\s\S]*github\.com\/xmike04\/RAG_OPS/);
 
-forbidMatch('May 2027 graduation date', combined, /Expected May 2027|May 2027/);
+forbidMatch('stale M.S. graduation estimates', combined, /December 2027|Dec 2027|Expected May 2027|May 2027/);
+forbidMatch('obsolete NASA capstone start', content.data, /Jan 2024 – May 2025/);
 forbidMatch('unverified public undergraduate GPA', content.data, /\bgpa:\s*['"]\d/);
 forbidMatch('chatbot references removed GPA field', content.chatbot, /entry\.gpa/);
 forbidMatch('zero-value SSR statistics', content.counter, /useState\(reduced \? value : 0\)/);
