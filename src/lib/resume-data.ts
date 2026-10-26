@@ -179,14 +179,15 @@ Key Responsibilities & Learnings:
       description: [
         "Built a production-style RAG platform with FastAPI, PostgreSQL/pgvector, Redis, asynchronous ingestion, hybrid retrieval, reranking, Prometheus metrics, and a React operations console.",
         "Offline benchmarked BM25, all-MiniLM-L6-v2 dense retrieval, RRF, and a cross-encoder trained only on SciFact's disjoint training split across 5,183 documents and 300 held-out queries; RRF led with 0.8059 Recall@10 and 0.6816 nDCG@10.",
-        "Built reproducible evaluation and load-testing pipelines with versioned datasets, artifact checksums, per-query traces, and CI quality gates; recorded 24.56 ms p50 and 31.75 ms p95 over 9,234 successful requests to the local-provider stack.",
+        "Built reproducible serving evaluation and a 30-query mixed load study of the local-provider stack: 300 requests each at concurrency 1, 4, and 8, with 54.73 / 137.22 / 252.24 ms p95 and no failed measured requests; generation was excluded.",
       ],
       links: [
         { label: "Evidence and limitations", url: `${EVIDENCE_LEDGER_URL}#ragops-retrieval` },
+        { label: "Mixed-query load matrix", url: "https://github.com/xmike04/RAG_OPS/blob/5549d6792a6f5f4c6126c41deb9f1e16ec5e9264/benchmarks/service/results/load/2026-10-26-local-40389341425/README.md" },
         { label: "Serving-path baseline", url: "https://github.com/xmike04/RAG_OPS/blob/df271a5bf9adc8c610fa8ba19f18cedea6c7ee5e/benchmarks/service/results/scifact/2026-10-26-local-40380993127/README.md" },
         { label: "GitHub Repository", url: "https://github.com/xmike04/RAG_OPS" },
         { label: "SciFact Benchmark Report", url: "https://github.com/xmike04/RAG_OPS/blob/e63df6444a8e411c7b187027dfa230c0d99f0546/benchmarks/retrieval/results/scifact/160ce708a7858938/report.md" },
-        { label: "Load-Test Summary", url: "https://github.com/xmike04/RAG_OPS/blob/e63df6444a8e411c7b187027dfa230c0d99f0546/benchmarks/load/results/summary.json" },
+        { label: "Historical Single-Query Load Summary", url: "https://github.com/xmike04/RAG_OPS/blob/e63df6444a8e411c7b187027dfa230c0d99f0546/benchmarks/load/results/summary.json" },
       ],
       caseStudy: {
         problem:
@@ -207,25 +208,26 @@ Key Responsibilities & Learnings:
           { label: "Offline held-out retrieval quality", baseline: "BM25: 0.7740 Recall@10", achieved: "RRF: 0.8059 Recall@10 / 0.6816 nDCG@10" },
           { label: "Serving-path retrieval quality", baseline: "Local hash + PostgreSQL; 300 test queries", achieved: "0.4097 Recall@10 / 0.3134 nDCG@10" },
           { label: "Evaluation scope", baseline: "Versioned BEIR SciFact", achieved: "5,183 documents / 300 held-out queries" },
-          { label: "Local-provider load test", baseline: "30 s / concurrency 8", achieved: "9,234 successes; 24.56 ms p50 / 31.75 ms p95" },
+          { label: "Mixed-query load, local providers", baseline: "30 queries; concurrency 1 / 4 / 8", achieved: "300 requests each; p95 54.73 / 137.22 / 252.24 ms" },
           { label: "Cross-encoder result", baseline: "Train split only; zero test overlap", achieved: "Negative result: slower and lower held-out quality than RRF" },
         ],
         productImpact:
-          "RRF was the strongest tested configuration. The small train-split-only cross-encoder was much slower and reduced held-out quality, so the project retains it as a negative result instead of implying that reranking helped. The latency figures come from a 30-second, concurrency-8 local Docker Compose workload with deterministic local providers; they are reproducible engineering evidence, not a production SLO or externally served traffic.",
+          "Offline RRF was the strongest tested configuration; the train-only cross-encoder was slower and reduced held-out quality, so it remains a negative result. The separately measured hash/PostgreSQL serving path achieved lower quality. A mixed-query closed-loop study completed 900 measured requests without failures, with higher throughput and latency at higher concurrency. API/worker CPU and RSS endpoints are retained; these deterministic-provider observations exclude generation, peak memory, billing, and production capacity claims.",
         techStack: [
           "Python", "FastAPI", "PostgreSQL", "pgvector", "Redis", "BM25", "all-MiniLM-L6-v2", "RRF",
           "Cross-encoder", "Prometheus", "Grafana", "React", "Docker", "GitHub Actions",
         ],
         links: [
           { label: "Evidence and limitations", url: `${EVIDENCE_LEDGER_URL}#ragops-retrieval` },
+        { label: "Mixed-query load matrix", url: "https://github.com/xmike04/RAG_OPS/blob/5549d6792a6f5f4c6126c41deb9f1e16ec5e9264/benchmarks/service/results/load/2026-10-26-local-40389341425/README.md" },
         { label: "Serving-path baseline", url: "https://github.com/xmike04/RAG_OPS/blob/df271a5bf9adc8c610fa8ba19f18cedea6c7ee5e/benchmarks/service/results/scifact/2026-10-26-local-40380993127/README.md" },
         { label: "GitHub Repository", url: "https://github.com/xmike04/RAG_OPS" },
           { label: "Retained SciFact Benchmark", url: "https://github.com/xmike04/RAG_OPS/blob/e63df6444a8e411c7b187027dfa230c0d99f0546/benchmarks/retrieval/results/scifact/160ce708a7858938/report.md" },
-          { label: "Retained Load-Test Summary", url: "https://github.com/xmike04/RAG_OPS/blob/e63df6444a8e411c7b187027dfa230c0d99f0546/benchmarks/load/results/summary.json" },
-          { label: "Successful CI Run", url: "https://github.com/xmike04/RAG_OPS/actions/runs/37844921829" },
+          { label: "Historical Single-Query Load Summary", url: "https://github.com/xmike04/RAG_OPS/blob/e63df6444a8e411c7b187027dfa230c0d99f0546/benchmarks/load/results/summary.json" },
+          { label: "Load Artifact Validation CI", url: "https://github.com/xmike04/RAG_OPS/actions/runs/40390183060" },
         ],
         linksNote:
-          "Evidence is pinned to commit e63df6444a8e411c7b187027dfa230c0d99f0546. Production-style describes the architecture and operational discipline, not an enterprise production deployment.",
+          "Each report link pins its own source or artifact commit. Offline quality, serving quality, and load conditions are separate evidence. Production-style describes the architecture and operational discipline, not an enterprise production deployment.",
       } satisfies CaseStudy,
     },
     {
