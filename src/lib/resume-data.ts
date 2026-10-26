@@ -83,14 +83,14 @@ export const resumeData = {
     linkedin: "https://linkedin.com/in/xmike04",
   },
   personalBio:
-    "I'm Michael, an applied AI builder in Dallas–Fort Worth. I earned a B.S. in Computer Science at the University of North Texas and am now pursuing an M.S. in Artificial Intelligence with a Machine Learning concentration, expected December 2027. I care about the point where an ML idea leaves the notebook and becomes a system people can test, evaluate, and use.",
+    "I'm Michael, an applied AI builder in Dallas–Fort Worth. I earned a B.S. in Computer Science at the University of North Texas and am now pursuing an M.S. in Artificial Intelligence with a Machine Learning concentration, expected Summer 2027. I care about the point where an ML idea leaves the notebook and becomes a system people can test, evaluate, and use.",
   summary:
     "Applied AI and machine learning engineer who builds measurable systems across retrieval, evaluation, computer vision, and AI products. Built RAGOps with reproducible SciFact benchmarking and local-provider load testing; brings complementary 2025 AI/ML product internship experience, NASA PACE computer vision leadership, and a shipped AI-assisted life simulator.",
   heroStats: [
     { value: 5183, label: "Documents benchmarked", sub: "SciFact retrieval evaluation" },
     { value: 350, suffix: "+", label: "Test assertions", sub: "SIMLYFE engine + LLM modules" },
     { value: 5, label: "Person team led", sub: "NASA PACE capstone exhibit" },
-    { value: 2027, label: "M.S. AI", sub: "expected Dec — UNT, ML concentration" },
+    { value: 2027, label: "M.S. AI", sub: "expected summer — UNT, ML concentration" },
   ] as HeroStat[],
   skills: [
     {
@@ -225,25 +225,25 @@ Key Responsibilities & Learnings:
         type: 'project',
         flagship: true,
         title: "WAVE: From Space to Ocean (NASA PACE Capstone)",
-        company: "NASA PACE · University of Maryland IMD · University of North Texas",
+        company: "University of North Texas · Senior capstone (NASA PACE / UMD collaboration)",
         location: "",
-        date: "Jan 2024 – May 2025",
+        date: "Fall 2024 – May 2025",
         sortKey: 202505,
         description: [
-            "Led a 5-person team building a real-time computer vision and interactive visualization system for NASA PACE satellite data.",
+            "Led a five-person UNT senior capstone team developing real-time computer vision and interactive visualizations for NASA PACE satellite data.",
             "Developed gesture-recognition and multi-camera tracking workflows using OpenCV, CUDA, Unity, and ZED stereo cameras.",
             "Built interactive data visualizations for real-time oceanographic satellite analytics.",
-            "Contributed to deployment automation and technical infrastructure for the exhibit.",
+            "Met regularly with NASA PACE collaborators and contributed to deployment automation and technical infrastructure for the exhibit.",
             "The WAVE installation premiered at the Kennedy Center in Washington, D.C., in March 2025.",
         ],
         detailedContent: `
-The WAVE project was a capstone collaboration involving NASA PACE, the University of Maryland's Immersive Media Design program, and the University of North Texas. As Lead Developer, I guided a five-person UNT team building an interactive exhibit around PACE satellite data.
+WAVE was my senior-year University of North Texas capstone project (Fall 2024–May 2025), developed in collaboration with NASA PACE and the University of Maryland's Immersive Media Design program. As Lead Developer, I guided our five-person student team and met regularly with NASA project collaborators to review requirements and integration progress.
 
 Key Contributions & Technical Details:
 - Computer Vision: Developed gesture-recognition and multi-camera tracking workflows using ZED stereo cameras, OpenCV, and CUDA.
 - Interactive Rendering: Used Unity, C#, React, and TypeScript to help turn oceanographic satellite data into an interactive public exhibit.
 - Deployment Support: Contributed to setup, calibration, and deployment automation for exhibit operators.
-- Team Leadership: Coordinated technical work across a five-person student team and multidisciplinary project partners.
+- Team Leadership & Collaboration: Coordinated technical work across a five-person UNT student team and attended recurring meetings with NASA PACE collaborators.
 
 The installation premiered at the Kennedy Center in Washington, D.C., in March 2025. NASA and UMD pages linked below independently document the exhibit and UNT's participation; the Lead Developer scope is Michael's confirmed role.
         `,
@@ -279,7 +279,7 @@ The installation premiered at the Kennedy Center in Washington, D.C., in March 2
             { label: "UMD CMNS — Kennedy Center premiere", url: "https://cmns.umd.edu/news-events/news/wave-exhibit-kennedy-center-pace-nasa" },
           ],
           linksNote:
-            "Exhibit code is owned by the university/NASA partnership; third-party press coverage above independently documents the project.",
+            "This was an academic UNT senior capstone involving regular NASA PACE collaboration, not an employment appointment. Exhibit code belongs to the university/NASA partnership; the NASA and UMD coverage documents the project and UNT involvement rather than individual employment.",
         } satisfies CaseStudy,
     },
     {
@@ -349,7 +349,7 @@ Key Contributions & Technical Details:
     {
       school: "The University of North Texas (UNT)",
       degree: "M.S., Artificial Intelligence (Machine Learning concentration)",
-      date: "Expected December 2027",
+      date: "Expected Summer 2027",
       grade: "In progress",
       coursework: [
         "Applied Artificial Intelligence — search, heuristics, problem solving",

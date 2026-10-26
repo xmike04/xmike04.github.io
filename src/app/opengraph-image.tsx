@@ -8,7 +8,7 @@ const stats = [
   { value: 'NASA PACE', label: 'Kennedy Center exhibit' },
   { value: '350+', label: 'test assertions' },
   { value: 'SIMLYFE', label: 'shipped AI product' },
-  { value: 'Dec 2027', label: 'M.S. AI expected' },
+  { value: 'Summer 2027', label: 'M.S. AI expected' },
 ];
 
 export default function OpengraphImage() {
