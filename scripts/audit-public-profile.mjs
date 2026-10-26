@@ -39,7 +39,7 @@ function forbidMatch(label, text, pattern) {
 
 requireMatch('canonical portfolio domain', content.site, /https:\/\/michaelmportfolio\.org/);
 requireMatch('December 2027 graduation date', content.data, /Expected December 2027/);
-requireMatch('verified B.S. graduation year', content.data, /degree: "B\.S\., Computer Science",\s*date: "2025"/);
+requireMatch('user-confirmed B.S. graduation date', content.data, /degree: "B\.S\., Computer Science",\s*date: "May 2025"/);
 requireMatch('static counter defaults to substantive value', content.counter, /useState\(value\)/);
 requireMatch('GitHub showcase editorial allowlist', content.github, /FEATURED_REPOS = \['RAG_OPS', 'SIMLYFE', 'xmike04\.github\.io'\]/);
 requireMatch('internship and co-op availability', content.data, /internships and co-ops/);
@@ -59,7 +59,6 @@ requireMatch('RAGOps SoftwareSourceCode structured data', content.item, /item\.i
 forbidMatch('May 2027 graduation date', combined, /Expected May 2027|May 2027/);
 forbidMatch('unverified public undergraduate GPA', content.data, /\bgpa:\s*['"]\d/);
 forbidMatch('chatbot references removed GPA field', content.chatbot, /entry\.gpa/);
-forbidMatch('unsupported undergraduate graduation month', content.data, /degree: "B\.S\., Computer Science",\s*date: "May 2025"/);
 forbidMatch('zero-value SSR statistics', content.counter, /useState\(reduced \? value : 0\)/);
 forbidMatch('unlicensed client repository as portfolio showcase', content.github, /'Pacheco-Taco'/);
 forbidMatch('ongoing Mr. Cooper employment', combined, /May 2025\s*[–-]\s*Present|Currently building agentic AI at/);
