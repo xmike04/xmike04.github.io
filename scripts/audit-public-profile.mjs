@@ -7,6 +7,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const files = {
   data: 'src/lib/resume-data.ts',
   counter: 'src/components/motion/count-up.tsx',
+  chatbot: 'src/ai/flows/positive-chatbot.ts',
   github: 'src/lib/github.ts',
   site: 'src/lib/site.ts',
   layout: 'src/app/layout.tsx',
@@ -57,6 +58,7 @@ requireMatch('RAGOps SoftwareSourceCode structured data', content.item, /item\.i
 
 forbidMatch('May 2027 graduation date', combined, /Expected May 2027|May 2027/);
 forbidMatch('unverified public undergraduate GPA', content.data, /\bgpa:\s*['"]\d/);
+forbidMatch('chatbot references removed GPA field', content.chatbot, /entry\.gpa/);
 forbidMatch('unsupported undergraduate graduation month', content.data, /degree: "B\.S\., Computer Science",\s*date: "May 2025"/);
 forbidMatch('zero-value SSR statistics', content.counter, /useState\(reduced \? value : 0\)/);
 forbidMatch('unlicensed client repository as portfolio showcase', content.github, /'Pacheco-Taco'/);
