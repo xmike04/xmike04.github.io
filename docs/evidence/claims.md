@@ -91,3 +91,12 @@ Software results are self-produced, artifact-backed evidence unless stated other
 - Scope: Degree names, completed undergraduate date, and estimated graduate completion.
 - Limits: Summer 2027 is an estimate, not a completed degree. Institutional records are not independently verified here. No undergraduate GPA published.
 - Checked: 2026-10-26
+
+## ragops-serving
+- Wording: On the deterministic serving path, 5,183 documents produced 5,887 chunks; 300 held-out queries achieved 0.4097 Recall@10 and 0.3134 nDCG@10, with 23.76 ms p95 serial HTTP search latency.
+- Verification: artifact-backed
+- Source: [Qualified serving report and raw evidence](https://github.com/xmike04/RAG_OPS/blob/df271a5bf9adc8c610fa8ba19f18cedea6c7ee5e/benchmarks/service/results/scifact/2026-10-26-local-40380993127/README.md), [Collection run](https://github.com/xmike04/RAG_OPS/actions/runs/40380993127), [Independent artifact/qrel recomputation](https://github.com/xmike04/RAG_OPS/actions/runs/40382526181)
+- Revision: Measured source 6a07b41aadbb326eee7c9031a15923246103c2f7; retained report df271a5bf9adc8c610fa8ba19f18cedea6c7ee5e.
+- Scope: Matching feature-hash-384 embeddings, PostgreSQL cover-density lexical ranking, RRF k=60, candidate cap 100, top_k 100 chunks, rerank false, concurrency 1. Train ran before test. Four visible logical CPUs; Python 3.12.15, PostgreSQL 16.15, pgvector 0.8.7. Exact configuration, source/data hashes, index definitions, mappings, and per-query outputs are retained.
+- Limits: Returned test windows held 90–100 unique documents. Excludes generation, a varied-query concurrency/cold-state study, process CPU/RSS, and billing. Effective query plans/database overrides were not captured. Offline and serving configurations differ in several components; the quality gap is not a controlled causal ablation or a production SLA.
+- Checked: 2026-10-26

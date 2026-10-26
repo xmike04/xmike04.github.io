@@ -183,6 +183,7 @@ Key Responsibilities & Learnings:
       ],
       links: [
         { label: "Evidence and limitations", url: `${EVIDENCE_LEDGER_URL}#ragops-retrieval` },
+        { label: "Serving-path baseline", url: "https://github.com/xmike04/RAG_OPS/blob/df271a5bf9adc8c610fa8ba19f18cedea6c7ee5e/benchmarks/service/results/scifact/2026-10-26-local-40380993127/README.md" },
         { label: "GitHub Repository", url: "https://github.com/xmike04/RAG_OPS" },
         { label: "SciFact Benchmark Report", url: "https://github.com/xmike04/RAG_OPS/blob/e63df6444a8e411c7b187027dfa230c0d99f0546/benchmarks/retrieval/results/scifact/160ce708a7858938/report.md" },
         { label: "Load-Test Summary", url: "https://github.com/xmike04/RAG_OPS/blob/e63df6444a8e411c7b187027dfa230c0d99f0546/benchmarks/load/results/summary.json" },
@@ -204,6 +205,7 @@ Key Responsibilities & Learnings:
           "Serving: React → FastAPI → sequential PostgreSQL lexical + pgvector retrieval → RRF; Redis ingestion worker. Offline: Okapi BM25 + MiniLM comparison. Prometheus scrapes the API.",
         metrics: [
           { label: "Offline held-out retrieval quality", baseline: "BM25: 0.7740 Recall@10", achieved: "RRF: 0.8059 Recall@10 / 0.6816 nDCG@10" },
+          { label: "Serving-path retrieval quality", baseline: "Local hash + PostgreSQL; 300 test queries", achieved: "0.4097 Recall@10 / 0.3134 nDCG@10" },
           { label: "Evaluation scope", baseline: "Versioned BEIR SciFact", achieved: "5,183 documents / 300 held-out queries" },
           { label: "Local-provider load test", baseline: "30 s / concurrency 8", achieved: "9,234 successes; 24.56 ms p50 / 31.75 ms p95" },
           { label: "Cross-encoder result", baseline: "Train split only; zero test overlap", achieved: "Negative result: slower and lower held-out quality than RRF" },
@@ -216,6 +218,7 @@ Key Responsibilities & Learnings:
         ],
         links: [
           { label: "Evidence and limitations", url: `${EVIDENCE_LEDGER_URL}#ragops-retrieval` },
+        { label: "Serving-path baseline", url: "https://github.com/xmike04/RAG_OPS/blob/df271a5bf9adc8c610fa8ba19f18cedea6c7ee5e/benchmarks/service/results/scifact/2026-10-26-local-40380993127/README.md" },
         { label: "GitHub Repository", url: "https://github.com/xmike04/RAG_OPS" },
           { label: "Retained SciFact Benchmark", url: "https://github.com/xmike04/RAG_OPS/blob/e63df6444a8e411c7b187027dfa230c0d99f0546/benchmarks/retrieval/results/scifact/160ce708a7858938/report.md" },
           { label: "Retained Load-Test Summary", url: "https://github.com/xmike04/RAG_OPS/blob/e63df6444a8e411c7b187027dfa230c0d99f0546/benchmarks/load/results/summary.json" },

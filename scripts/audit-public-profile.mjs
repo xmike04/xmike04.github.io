@@ -87,7 +87,7 @@ forbidMatch('obsolete RAGOps Celery stack', content.data, /RAGOps[\s\S]{0,800}\b
 const evidence = await readFile(path.join(root, 'docs/evidence/claims.md'), 'utf8');
 const checkLinks = process.argv.includes('--check-evidence-links');
 failures.push(...await auditEvidence(evidence, {
-  requiredIds: ['ragops-retrieval', 'ragops-load', 'simlyfe-tests', 'simlyfe-production',
+  requiredIds: ['ragops-retrieval', 'ragops-serving', 'ragops-load', 'simlyfe-tests', 'simlyfe-production',
     'nasa-role', 'nasa-exhibit', 'mr-cooper', 'aws-certification', 'gcp-certification', 'education'],
   probeLink: checkLinks ? async url => {
     const response = await fetch(url, { signal: AbortSignal.timeout(8000),
