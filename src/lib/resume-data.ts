@@ -359,7 +359,7 @@ Key Contributions & Technical Details:
     {
       school: "The University of North Texas (UNT)",
       degree: "B.S., Computer Science",
-      date: "2025",
+      date: "May 2025",
       grade: "Graduated",
     },
   ],
