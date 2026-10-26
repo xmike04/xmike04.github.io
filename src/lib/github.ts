@@ -25,12 +25,13 @@ export interface SlimRepo {
   pushedAt: string;
 }
 
-/** Repos that add no signal for visitors (empty or placeholder). */
-const EXCLUDED_REPOS = new Set(['AI-Assistant']);
+/** Explicit editorial shortlist: no empty, private, client, or unfinished repositories. */
+const FEATURED_REPOS = ['RAG_OPS', 'SIMLYFE', 'xmike04.github.io'] as const;
+const FEATURED_SET = new Set<string>(FEATURED_REPOS);
 
 /**
- * Six most recently pushed original repos for github.com/xmike04.
- * Revalidates every 6 hours; throws on network/API failure so callers
+ * Curated original, public repos for github.com/xmike04.
+ * Revalidates metadata every 6 hours; throws on network/API failure so callers
  * can render a graceful fallback.
  */
 export async function getRecentRepos(): Promise<SlimRepo[]> {
@@ -46,8 +47,8 @@ export async function getRecentRepos(): Promise<SlimRepo[]> {
   const repos = (await res.json()) as GitHubRepoResponse[];
 
   return repos
-    .filter((repo) => !repo.fork && !EXCLUDED_REPOS.has(repo.name))
-    .slice(0, 6)
+    .filter((repo) => !repo.fork && FEATURED_SET.has(repo.name))
+    .sort((a, b) => FEATURED_REPOS.indexOf(a.name as typeof FEATURED_REPOS[number]) - FEATURED_REPOS.indexOf(b.name as typeof FEATURED_REPOS[number]))
     .map((repo) => ({
       id: repo.id,
       name: repo.name,

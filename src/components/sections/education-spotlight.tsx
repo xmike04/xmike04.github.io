@@ -6,7 +6,6 @@ import { resumeData } from '@/lib/resume-data';
 export default function EducationSpotlight() {
   const [ms, bs] = resumeData.education;
   const coursework = 'coursework' in ms && ms.coursework ? ms.coursework : [];
-  const bsGpa = 'gpa' in bs && bs.gpa ? bs.gpa : null;
 
   return (
     <section id="education" className="py-16 md:py-24">
@@ -75,7 +74,6 @@ export default function EducationSpotlight() {
                 </span>
                 <h3 className="font-headline text-lg font-bold leading-snug">{bs.degree}</h3>
                 <p className="text-sm text-muted-foreground">{bs.school}</p>
-                {bsGpa ? <p className="mt-auto font-mono text-sm text-foreground/80">GPA {bsGpa}</p> : null}
               </article>
             </Reveal>
 

@@ -20,10 +20,10 @@ function formatPushed(iso: string): string {
 function SectionHeader() {
   return (
     <div className="mx-auto mb-12 max-w-2xl text-center">
-      <p className="mb-3 font-mono text-xs uppercase tracking-[0.25em] text-primary">auto-updates every 6h</p>
+      <p className="mb-3 font-mono text-xs uppercase tracking-[0.25em] text-primary">curated projects · refreshed every 6h</p>
       <h2 className="flex items-center justify-center gap-3 font-headline text-3xl font-bold md:text-5xl">
         <Github className="h-7 w-7 md:h-9 md:w-9" aria-hidden="true" />
-        Live from GitHub
+        Selected GitHub Projects
       </h2>
     </div>
   );

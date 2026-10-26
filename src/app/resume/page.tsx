@@ -173,10 +173,7 @@ export default function ResumePage() {
                 <h3 className="text-sm font-bold text-black">{entry.school}</h3>
                 <span className="text-sm text-gray-600 shrink-0 ml-4">{entry.date}</span>
               </div>
-              <p className="text-sm text-gray-800">
-                {entry.degree}
-                {entry.gpa ? ` — GPA: ${entry.gpa}` : ''}
-              </p>
+              <p className="text-sm text-gray-800">{entry.degree}</p>
               {entry.coursework && entry.coursework.length > 0 && (
                 <ul className="mt-1.5 flex flex-wrap gap-1.5" aria-label="Coursework">
                   {entry.coursework.map((course) => (

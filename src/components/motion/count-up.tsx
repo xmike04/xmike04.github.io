@@ -21,7 +21,9 @@ export function CountUp({
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.6 });
   const reduced = useReducedMotion();
-  const [display, setDisplay] = useState(reduced ? value : 0);
+  // Render the verified value during SSR and with JavaScript disabled.
+  // Animate only after hydration and the element enters the viewport.
+  const [display, setDisplay] = useState(value);
 
   useEffect(() => {
     if (!inView) return;

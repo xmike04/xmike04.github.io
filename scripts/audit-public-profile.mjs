@@ -6,6 +6,8 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
 const files = {
   data: 'src/lib/resume-data.ts',
+  counter: 'src/components/motion/count-up.tsx',
+  github: 'src/lib/github.ts',
   site: 'src/lib/site.ts',
   layout: 'src/app/layout.tsx',
   robots: 'src/app/robots.ts',
@@ -36,6 +38,9 @@ function forbidMatch(label, text, pattern) {
 
 requireMatch('canonical portfolio domain', content.site, /https:\/\/michaelmportfolio\.org/);
 requireMatch('December 2027 graduation date', content.data, /Expected December 2027/);
+requireMatch('verified B.S. graduation year', content.data, /degree: "B\.S\., Computer Science",\s*date: "2025"/);
+requireMatch('static counter defaults to substantive value', content.counter, /useState\(value\)/);
+requireMatch('GitHub showcase editorial allowlist', content.github, /FEATURED_REPOS = \['RAG_OPS', 'SIMLYFE', 'xmike04\.github\.io'\]/);
 requireMatch('internship and co-op availability', content.data, /internships and co-ops/);
 requireMatch('AWS ML Specialty credential', content.data, /AWS Certified Machine Learning — Specialty/);
 requireMatch('Google Cloud PCA credential', content.data, /Professional Cloud Architect/);
@@ -51,6 +56,10 @@ requireMatch('RAGOps cross-encoder negative result', content.data, /negative res
 requireMatch('RAGOps SoftwareSourceCode structured data', content.item, /item\.id === ['"]ragops['"][\s\S]*SoftwareSourceCode[\s\S]*github\.com\/xmike04\/RAG_OPS/);
 
 forbidMatch('May 2027 graduation date', combined, /Expected May 2027|May 2027/);
+forbidMatch('unverified public undergraduate GPA', content.data, /\bgpa:\s*['"]\d/);
+forbidMatch('unsupported undergraduate graduation month', content.data, /degree: "B\.S\., Computer Science",\s*date: "May 2025"/);
+forbidMatch('zero-value SSR statistics', content.counter, /useState\(reduced \? value : 0\)/);
+forbidMatch('unlicensed client repository as portfolio showcase', content.github, /'Pacheco-Taco'/);
 forbidMatch('ongoing Mr. Cooper employment', combined, /May 2025\s*[–-]\s*Present|Currently building agentic AI at/);
 forbidMatch('full-time or contract availability', combined, /full-time or contract/i);
 forbidMatch('incorrect degree name', combined, /Computer Science Engineering/);
