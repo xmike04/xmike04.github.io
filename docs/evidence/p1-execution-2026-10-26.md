@@ -1,19 +1,19 @@
 # P1 execution checkpoint — October 26, 2026
 
-Six draft PRs remain unmerged for owner review. Following the owner's confirmation
-that SIMLYFE should be live, its existing Supabase project was resumed and verified
-healthy with a database query. Frontend/function source and origin settings were
-not redeployed. P1 is not fully accepted: the explicitly approved single-event canary failed AI
-generation, although same-browser reload returned its age/history. The provider
-failure and the remaining acceptance gates are recorded below.
+Six draft PRs remain unmerged for owner review. SIMLYFE's existing backend was
+resumed and its compatible event function deployed. Following owner-reported
+secure key/model replacement, a separately approved one-request Guest canary
+generated an event, resolved a choice and restored age 2 and the chosen outcome
+after same-browser reload. P1 publication and the remaining verification
+boundaries below are still open; the frontend was not redeployed.
 
 | Work | Review PR | Verified evidence |
 | --- | --- | --- |
 | RAGOps architecture and claim alignment | [RAG_OPS #2](https://github.com/xmike04/RAG_OPS/pull/2) | Head 99e30869d3bf91b42d20aeef7980165793a3f14b; [CI 40390346369](https://github.com/xmike04/RAG_OPS/actions/runs/40390346369) passed |
 | RAGOps service harness and full SciFact baseline | [RAG_OPS #3](https://github.com/xmike04/RAG_OPS/pull/3) | Head df271a5bf9adc8c610fa8ba19f18cedea6c7ee5e; [CI 40383317747](https://github.com/xmike04/RAG_OPS/actions/runs/40383317747) passed; measured source 6a07b41aadbb326eee7c9031a15923246103c2f7 |
 | RAGOps mixed-query load and process resources | [RAG_OPS #4](https://github.com/xmike04/RAG_OPS/pull/4) | Stacked on #3; head 5549d6792a6f5f4c6126c41deb9f1e16ec5e9264; [CI 40390183060](https://github.com/xmike04/RAG_OPS/actions/runs/40390183060) passed; measured source fa5b6fae567d3863eb26af68bd908fc4c8c8f383 |
-| SIMLYFE application CI and operations evidence | [SIMLYFE #11](https://github.com/xmike04/SIMLYFE/pull/11) | Application CI d70859b2a99261a92ac813314a1fa2274d13b170 /40389607582 passed; restoration/source follow-up at d037c3e8831cc6023b0ce01b292064a08af9ed58, with latest checks on the PR |
-| Portfolio evidence register and navigation | [Portfolio #6](https://github.com/xmike04/xmike04.github.io/pull/6) | Previous head fb5dc47bc368a089e3cc13590c188ab799848f58 passed CI 40390932618; confirmed NASA scope/diagram and restored-service evidence are checked by this PR's quality workflow |
+| SIMLYFE application CI and operations evidence | [SIMLYFE #11](https://github.com/xmike04/SIMLYFE/pull/11) | Tested head 154e581082482e640224e6d27d7f11dc2f39dac8 /CI 40444810716 passed; [successful one-request canary](https://github.com/xmike04/SIMLYFE/blob/bf5a2389dce49cb73e83ae5741917ac9f5da3f56/docs/evidence/production-nano-canary-2026-10-26.json) at evidence head bf5a2389dce49cb73e83ae5741917ac9f5da3f56 |
+| Portfolio evidence register and navigation | [Portfolio #6](https://github.com/xmike04/xmike04.github.io/pull/6) | Previous head b9e5c4ad902939d171e76c4b6faeb743425f2997 passed CI 40440761873; updated bounded canary evidence is checked by this PR's quality workflow |
 | GitHub profile evidence navigation | [Profile #3](https://github.com/xmike04/xmike04/pull/3) | Documentation-only; immutable report/ledger links; no application test claim |
 
 ## Measured and verified
@@ -43,7 +43,7 @@ verify counter deltas. The failed collection remains retained and invalid.
 Both collectors are now manual-only and read-only, with temporary artifact
 publishers removed.
 
-SIMLYFE's full CI passed 783 Vitest test cases /37 files, lint, build, docs, and
+SIMLYFE's full CI passed 789 Vitest test cases /38 files, lint, build, docs, and
 controlled desktop/mobile browser flows. Counts are cases, not assertions.
 Mocks do not establish production authorization or provider behavior.
 The README surfaces CI and current deployment evidence.
@@ -70,18 +70,17 @@ The README surfaces CI and current deployment evidence.
 
 ## Remaining acceptance gates
 
-- **SIMLYFE live journey:** the single approved Guest request completed at
-  02:32 UTC October 27 /9:32 p.m. CDT October 26. Preflight returned 204, quota
-  RPC returned 200, and function v14 returned 502 UPSTREAM_ERROR in 2,556 ms.
-  The deployed code maps this to an unsuccessful OpenAI HTTP response, not a
-  measured specific billing/key/model fault. The error was acknowledged; reload
-  returned P1 Canary Oct26 at age 1 with that history. No genuine generated
-  event, provider-specific cause, billed usage, independent cloud acknowledgment
-  or cross-device recovery is proved. No second event request was made.
-  [Canary and machine-readable receipt](https://github.com/xmike04/SIMLYFE/blob/5ac4768481038ef5c22f3f81eb49a420e84763ee/docs/operations.md#october-26-2026-approved-single-event-canary).
-  Fresh Vercel source mapping was unavailable; prior attribution remains
-  historical and the observed module asset is recorded. Provider diagnosis and
-  successful current AI acceptance remain open.
+- **SIMLYFE remaining boundaries:** the new single-request Guest journey passed:
+  generated event, choice resolution and same-browser reload at age 2 with the
+  outcome and 95% happiness intact. Function v17 matches reviewed source and
+  preserves the separately checked auth/origin boundaries.
+  [Successful canary and limits](https://github.com/xmike04/SIMLYFE/blob/bf5a2389dce49cb73e83ae5741917ac9f5da3f56/docs/operations.md#october-26-2026-replacement-key-canary).
+  API-reported model, usage/cost and server latency were not independently
+  observed; configuration is owner-reported. Fresh frontend source mapping,
+  independent cloud acknowledgment, cross-device recovery, current native
+  gameplay and deployed Firestore rules remain unverified. One short infancy
+  event is not a broad-quality or reliability benchmark. The earlier failed
+  canary's specific provider cause remains unproved.
 - **NASA attribution resolved:** owner confirmed shared fuzzy-logic gesture design,
   ImGui hardware-setup interface authorship, and Unity connection/integration
   oversight; deployment was outside his role. Private February 11, 2025 source
@@ -97,7 +96,7 @@ The README surfaces CI and current deployment evidence.
   RAG_OPS #3 before its stacked #4. Canonical sites/profile are not yet updated.
   GitHub pins/About cleanup, full visual production review, and post-publication
   public-link checks remain. The cloud browser completed the approved SIMLYFE
-  canary with a recorded provider failure; no live RAG backend is required.
+  replacement-key canary successfully within its one-request scope; no live RAG backend is required.
 - **Security review boundary:** bounded tracked-file and deployed-function
   literal checks were performed; complete Git history/secret/security-alert
   auditing is not claimed. Post-restore quota metadata confirms forced RLS and
@@ -113,9 +112,10 @@ headline is superseded in draft presentation by the qualified mixed-query matrix
 No important improvement is inferred from unmatched configurations, ordered load
 conditions, or tiny cold samples. Bootstrap tooling supports paired comparisons
 when appropriate; no positive service-quality improvement is asserted here.
-Unavailable costs/resources stay unmeasured. The observed canary failure and
-same-browser persistence are recorded within their measured boundary; successful
-AI production behavior is not inferred from service health or CI.
+Unavailable costs/resources stay unmeasured. The earlier failed canary is
+retained alongside the separately approved successful generated-event journey.
+Current success is based on that observed event, resolution and reload, not
+inferred from service health or mocked CI.
 
 ## Owner-confirmation follow-up
 
@@ -128,15 +128,21 @@ as a verified full installer. Original source-derived diagram labels distinguish
 runtime OSC flow from setup.
 
 The live backend was resumed within the owner's confirmed intended availability.
-The owner explicitly approved one provider-billed event attempt on P1 Canary
-Oct26. That exact request failed and no retry was issued. The error was
-acknowledged and reload persistence verified. No alternate identity, static
-replacement or indirect invocation was used to bypass the request limit.
+Two separately approved Guest canaries were performed: the earlier request
+failed upstream; the replacement-key/model follow-up generated a real event.
+Each used exactly one request with no retry. No alternate identity, static
+replacement or indirect invocation bypassed either request limit.
 
-## Approved canary outcome
+## Approved replacement-key canary outcome
 
-Result: failed AI generation, observed same-browser persistence. The server's
-UPSTREAM_ERROR classification narrows the failure to OpenAI's unsuccessful HTTP
-response; its original status and error are not retained. Further diagnosis needs
-provider evidence or a reviewed sanitized-status logging change before another
-separately authorized event attempt. No application fix or success is claimed.
+The new request began at 10:52:34 p.m. CDT October 26 (03:52:34 UTC October 27).
+Guest P1 Canary Oct26 advanced from age 1 to 2, displayed a two-choice event,
+and resolved the comforting stuffed-bear/mother choice. Happiness rose from
+90% to 95%. Reload restored the name, age, selected history and 95% happiness.
+The previous failure history remains. The successful
+[receipt](https://github.com/xmike04/SIMLYFE/blob/bf5a2389dce49cb73e83ae5741917ac9f5da3f56/docs/evidence/production-nano-canary-2026-10-26.json) records observed results and unknown metadata.
+
+Actual API-reported model, token/cost metadata and independent cloud
+acknowledgment were not visible. The owner reported saving gpt-5-nano and the
+source default matches; no secret value was read. No additional paid request
+is authorized by these observations.

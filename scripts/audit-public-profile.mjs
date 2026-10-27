@@ -96,7 +96,7 @@ failures.push(...await auditEvidence(evidence, {
     return { ok: response.ok, status: response.status };
   } : undefined,
 }));
-requireMatch('commit-specific SIMLYFE test-case count', content.data, /783.*test cases|test cases.*783/is);
+requireMatch('commit-specific SIMLYFE test-case count', content.data, /789.*test cases|test cases.*789/is);
 forbidMatch('ambiguous SIMLYFE assertion count', content.data, /350\+|Automated test assertions/);
 requireMatch('offline RAGOps quality boundary', content.data, /offline.*SciFact|SciFact.*offline/is);
 

@@ -91,7 +91,7 @@ export const resumeData = {
     "Applied AI and machine learning engineer who builds measurable systems across retrieval, evaluation, computer vision, and AI products. Built RAGOps with reproducible SciFact benchmarking and local-provider load testing; brings complementary 2025 AI/ML product internship experience, NASA PACE computer vision leadership, and a shipped AI-assisted life simulator.",
   heroStats: [
     { value: 5183, label: "Documents benchmarked", sub: "Offline SciFact retrieval evaluation", evidenceId: "ragops-retrieval" },
-    { value: 783, label: "Vitest test cases", sub: "SIMLYFE CI · checked Oct 26, 2026", evidenceId: "simlyfe-tests" },
+    { value: 789, label: "Vitest test cases", sub: "SIMLYFE CI · checked Oct 26, 2026", evidenceId: "simlyfe-tests" },
     { value: 5, label: "Person team led", sub: "NASA PACE capstone exhibit", evidenceId: "nasa-role" },
     { value: 2027, label: "M.S. AI", sub: "expected summer — UNT, ML concentration", evidenceId: "education" },
   ] as HeroStat[],
@@ -314,8 +314,8 @@ The installation premiered at the Kennedy Center in Washington, D.C., in March 2
         "Built and shipped a mobile-first, browser-based life simulation game where players age a character year by year through careers, relationships, finances, and procedurally generated life events.",
         "Separated deterministic game systems from authenticated OpenAI narrative generation behind a Supabase Edge Function.",
         "Validated bounded requests and model output at the server boundary while keeping provider credentials out of the browser.",
-        "Verified 783 Vitest test cases across 37 files in the October 26, 2026 CI run, plus desktop/mobile browser smoke with controlled service responses.",
-        "Public frontend at simlyfe.vercel.app; the dated Guest canary preserved state after reload but AI generation failed at the provider boundary.",
+        "Verified 789 Vitest test cases across 38 files in the October 26, 2026 CI run, plus desktop/mobile browser smoke with controlled service responses.",
+        "Public frontend at simlyfe.vercel.app; one approved Guest canary generated an event, resolved a choice and restored age 2 with the chosen outcome after reload.",
       ],
       detailedContent: `
 SIMLYFE is a shipped, browser-based life simulation game — the kind of project that only works when deterministic game systems and non-deterministic LLM output are engineered to coexist.
@@ -324,8 +324,8 @@ Key Contributions & Technical Details:
 - LLM Event Engine: Generated events receive a bounded snapshot of age, career, relationships, and finances so the narrative stays tied to the simulation state.
 - Server-Side Boundary: A Supabase Edge Function verifies Firebase identity and exact origins, enforces durable quotas, validates requests and responses, and owns the OpenAI provider credential.
 - Deterministic Core: Economy, career progression, relationships, and annual simulation live in pure JavaScript modules that can be tested independently of model calls.
-- Test Discipline: CI passed 783 Vitest test cases across 37 files on October 26, 2026; cases are counted separately from assertions, with controlled Firebase and event responses.
-- Deployment: Public frontend hosted on Vercel. After the backend was resumed, the approved Guest canary returned an upstream provider error; age 1 and the acknowledged error history survived reload. The dated evidence ledger records this failed AI-generation result and the separate Android-origin correspondence.
+- Test Discipline: CI passed 789 Vitest test cases across 38 files on October 26, 2026; cases are counted separately from assertions, with controlled Firebase and event responses.
+- Deployment: Public frontend hosted on Vercel. Following secure key/model replacement and compatible function deployment, one approved Guest canary generated an event, resolved a choice and restored age 2, its chosen outcome and 95% happiness after same-browser reload. The ledger retains the earlier failed request, source correspondence and limits.
       `,
       links: [
         { label: "Live Demo", url: "https://simlyfe.vercel.app" },
@@ -348,12 +348,12 @@ Key Contributions & Technical Details:
         architectureNote:
           "React 19 client → deterministic simulation core ⇄ authenticated Supabase Edge Function → OpenAI event service; Firebase Auth and Firestore provide identity and saves",
         metrics: [
-          { label: "Automated test cases", baseline: "CI checked Oct 26, 2026", achieved: "783 Vitest cases across 37 files" },
+          { label: "Automated test cases", baseline: "CI checked Oct 26, 2026", achieved: "789 Vitest cases across 38 files" },
           { label: "Provider credential boundary", baseline: "Direct browser calls avoided", achieved: "Authenticated proxy with server-owned OpenAI credentials" },
-          { label: "Live acceptance", baseline: "Guest canary, Oct 26, 2026", achieved: "Reload persistence observed; AI generation failed" },
+          { label: "Live acceptance", baseline: "Guest canary, Oct 26, 2026", achieved: "Generated event, choice and reload verified" },
         ],
         productImpact:
-          "A publicly hosted game demonstrating tested LLM integration boundaries: bounded game-state prompting, server-side key management, schema validation, and separation of deterministic and generative layers. CI validates controlled responses. The October 26 Guest canary observed reload persistence but failed AI generation with an upstream provider error; the provider-specific cause remains unresolved.",
+          "A publicly hosted game demonstrating tested LLM integration boundaries: bounded game-state prompting, server-side key management, schema validation, and separation of deterministic and generative layers. A separately approved October 26 Guest canary generated an event, resolved a choice and restored the same life and outcome after reload. This is one observed flow; broader reliability, cost and cross-device recovery remain unmeasured.",
         techStack: [
           "React 19", "JavaScript", "Vite 8", "Supabase Edge Functions", "Firebase Auth", "Firestore",
           "OpenAI", "Vitest", "Vercel",
