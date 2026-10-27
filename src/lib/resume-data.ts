@@ -241,19 +241,26 @@ Key Responsibilities & Learnings:
         sortKey: 202505,
         description: [
             "Led a five-person UNT senior capstone team developing real-time computer vision and interactive visualizations for NASA PACE satellite data.",
-            "The team system used gesture recognition, multi-camera tracking, OpenCV, CUDA, Unity, and ZED stereo cameras; individual subsystem authorship is pending confirmation.",
-            "The team created interactive oceanographic satellite-data visualizations for the exhibit.",
-            "Met regularly with NASA PACE collaborators; personal deployment and tooling contributions require confirmation.",
+            "Co-designed the exhibit’s fuzzy-logic gestures and built the ImGui hardware-setup interface for prerequisite checks and camera configuration.",
+            "Connected and oversaw integration between the gesture-processing system and Unity visualization.",
+            "Met regularly with NASA PACE collaborators; deployment was handled by other team members.",
             "The WAVE installation premiered at the Kennedy Center in Washington, D.C., in March 2025.",
         ],
         detailedContent: `
 WAVE was my senior-year University of North Texas capstone project (Fall 2024–May 2025), developed in collaboration with NASA PACE and the University of Maryland's Immersive Media Design program. As Lead Developer, I guided our five-person student team and met regularly with NASA project collaborators to review requirements and integration progress.
 
-Key Contributions & Technical Details:
-- Team System: The exhibit combined ZED stereo cameras, OpenCV/CUDA gesture processing, and multi-camera tracking; this describes team components, not confirmed personal module authorship.
-- Team Rendering: Unity, C#, React, and TypeScript supported the interactive exhibit; individual interfaces and contributions are still being confirmed.
-- Contribution Review: Personal authorship of setup/calibration tooling, the ImGui wizard, and deployment tasks requires confirmation before attribution.
-- Team Leadership & Collaboration: Coordinated technical work across a five-person UNT student team and attended recurring meetings with NASA PACE collaborators.
+Mission & Team System:
+The team made PACE ocean science interactive through ZED camera tracking, gesture processing, an OSC data bridge, and Unity visualization.
+
+My Contributions:
+- Gesture Design: Co-designed the exhibit’s gesture vocabulary and rule-based fuzzy-logic scoring; this is shared design credit, not sole authorship of every gesture-processing module.
+- Hardware Setup: Built the ImGui setup interface for checking prerequisites, accessing required software, launching ZED360, and editing camera configuration.
+- Unity Integration: Connected the gesture-processing and Unity sides and oversaw their integration; this does not claim authorship of every rendering or transport component.
+- Leadership: Coordinated the five-person UNT capstone team and recurring NASA PACE collaboration.
+- Scope: I did not handle deployment components.
+
+Technical Boundaries:
+The inspected implementation combines graded pose and motion scores and sends tracking/gesture data to Unity through OSC. The setup interface handles hardware/software readiness and camera configuration. No recognition-accuracy, latency, or setup-time improvement is claimed.
 
 The installation premiered at the Kennedy Center in Washington, D.C., in March 2025. NASA and UMD pages linked below independently document the exhibit and UNT's participation; the Lead Developer scope is Michael's confirmed role.
         `,
@@ -269,21 +276,21 @@ The installation premiered at the Kennedy Center in Washington, D.C., in March 2
             "Real-time gesture recognition from ZED stereo-camera input",
             "Reliable operation across changing exhibit lighting, spacing, and calibration",
             "Interactive rendering of scientific data for a public audience",
-            "Setup and deployment that exhibit operators could repeat consistently",
+            "Make hardware prerequisites and camera configuration visible to exhibit operators",
           ],
           approach:
-            "The team system connected ZED stereo cameras, OpenCV/CUDA gesture processing, Unity rendering, and setup/calibration tooling. My confirmed role was Lead Developer for the five-person UNT capstone with recurring NASA PACE collaboration. Component-by-component personal ownership is pending confirmation; this case study does not attribute the ImGui wizard or individual integration modules to me.",
+            "As Lead Developer for the five-person UNT capstone, I co-designed fuzzy-logic gestures, built the ImGui hardware-setup interface, and connected and oversaw Unity integration. The team system uses tracked pose/motion features, fuzzy gesture scores, and an OSC bridge into Unity. The setup wizard checks prerequisites and edits camera configuration. Deployment was handled by other team members.",
           architectureDiagram: 'nasa',
           architectureNote:
-            "ZED stereo camera → OpenCV + CUDA gesture pipeline → Unity rendering engine → ImGui setup wizard for calibration and validation",
+            "Team runtime: ZED tracking → fuzzy pose/motion gesture scores → OSC → Unity → exhibit. My scope: gesture co-design, ImGui setup tooling, and Unity integration oversight. ImGui supports prerequisite/camera configuration outside the live rendering path; deployment was outside my role.",
           metrics: [
             { label: "Leadership scope", baseline: "UNT senior capstone", achieved: "Lead Developer for a 5-person team" },
             { label: "Public exhibition", baseline: "Research-driven prototype", achieved: "Kennedy Center premiere, March 2025" },
-            { label: "Interaction stack", baseline: "Stereo-camera input", achieved: "OpenCV + CUDA gesture recognition in Unity" },
+            { label: "Personal contribution", baseline: "Owner-confirmed scope", achieved: "Fuzzy gesture co-design, ImGui setup, Unity integration oversight" },
           ],
           productImpact:
-            "Helped deliver an interactive installation that made NASA PACE satellite science tangible for a public audience. The WAVE exhibit premiered at the Kennedy Center in Washington, D.C., in March 2025.",
-          techStack: ["C#", "C++", "Python", "Unity", "OpenCV", "ZED SDK", "CUDA", "ImGui", "OpenGL", "React", "TypeScript", "GraphQL"],
+            "Contributed gesture interaction design, hardware setup tooling, and Unity integration oversight to the team’s public science exhibit. WAVE premiered at the Kennedy Center in March 2025; I did not handle deployment.",
+          techStack: ["C#", "Unity", "OpenCV", "ZED SDK", "CUDA", "Fuzzy Logic", "OSC", "ImGui", "OpenGL"],
           links: [
             { label: "Contribution scope and verification limits", url: `${EVIDENCE_LEDGER_URL}#nasa-role` },
           { label: "NASA PACE — WAVE exhibit page", url: "https://pace.oceansciences.org/wave_space_to_ocean.htm" },
@@ -291,7 +298,7 @@ The installation premiered at the Kennedy Center in Washington, D.C., in March 2
             { label: "UMD CMNS — Kennedy Center premiere", url: "https://cmns.umd.edu/news-events/news/wave-exhibit-kennedy-center-pace-nasa" },
           ],
           linksNote:
-            "This was an academic UNT senior capstone involving regular NASA PACE collaboration, not an employment appointment. No project code is published here; ownership and redistribution permissions require confirmation. The NASA and UMD coverage documents the project and UNT involvement rather than individual employment.",
+            "This was an academic UNT senior capstone with regular NASA PACE collaboration. Personal responsibilities are owner-confirmed; private code inspection corroborates the components, not individual authorship. The diagram is an original high-level illustration. No protected project code or third-party asset is republished; NASA/UMD coverage independently documents the exhibit and UNT collaboration.",
         } satisfies CaseStudy,
     },
     {
@@ -318,7 +325,7 @@ Key Contributions & Technical Details:
 - Server-Side Boundary: A Supabase Edge Function verifies Firebase identity and exact origins, enforces durable quotas, validates requests and responses, and owns the OpenAI provider credential.
 - Deterministic Core: Economy, career progression, relationships, and annual simulation live in pure JavaScript modules that can be tested independently of model calls.
 - Test Discipline: CI passed 783 Vitest test cases across 37 files on October 26, 2026; cases are counted separately from assertions, with controlled Firebase and event responses.
-- Deployment: Public frontend hosted on Vercel; Firebase cloud saves and AI events require a fresh post-refactor production canary. Current backend availability and source drift are documented in the evidence ledger.
+- Deployment: Public frontend hosted on Vercel; Firebase cloud saves and AI events require a fresh post-refactor production canary. The backend was resumed and reported healthy; the deployed origin helper is traced to the separate Android branch. Current event/save acceptance remains pending in the evidence ledger.
       `,
       links: [
         { label: "Live Demo", url: "https://simlyfe.vercel.app" },

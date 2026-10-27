@@ -10,9 +10,9 @@ import {
 /**
  * NASA PACE "Wave: From Space to Ocean" exhibit pipeline.
  *
- * Live path (left → right): ZED Stereo Camera → OpenCV + CUDA gesture
- * pipeline → Unity rendering → exhibit display. The ImGui Setup Wizard
- * feeds calibration into the pipeline and camera before showtime.
+ * Team runtime: ZED tracking → fuzzy pose/motion scores → OSC → Unity → display.
+ * The ImGui wizard supports prerequisite checks and camera configuration.
+ * Personal scope is documented separately in the case study; deployment is excluded.
  */
 
 const E = {
@@ -29,20 +29,20 @@ export default function NasaPipelineDiagram() {
     <DiagramContainer
       viewBox="0 0 840 285"
       minWidth={720}
-      label="NASA PACE exhibit architecture diagram. A ZED stereo camera streams depth and RGB data into an OpenCV plus CUDA gesture pipeline, which drives Unity rendering of PACE satellite visuals on the exhibit display. An ImGui setup wizard feeds calibration and validation settings into the gesture pipeline and camera before showtime."
+      label="NASA PACE team architecture: ZED body tracking feeds fuzzy pose and motion gesture scores, sent through OSC to Unity rendering and the exhibit display. The ImGui wizard supports hardware prerequisites and camera configuration. Michael’s confirmed contributions are gesture co-design, the ImGui setup interface, and Unity integration oversight; deployment was outside his role."
       legend={[
         { label: 'Live gesture → render path', tone: 'primary' },
-        { label: 'Operator setup & calibration', tone: 'accent' },
+        { label: 'Hardware setup & configuration', tone: 'accent' },
       ]}
     >
       {/* ── Edges ── */}
       <DiagramEdge d={E.cameraToPipeline} />
-      <DiagramEdge d={E.pipelineToUnity} />
+      <DiagramEdge d={E.pipelineToUnity} label="OSC" labelX={421} labelY={91} />
       <DiagramEdge d={E.unityToDisplay} />
       <DiagramEdge
         d={E.wizardToPipeline}
         tone="accent"
-        label="calibration · validation"
+        label="prerequisites · config"
         labelX={320}
         labelY={176}
         labelAnchor="start"
@@ -51,7 +51,7 @@ export default function NasaPipelineDiagram() {
         d={E.wizardToCamera}
         tone="accent"
         dashed
-        label="camera setup"
+        label="camera config"
         labelX={155}
         labelY={222}
       />
@@ -63,13 +63,13 @@ export default function NasaPipelineDiagram() {
       <FlowParticle d={E.wizardToPipeline} tone="accent" duration={2.4} delay={0.5} />
 
       {/* ── Live path ── */}
-      <DiagramNode x={16} y={72} width={156} height={60} title="ZED Stereo Camera" sub="depth + RGB stream" tone="primary" />
-      <DiagramNode x={220} y={72} width={180} height={60} title="Gesture Pipeline" sub="OpenCV + CUDA" tone="primary" />
+      <DiagramNode x={16} y={72} width={156} height={60} title="ZED Stereo Camera" sub="tracked body joints" tone="primary" />
+      <DiagramNode x={220} y={72} width={180} height={60} title="Fuzzy Gesture Logic" sub="pose + motion scores" tone="primary" />
       <DiagramNode x={448} y={72} width={164} height={60} title="Unity Rendering" sub="PACE data visuals" tone="primary" />
       <DiagramNode x={660} y={72} width={164} height={60} title="Exhibit Display" sub="interactive science" highlight />
 
       {/* ── Setup wizard ── */}
-      <DiagramNode x={220} y={204} width={180} height={56} title="ImGui Setup Wizard" sub="operator calibration" tone="accent" />
+      <DiagramNode x={220} y={204} width={180} height={56} title="ImGui Setup Wizard" sub="hardware + camera setup" tone="accent" />
     </DiagramContainer>
   );
 }
