@@ -3,8 +3,9 @@
 Six draft PRs remain unmerged for owner review. Following the owner's confirmation
 that SIMLYFE should be live, its existing Supabase project was resumed and verified
 healthy with a database query. Frontend/function source and origin settings were
-not redeployed. P1 is not fully accepted; the exact one-event production canary
-requires explicit approval, and the remaining gates are recorded below.
+not redeployed. P1 is not fully accepted: the explicitly approved single-event canary failed AI
+generation, although same-browser reload returned its age/history. The provider
+failure and the remaining acceptance gates are recorded below.
 
 | Work | Review PR | Verified evidence |
 | --- | --- | --- |
@@ -69,16 +70,18 @@ The README surfaces CI and current deployment evidence.
 
 ## Remaining acceptance gates
 
-- **SIMLYFE live journey:** the owner confirmed intended service availability;
-  project status progressed from INACTIVE through restoration to ACTIVE_HEALTHY,
-  and a database query succeeded. Deployed function v14 files exactly match the
-  Android branch f04e56bf77443565c807adee851d793ebe5afb78, whose configuration
-  documents https://localhost and the optional native allowlist. No origin-policy
-  change is needed by inference. A synthetic Guest life P1 Canary Oct26 was
-  created at age 0, but automatic approval review rejected + Age pending
-  explicit approval for that identity and billable request. Real generation,
-  resolution and final save/reload proof remain open; see the
-  [restoration/source record](https://github.com/xmike04/SIMLYFE/blob/d037c3e8831cc6023b0ce01b292064a08af9ed58/docs/operations.md#october-26-2026-restoration-and-android-source-follow-up).
+- **SIMLYFE live journey:** the single approved Guest request completed at
+  02:32 UTC October 27 /9:32 p.m. CDT October 26. Preflight returned 204, quota
+  RPC returned 200, and function v14 returned 502 UPSTREAM_ERROR in 2,556 ms.
+  The deployed code maps this to an unsuccessful OpenAI HTTP response, not a
+  measured specific billing/key/model fault. The error was acknowledged; reload
+  returned P1 Canary Oct26 at age 1 with that history. No genuine generated
+  event, provider-specific cause, billed usage, independent cloud acknowledgment
+  or cross-device recovery is proved. No second event request was made.
+  [Canary and machine-readable receipt](https://github.com/xmike04/SIMLYFE/blob/5ac4768481038ef5c22f3f81eb49a420e84763ee/docs/operations.md#october-26-2026-approved-single-event-canary).
+  Fresh Vercel source mapping was unavailable; prior attribution remains
+  historical and the observed module asset is recorded. Provider diagnosis and
+  successful current AI acceptance remain open.
 - **NASA attribution resolved:** owner confirmed shared fuzzy-logic gesture design,
   ImGui hardware-setup interface authorship, and Unity connection/integration
   oversight; deployment was outside his role. Private February 11, 2025 source
@@ -93,8 +96,8 @@ The README surfaces CI and current deployment evidence.
 - **Publication and navigation:** review/merge the concrete PRs, integrating
   RAG_OPS #3 before its stacked #4. Canonical sites/profile are not yet updated.
   GitHub pins/About cleanup, full visual production review, and post-publication
-  public-link checks remain. The cloud browser now supports the pending SIMLYFE
-  canary; no live RAG backend is required.
+  public-link checks remain. The cloud browser completed the approved SIMLYFE
+  canary with a recorded provider failure; no live RAG backend is required.
 - **Security review boundary:** bounded tracked-file and deployed-function
   literal checks were performed; complete Git history/secret/security-alert
   auditing is not claimed. Post-restore quota metadata confirms forced RLS and
@@ -110,8 +113,9 @@ headline is superseded in draft presentation by the qualified mixed-query matrix
 No important improvement is inferred from unmatched configurations, ordered load
 conditions, or tiny cold samples. Bootstrap tooling supports paired comparisons
 when appropriate; no positive service-quality improvement is asserted here.
-Unavailable costs/resources and current live behavior stay unmeasured rather
-than being reported as zero or inferred from CI.
+Unavailable costs/resources stay unmeasured. The observed canary failure and
+same-browser persistence are recorded within their measured boundary; successful
+AI production behavior is not inferred from service health or CI.
 
 ## Owner-confirmation follow-up
 
@@ -124,5 +128,15 @@ as a verified full installer. Original source-derived diagram labels distinguish
 runtime OSC flow from setup.
 
 The live backend was resumed within the owner's confirmed intended availability.
-The approval gate for a provider-billed request is retained; no alternative API,
-static fallback, different identity or indirect invocation was used to bypass it.
+The owner explicitly approved one provider-billed event attempt on P1 Canary
+Oct26. That exact request failed and no retry was issued. The error was
+acknowledged and reload persistence verified. No alternate identity, static
+replacement or indirect invocation was used to bypass the request limit.
+
+## Approved canary outcome
+
+Result: failed AI generation, observed same-browser persistence. The server's
+UPSTREAM_ERROR classification narrows the failure to OpenAI's unsuccessful HTTP
+response; its original status and error are not retained. Further diagnosis needs
+provider evidence or a reviewed sanitized-status logging change before another
+separately authorized event attempt. No application fix or success is claimed.

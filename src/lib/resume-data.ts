@@ -315,7 +315,7 @@ The installation premiered at the Kennedy Center in Washington, D.C., in March 2
         "Separated deterministic game systems from authenticated OpenAI narrative generation behind a Supabase Edge Function.",
         "Validated bounded requests and model output at the server boundary while keeping provider credentials out of the browser.",
         "Verified 783 Vitest test cases across 37 files in the October 26, 2026 CI run, plus desktop/mobile browser smoke with controlled service responses.",
-        "Public frontend at simlyfe.vercel.app; fresh AI/cloud-save production verification is pending.",
+        "Public frontend at simlyfe.vercel.app; the dated Guest canary preserved state after reload but AI generation failed at the provider boundary.",
       ],
       detailedContent: `
 SIMLYFE is a shipped, browser-based life simulation game — the kind of project that only works when deterministic game systems and non-deterministic LLM output are engineered to coexist.
@@ -325,7 +325,7 @@ Key Contributions & Technical Details:
 - Server-Side Boundary: A Supabase Edge Function verifies Firebase identity and exact origins, enforces durable quotas, validates requests and responses, and owns the OpenAI provider credential.
 - Deterministic Core: Economy, career progression, relationships, and annual simulation live in pure JavaScript modules that can be tested independently of model calls.
 - Test Discipline: CI passed 783 Vitest test cases across 37 files on October 26, 2026; cases are counted separately from assertions, with controlled Firebase and event responses.
-- Deployment: Public frontend hosted on Vercel; Firebase cloud saves and AI events require a fresh post-refactor production canary. The backend was resumed and reported healthy; the deployed origin helper is traced to the separate Android branch. Current event/save acceptance remains pending in the evidence ledger.
+- Deployment: Public frontend hosted on Vercel. After the backend was resumed, the approved Guest canary returned an upstream provider error; age 1 and the acknowledged error history survived reload. The dated evidence ledger records this failed AI-generation result and the separate Android-origin correspondence.
       `,
       links: [
         { label: "Live Demo", url: "https://simlyfe.vercel.app" },
@@ -350,10 +350,10 @@ Key Contributions & Technical Details:
         metrics: [
           { label: "Automated test cases", baseline: "CI checked Oct 26, 2026", achieved: "783 Vitest cases across 37 files" },
           { label: "Provider credential boundary", baseline: "Direct browser calls avoided", achieved: "Authenticated proxy with server-owned OpenAI credentials" },
-          { label: "Deployment", baseline: "Prototype", achieved: "Hosted frontend; current cloud canary pending" },
+          { label: "Live acceptance", baseline: "Guest canary, Oct 26, 2026", achieved: "Reload persistence observed; AI generation failed" },
         ],
         productImpact:
-          "A publicly hosted game demonstrating tested LLM integration boundaries: bounded game-state prompting, server-side key management, schema validation, and separation of deterministic and generative layers. CI validates controlled responses; fresh acceptance of the deployed AI/cloud journey remains pending.",
+          "A publicly hosted game demonstrating tested LLM integration boundaries: bounded game-state prompting, server-side key management, schema validation, and separation of deterministic and generative layers. CI validates controlled responses. The October 26 Guest canary observed reload persistence but failed AI generation with an upstream provider error; the provider-specific cause remains unresolved.",
         techStack: [
           "React 19", "JavaScript", "Vite 8", "Supabase Edge Functions", "Firebase Auth", "Firestore",
           "OpenAI", "Vitest", "Vercel",
