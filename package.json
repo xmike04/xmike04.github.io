@@ -10,7 +10,7 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "audit:profile": "node scripts/audit-public-profile.mjs",
-    "test:evidence": "node --test scripts/audit-evidence.test.mjs"
+    "test:evidence": "node --test scripts/*.test.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^4.1.3",
