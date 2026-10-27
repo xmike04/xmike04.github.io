@@ -2,7 +2,7 @@
 
 import { CountUp } from '@/components/motion/count-up';
 import { RevealGroup, RevealItem } from '@/components/motion/reveal';
-import { resumeData } from '@/lib/resume-data';
+import { EVIDENCE_LEDGER_URL, resumeData } from '@/lib/resume-data';
 import { cn } from '@/lib/utils';
 
 /** Single glass proof band driven by resumeData.heroStats. */
@@ -24,9 +24,13 @@ export default function StatsStrip() {
                 i > 0 && 'md:border-l'
               )}
             >
-              <p className="font-headline text-3xl font-bold text-primary md:text-4xl">
+              <a
+                href={`${EVIDENCE_LEDGER_URL}#${stat.evidenceId}`}
+                aria-label={`${stat.prefix ?? ''}${stat.value}${stat.suffix ?? ''} ${stat.label}: evidence and limitations`}
+                className="rounded-sm font-headline text-3xl font-bold text-primary underline decoration-primary/30 underline-offset-4 hover:decoration-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 md:text-4xl"
+              >
                 <CountUp value={stat.value} prefix={stat.prefix} suffix={stat.suffix} decimals={stat.decimals ?? 0} />
-              </p>
+              </a>
               <p className="font-mono text-[11px] font-medium uppercase tracking-widest text-foreground/80">
                 {stat.label}
               </p>

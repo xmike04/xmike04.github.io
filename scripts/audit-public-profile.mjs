@@ -1,6 +1,7 @@
 import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
+import { auditEvidence } from './audit-evidence.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -82,6 +83,23 @@ forbidMatch('retired RAGOps irrelevant-context claim', combined, /31%\s*(?:→|-
 forbidMatch('retired RAGOps query-count claim', combined, /150\+?[- ]?(?:query|queries)/i);
 forbidMatch('obsolete RAGOps Celery stack', content.data, /RAGOps[\s\S]{0,800}\bCelery\b/i);
 
+
+const evidence = await readFile(path.join(root, 'docs/evidence/claims.md'), 'utf8');
+const checkLinks = process.argv.includes('--check-evidence-links');
+failures.push(...await auditEvidence(evidence, {
+  requiredIds: ['ragops-retrieval', 'ragops-serving', 'ragops-load', 'ragops-mixed-load', 'simlyfe-tests', 'simlyfe-production',
+    'nasa-role', 'nasa-exhibit', 'mr-cooper', 'aws-certification', 'gcp-certification', 'education'],
+  probeLink: checkLinks ? async url => {
+    const response = await fetch(url, { signal: AbortSignal.timeout(8000),
+      headers: { 'User-Agent': 'public-profile-evidence-audit', Range: 'bytes=0-16383' } });
+    await response.body?.cancel();
+    return { ok: response.ok, status: response.status };
+  } : undefined,
+}));
+requireMatch('commit-specific SIMLYFE test-case count', content.data, /795.*test cases|test cases.*795/is);
+forbidMatch('ambiguous SIMLYFE assertion count', content.data, /350\+|Automated test assertions/);
+requireMatch('offline RAGOps quality boundary', content.data, /offline.*SciFact|SciFact.*offline/is);
+
 if (failures.length > 0) {
   console.error('Public-profile audit failed:');
   for (const failure of failures) console.error(`- ${failure}`);
@@ -89,3 +107,4 @@ if (failures.length > 0) {
 }
 
 console.log('Public-profile audit passed: canonical facts, evidence claims, and discovery metadata are consistent.');
+

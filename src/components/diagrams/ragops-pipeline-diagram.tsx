@@ -3,7 +3,7 @@ const nodes = [
   { x: 174, y: 56, w: 104, h: 46, title: 'FastAPI', detail: 'Search + ingest' },
   { x: 314, y: 18, w: 128, h: 46, title: 'Redis worker', detail: 'Async ingestion' },
   { x: 314, y: 94, w: 128, h: 46, title: 'PostgreSQL', detail: 'pgvector + data' },
-  { x: 480, y: 56, w: 112, h: 46, title: 'BM25 + dense', detail: 'Candidates' },
+  { x: 480, y: 56, w: 112, h: 46, title: 'Lexical + vector', detail: 'Sequential queries' },
   { x: 628, y: 56, w: 92, h: 46, title: 'RRF', detail: 'Fusion' },
   { x: 756, y: 56, w: 126, h: 46, title: 'Optional rerank', detail: 'Cross-encoder' },
 ];
@@ -34,8 +34,9 @@ export default function RagopsPipelineDiagram() {
       <title id="ragops-diagram-title">RAGOps platform architecture</title>
       <desc id="ragops-diagram-description">
         The React operations console calls FastAPI, which coordinates a Redis ingestion worker and
-        PostgreSQL with pgvector. BM25 and dense retrieval produce candidates for reciprocal rank
-        fusion and optional cross-encoder reranking. Prometheus and Grafana observe the stack.
+        PostgreSQL with pgvector. PostgreSQL cover-density lexical ranking and vector retrieval run
+        sequentially before reciprocal rank fusion and optional reranking. Hash embeddings are the
+        default. The separate offline experiment uses BM25 and MiniLM. Prometheus scrapes API metrics.
       </desc>
       <defs>
         <marker id="ragops-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
@@ -50,7 +51,7 @@ export default function RagopsPipelineDiagram() {
       <Arrow x1={138} y1={79} x2={174} y2={79} />
       <Arrow x1={278} y1={72} x2={314} y2={43} />
       <Arrow x1={278} y1={86} x2={314} y2={117} />
-      <Arrow x1={442} y1={43} x2={480} y2={70} />
+      <Arrow x1={378} y1={64} x2={378} y2={94} />
       <Arrow x1={442} y1={117} x2={480} y2={88} />
       <Arrow x1={592} y1={79} x2={628} y2={79} />
       <Arrow x1={720} y1={79} x2={756} y2={79} />
@@ -79,9 +80,9 @@ export default function RagopsPipelineDiagram() {
       <g>
         <rect x="330" y="158" width="242" height="22" rx="11" fill="hsl(var(--muted))" fillOpacity="0.55" />
         <text x="451" y="172" textAnchor="middle" className="fill-muted-foreground text-[9px] font-medium">
-          Prometheus + Grafana observability
+          API metrics · Prometheus + Grafana
         </text>
-        <line x1="451" y1="158" x2="451" y2="140" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 3" className="text-muted-foreground/60" />
+        <path d="M 330 169 H 226 V 102" fill="none" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 3" markerEnd="url(#ragops-arrow)" className="text-muted-foreground/60" />
       </g>
     </svg>
   );

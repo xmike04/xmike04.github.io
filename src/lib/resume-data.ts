@@ -2,6 +2,8 @@
 import type { CaseStudy } from '@/components/sections/case-study-view';
 export type { CaseStudy };
 
+export const EVIDENCE_LEDGER_URL = 'https://github.com/xmike04/xmike04.github.io/blob/main/docs/evidence/claims.md';
+
 export interface HeroStat {
   value: number;
   prefix?: string;
@@ -9,6 +11,7 @@ export interface HeroStat {
   decimals?: number;
   label: string;
   sub?: string;
+  evidenceId: string;
 }
 
 export interface SkillCategory {
@@ -87,10 +90,10 @@ export const resumeData = {
   summary:
     "Applied AI and machine learning engineer who builds measurable systems across retrieval, evaluation, computer vision, and AI products. Built RAGOps with reproducible SciFact benchmarking and local-provider load testing; brings complementary 2025 AI/ML product internship experience, NASA PACE computer vision leadership, and a shipped AI-assisted life simulator.",
   heroStats: [
-    { value: 5183, label: "Documents benchmarked", sub: "SciFact retrieval evaluation" },
-    { value: 350, suffix: "+", label: "Test assertions", sub: "SIMLYFE engine + LLM modules" },
-    { value: 5, label: "Person team led", sub: "NASA PACE capstone exhibit" },
-    { value: 2027, label: "M.S. AI", sub: "expected summer — UNT, ML concentration" },
+    { value: 5183, label: "Documents benchmarked", sub: "Offline SciFact retrieval evaluation", evidenceId: "ragops-retrieval" },
+    { value: 795, label: "Vitest test cases", sub: "SIMLYFE CI · checked Oct 27, 2026", evidenceId: "simlyfe-tests" },
+    { value: 5, label: "Person team led", sub: "NASA PACE capstone exhibit", evidenceId: "nasa-role" },
+    { value: 2027, label: "M.S. AI", sub: "expected summer — UNT, ML concentration", evidenceId: "education" },
   ] as HeroStat[],
   skills: [
     {
@@ -117,7 +120,7 @@ export const resumeData = {
   proofAreas: [
     {
       title: "Retrieval engineering and evaluation",
-      evidence: "RAGOps benchmarked 5,183 SciFact documents and 300 held-out queries; RRF led with 0.8059 Recall@10 and 0.6816 nDCG@10.",
+      evidence: "RAGOps' offline benchmark used 5,183 SciFact documents and 300 held-out queries; RRF led with 0.8059 Recall@10 and 0.6816 nDCG@10.",
     },
     {
       title: "AI product evaluation",
@@ -175,13 +178,16 @@ Key Responsibilities & Learnings:
       sortKey: 202610,
       description: [
         "Built a production-style RAG platform with FastAPI, PostgreSQL/pgvector, Redis, asynchronous ingestion, hybrid retrieval, reranking, Prometheus metrics, and a React operations console.",
-        "Benchmarked BM25, all-MiniLM-L6-v2 dense retrieval, RRF, and a cross-encoder trained only on SciFact's disjoint training split across 5,183 documents and 300 held-out queries; RRF led with 0.8059 Recall@10 and 0.6816 nDCG@10.",
-        "Built reproducible evaluation and load-testing pipelines with versioned datasets, artifact checksums, per-query traces, and CI quality gates; recorded 24.56 ms p50 and 31.75 ms p95 over 9,234 successful requests to the local-provider stack.",
+        "Offline benchmarked BM25, all-MiniLM-L6-v2 dense retrieval, RRF, and a cross-encoder trained only on SciFact's disjoint training split across 5,183 documents and 300 held-out queries; RRF led with 0.8059 Recall@10 and 0.6816 nDCG@10.",
+        "Built reproducible serving evaluation and a 30-query mixed load study of the local-provider stack: 300 requests each at concurrency 1, 4, and 8, with 54.73 / 137.22 / 252.24 ms p95 and no failed measured requests; generation was excluded.",
       ],
       links: [
+        { label: "Evidence and limitations", url: `${EVIDENCE_LEDGER_URL}#ragops-retrieval` },
+        { label: "Mixed-query load matrix", url: "https://github.com/xmike04/RAG_OPS/blob/5549d6792a6f5f4c6126c41deb9f1e16ec5e9264/benchmarks/service/results/load/2026-10-26-local-40389341425/README.md" },
+        { label: "Serving-path baseline", url: "https://github.com/xmike04/RAG_OPS/blob/df271a5bf9adc8c610fa8ba19f18cedea6c7ee5e/benchmarks/service/results/scifact/2026-10-26-local-40380993127/README.md" },
         { label: "GitHub Repository", url: "https://github.com/xmike04/RAG_OPS" },
         { label: "SciFact Benchmark Report", url: "https://github.com/xmike04/RAG_OPS/blob/e63df6444a8e411c7b187027dfa230c0d99f0546/benchmarks/retrieval/results/scifact/160ce708a7858938/report.md" },
-        { label: "Load-Test Summary", url: "https://github.com/xmike04/RAG_OPS/blob/e63df6444a8e411c7b187027dfa230c0d99f0546/benchmarks/load/results/summary.json" },
+        { label: "Historical Single-Query Load Summary", url: "https://github.com/xmike04/RAG_OPS/blob/e63df6444a8e411c7b187027dfa230c0d99f0546/benchmarks/load/results/summary.json" },
       ],
       caseStudy: {
         problem:
@@ -194,30 +200,34 @@ Key Responsibilities & Learnings:
           "Separate local deterministic-provider load evidence from claims about real production traffic",
         ],
         approach:
-          "Built a FastAPI service backed by PostgreSQL/pgvector and a Redis worker for asynchronous ingestion. Retrieval combines BM25 and all-MiniLM-L6-v2 dense search through reciprocal rank fusion, with optional cross-encoder reranking. Prometheus and Grafana expose service behavior while a React console makes ingestion, retrieval, citations, caches, and failures inspectable. The evaluation pipeline versions SciFact data, verifies checksums, records model provenance and run configuration, emits per-query traces, and enforces quality gates in CI.",
+          "Built a FastAPI service backed by PostgreSQL/pgvector and a Redis worker for asynchronous ingestion. Serving retrieval combines PostgreSQL cover-density lexical ranking with pgvector through reciprocal rank fusion; the default query and document embeddings are deterministic hashes. The separate offline experiment compares canonical Okapi BM25, all-MiniLM-L6-v2 dense retrieval, RRF, and a train-only cross-encoder. Prometheus/Grafana and the React console expose API behavior and stage timings. The evaluation pipeline versions SciFact data, verifies checksums, and retains model provenance and per-query evidence. Learned serving evaluation requires correcting the worker\'s hard-coded hash embedder before re-ingestion.",
         architectureDiagram: 'ragops',
         architectureNote:
-          "React operations console → FastAPI → Redis ingestion worker + PostgreSQL/pgvector; BM25 and MiniLM candidates → RRF → optional cross-encoder; Prometheus/Grafana observe the stack",
+          "Serving: React → FastAPI → sequential PostgreSQL lexical + pgvector retrieval → RRF; Redis ingestion worker. Offline: Okapi BM25 + MiniLM comparison. Prometheus scrapes the API.",
         metrics: [
-          { label: "Held-out retrieval quality", baseline: "BM25: 0.7740 Recall@10", achieved: "RRF: 0.8059 Recall@10 / 0.6816 nDCG@10" },
+          { label: "Offline held-out retrieval quality", baseline: "BM25: 0.7740 Recall@10", achieved: "RRF: 0.8059 Recall@10 / 0.6816 nDCG@10" },
+          { label: "Serving-path retrieval quality", baseline: "Local hash + PostgreSQL; 300 test queries", achieved: "0.4097 Recall@10 / 0.3134 nDCG@10" },
           { label: "Evaluation scope", baseline: "Versioned BEIR SciFact", achieved: "5,183 documents / 300 held-out queries" },
-          { label: "Local-provider load test", baseline: "30 s / concurrency 8", achieved: "9,234 successes; 24.56 ms p50 / 31.75 ms p95" },
+          { label: "Mixed-query load, local providers", baseline: "30 queries; concurrency 1 / 4 / 8", achieved: "300 requests each; p95 54.73 / 137.22 / 252.24 ms" },
           { label: "Cross-encoder result", baseline: "Train split only; zero test overlap", achieved: "Negative result: slower and lower held-out quality than RRF" },
         ],
         productImpact:
-          "RRF was the strongest tested configuration. The small train-split-only cross-encoder was much slower and reduced held-out quality, so the project retains it as a negative result instead of implying that reranking helped. The latency figures come from a 30-second, concurrency-8 local Docker Compose workload with deterministic local providers; they are reproducible engineering evidence, not a production SLO or externally served traffic.",
+          "Offline RRF was the strongest tested configuration; the train-only cross-encoder was slower and reduced held-out quality, so it remains a negative result. The separately measured hash/PostgreSQL serving path achieved lower quality. A mixed-query closed-loop study completed 900 measured requests without failures, with higher throughput and latency at higher concurrency. API/worker CPU and RSS endpoints are retained; these deterministic-provider observations exclude generation, peak memory, billing, and production capacity claims.",
         techStack: [
           "Python", "FastAPI", "PostgreSQL", "pgvector", "Redis", "BM25", "all-MiniLM-L6-v2", "RRF",
           "Cross-encoder", "Prometheus", "Grafana", "React", "Docker", "GitHub Actions",
         ],
         links: [
-          { label: "GitHub Repository", url: "https://github.com/xmike04/RAG_OPS" },
+          { label: "Evidence and limitations", url: `${EVIDENCE_LEDGER_URL}#ragops-retrieval` },
+        { label: "Mixed-query load matrix", url: "https://github.com/xmike04/RAG_OPS/blob/5549d6792a6f5f4c6126c41deb9f1e16ec5e9264/benchmarks/service/results/load/2026-10-26-local-40389341425/README.md" },
+        { label: "Serving-path baseline", url: "https://github.com/xmike04/RAG_OPS/blob/df271a5bf9adc8c610fa8ba19f18cedea6c7ee5e/benchmarks/service/results/scifact/2026-10-26-local-40380993127/README.md" },
+        { label: "GitHub Repository", url: "https://github.com/xmike04/RAG_OPS" },
           { label: "Retained SciFact Benchmark", url: "https://github.com/xmike04/RAG_OPS/blob/e63df6444a8e411c7b187027dfa230c0d99f0546/benchmarks/retrieval/results/scifact/160ce708a7858938/report.md" },
-          { label: "Retained Load-Test Summary", url: "https://github.com/xmike04/RAG_OPS/blob/e63df6444a8e411c7b187027dfa230c0d99f0546/benchmarks/load/results/summary.json" },
-          { label: "Successful CI Run", url: "https://github.com/xmike04/RAG_OPS/actions/runs/37844921829" },
+          { label: "Historical Single-Query Load Summary", url: "https://github.com/xmike04/RAG_OPS/blob/e63df6444a8e411c7b187027dfa230c0d99f0546/benchmarks/load/results/summary.json" },
+          { label: "Load Artifact Validation CI", url: "https://github.com/xmike04/RAG_OPS/actions/runs/40390183060" },
         ],
         linksNote:
-          "Evidence is pinned to commit e63df6444a8e411c7b187027dfa230c0d99f0546. Production-style describes the architecture and operational discipline, not an enterprise production deployment.",
+          "Each report link pins its own source or artifact commit. Offline quality, serving quality, and load conditions are separate evidence. Production-style describes the architecture and operational discipline, not an enterprise production deployment.",
       } satisfies CaseStudy,
     },
     {
@@ -231,23 +241,31 @@ Key Responsibilities & Learnings:
         sortKey: 202505,
         description: [
             "Led a five-person UNT senior capstone team developing real-time computer vision and interactive visualizations for NASA PACE satellite data.",
-            "Developed gesture-recognition and multi-camera tracking workflows using OpenCV, CUDA, Unity, and ZED stereo cameras.",
-            "Built interactive data visualizations for real-time oceanographic satellite analytics.",
-            "Met regularly with NASA PACE collaborators and contributed to deployment automation and technical infrastructure for the exhibit.",
+            "Co-designed the exhibit’s fuzzy-logic gestures and built the ImGui hardware-setup interface for prerequisite checks and camera configuration.",
+            "Connected and oversaw integration between the gesture-processing system and Unity visualization.",
+            "Met regularly with NASA PACE collaborators; deployment was handled by other team members.",
             "The WAVE installation premiered at the Kennedy Center in Washington, D.C., in March 2025.",
         ],
         detailedContent: `
 WAVE was my senior-year University of North Texas capstone project (Fall 2024–May 2025), developed in collaboration with NASA PACE and the University of Maryland's Immersive Media Design program. As Lead Developer, I guided our five-person student team and met regularly with NASA project collaborators to review requirements and integration progress.
 
-Key Contributions & Technical Details:
-- Computer Vision: Developed gesture-recognition and multi-camera tracking workflows using ZED stereo cameras, OpenCV, and CUDA.
-- Interactive Rendering: Used Unity, C#, React, and TypeScript to help turn oceanographic satellite data into an interactive public exhibit.
-- Deployment Support: Contributed to setup, calibration, and deployment automation for exhibit operators.
-- Team Leadership & Collaboration: Coordinated technical work across a five-person UNT student team and attended recurring meetings with NASA PACE collaborators.
+Mission & Team System:
+The team made PACE ocean science interactive through ZED camera tracking, gesture processing, an OSC data bridge, and Unity visualization.
+
+My Contributions:
+- Gesture Design: Co-designed the exhibit’s gesture vocabulary and rule-based fuzzy-logic scoring; this is shared design credit, not sole authorship of every gesture-processing module.
+- Hardware Setup: Built the ImGui setup interface for checking prerequisites, accessing required software, launching ZED360, and editing camera configuration.
+- Unity Integration: Connected the gesture-processing and Unity sides and oversaw their integration; this does not claim authorship of every rendering or transport component.
+- Leadership: Coordinated the five-person UNT capstone team and recurring NASA PACE collaboration.
+- Scope: I did not handle deployment components.
+
+Technical Boundaries:
+The inspected implementation combines graded pose and motion scores and sends tracking/gesture data to Unity through OSC. The setup interface handles hardware/software readiness and camera configuration. No recognition-accuracy, latency, or setup-time improvement is claimed.
 
 The installation premiered at the Kennedy Center in Washington, D.C., in March 2025. NASA and UMD pages linked below independently document the exhibit and UNT's participation; the Lead Developer scope is Michael's confirmed role.
         `,
         links: [
+          { label: "Contribution scope and verification limits", url: `${EVIDENCE_LEDGER_URL}#nasa-role` },
           { label: "NASA PACE — WAVE exhibit page", url: "https://pace.oceansciences.org/wave_space_to_ocean.htm" },
           { label: "UMD coverage of the Kennedy Center premiere", url: "https://cmns.umd.edu/news-events/news/wave-exhibit-kennedy-center-pace-nasa" },
         ],
@@ -258,28 +276,29 @@ The installation premiered at the Kennedy Center in Washington, D.C., in March 2
             "Real-time gesture recognition from ZED stereo-camera input",
             "Reliable operation across changing exhibit lighting, spacing, and calibration",
             "Interactive rendering of scientific data for a public audience",
-            "Setup and deployment that exhibit operators could repeat consistently",
+            "Make hardware prerequisites and camera configuration visible to exhibit operators",
           ],
           approach:
-            "Designed a modular pipeline combining computer vision, real-time rendering, and gesture recognition. Built gesture interaction using ZED stereo cameras and OpenCV with CUDA acceleration for tracking and interpreting user movement. Developed a configurable ImGui-based setup wizard to automate deployment, calibration, and system validation, reducing friction for non-technical operators. Integrated the full pipeline into Unity to render interactive PACE satellite visualizations across multiple display environments.",
+            "As Lead Developer for the five-person UNT capstone, I co-designed fuzzy-logic gestures, built the ImGui hardware-setup interface, and connected and oversaw Unity integration. The team system uses tracked pose/motion features, fuzzy gesture scores, and an OSC bridge into Unity. The setup wizard checks prerequisites and edits camera configuration. Deployment was handled by other team members.",
           architectureDiagram: 'nasa',
           architectureNote:
-            "ZED stereo camera → OpenCV + CUDA gesture pipeline → Unity rendering engine → ImGui setup wizard for calibration and validation",
+            "Team runtime: ZED tracking → fuzzy pose/motion gesture scores → OSC → Unity → exhibit. My scope: gesture co-design, ImGui setup tooling, and Unity integration oversight. ImGui supports prerequisite/camera configuration outside the live rendering path; deployment was outside my role.",
           metrics: [
             { label: "Leadership scope", baseline: "UNT senior capstone", achieved: "Lead Developer for a 5-person team" },
             { label: "Public exhibition", baseline: "Research-driven prototype", achieved: "Kennedy Center premiere, March 2025" },
-            { label: "Interaction stack", baseline: "Stereo-camera input", achieved: "OpenCV + CUDA gesture recognition in Unity" },
+            { label: "Personal contribution", baseline: "Owner-confirmed scope", achieved: "Fuzzy gesture co-design, ImGui setup, Unity integration oversight" },
           ],
           productImpact:
-            "Helped deliver an interactive installation that made NASA PACE satellite science tangible for a public audience. The WAVE exhibit premiered at the Kennedy Center in Washington, D.C., in March 2025.",
-          techStack: ["C#", "C++", "Python", "Unity", "OpenCV", "ZED SDK", "CUDA", "ImGui", "OpenGL", "React", "TypeScript", "GraphQL"],
+            "Contributed gesture interaction design, hardware setup tooling, and Unity integration oversight to the team’s public science exhibit. WAVE premiered at the Kennedy Center in March 2025; I did not handle deployment.",
+          techStack: ["C#", "Unity", "OpenCV", "ZED SDK", "CUDA", "Fuzzy Logic", "OSC", "ImGui", "OpenGL"],
           links: [
-            { label: "NASA PACE — WAVE exhibit page", url: "https://pace.oceansciences.org/wave_space_to_ocean.htm" },
+            { label: "Contribution scope and verification limits", url: `${EVIDENCE_LEDGER_URL}#nasa-role` },
+          { label: "NASA PACE — WAVE exhibit page", url: "https://pace.oceansciences.org/wave_space_to_ocean.htm" },
             { label: "UMD IMD — project feature", url: "https://imd.umd.edu/articles/wave-new-understanding-about-earths-oceans-and-atmosphere" },
             { label: "UMD CMNS — Kennedy Center premiere", url: "https://cmns.umd.edu/news-events/news/wave-exhibit-kennedy-center-pace-nasa" },
           ],
           linksNote:
-            "This was an academic UNT senior capstone involving regular NASA PACE collaboration, not an employment appointment. Exhibit code belongs to the university/NASA partnership; the NASA and UMD coverage documents the project and UNT involvement rather than individual employment.",
+            "This was an academic UNT senior capstone with regular NASA PACE collaboration. Personal responsibilities are owner-confirmed; private code inspection corroborates the components, not individual authorship. The diagram is an original high-level illustration. No protected project code or third-party asset is republished; NASA/UMD coverage independently documents the exhibit and UNT collaboration.",
         } satisfies CaseStudy,
     },
     {
@@ -295,8 +314,8 @@ The installation premiered at the Kennedy Center in Washington, D.C., in March 2
         "Built and shipped a mobile-first, browser-based life simulation game where players age a character year by year through careers, relationships, finances, and procedurally generated life events.",
         "Separated deterministic game systems from authenticated OpenAI narrative generation behind a Supabase Edge Function.",
         "Validated bounded requests and model output at the server boundary while keeping provider credentials out of the browser.",
-        "Wrote 350+ automated test assertions across the game engine, LLM integration, and market modules using Vitest.",
-        "Live at simlyfe.vercel.app — React 19, Vite, Firebase cloud saves, Supabase Edge Functions.",
+        "Verified 795 Vitest test cases across 39 files in the October 27, 2026 CI run, plus desktop/mobile browser smoke with controlled service responses.",
+        "Public frontend at simlyfe.vercel.app; repaired a demonstrated Nano response-truncation failure, then verified five events through age 10 and same-browser reload.",
       ],
       detailedContent: `
 SIMLYFE is a shipped, browser-based life simulation game — the kind of project that only works when deterministic game systems and non-deterministic LLM output are engineered to coexist.
@@ -305,11 +324,12 @@ Key Contributions & Technical Details:
 - LLM Event Engine: Generated events receive a bounded snapshot of age, career, relationships, and finances so the narrative stays tied to the simulation state.
 - Server-Side Boundary: A Supabase Edge Function verifies Firebase identity and exact origins, enforces durable quotas, validates requests and responses, and owns the OpenAI provider credential.
 - Deterministic Core: Economy, career progression, relationships, and annual simulation live in pure JavaScript modules that can be tested independently of model calls.
-- Test Discipline: 350+ Vitest assertions cover the engine, LLM integration boundaries, and market modules, keeping refactors safe.
-- Shipped Product: Cloud saves via Firebase, mobile-first dark glassmorphism UI, deployed on Vercel.
+- Test Discipline: CI passed 795 Vitest test cases across 39 files on October 27, 2026; cases are counted separately from assertions, with controlled Firebase and event responses.
+- Deployment: Public frontend hosted on Vercel. A diagnosed completion-budget repair gave Nano bounded reasoning/output headroom. The same Guest generated and resolved five consecutive events at ages 6–10, then restored age 10, history and stats after reload. The ledger retains earlier failures and explicit verification limits.
       `,
       links: [
         { label: "Live Demo", url: "https://simlyfe.vercel.app" },
+        { label: "Evidence and limitations", url: `${EVIDENCE_LEDGER_URL}#simlyfe-tests` },
         { label: "GitHub Repository", url: "https://github.com/xmike04/SIMLYFE" },
       ],
       caseStudy: {
@@ -328,19 +348,20 @@ Key Contributions & Technical Details:
         architectureNote:
           "React 19 client → deterministic simulation core ⇄ authenticated Supabase Edge Function → OpenAI event service; Firebase Auth and Firestore provide identity and saves",
         metrics: [
-          { label: "Automated test assertions", baseline: "0", achieved: "350+ (engine, LLM boundary, market)" },
-          { label: "Client-side API key exposure", baseline: "Common naive pattern", achieved: "Zero — server-side proxy" },
-          { label: "Deployment", baseline: "Prototype", achieved: "Live on Vercel with cloud saves" },
+          { label: "Automated test cases", baseline: "CI checked Oct 27, 2026", achieved: "795 Vitest cases across 39 files" },
+          { label: "Provider credential boundary", baseline: "Direct browser calls avoided", achieved: "Authenticated proxy with server-owned OpenAI credentials" },
+          { label: "Live acceptance", baseline: "Bounded original-Guest repair check", achieved: "Five events passed after repair; reload at age 10" },
         ],
         productImpact:
-          "A shipped, publicly playable game demonstrating production LLM integration patterns: structured prompting against live application state, server-side key management, schema validation at the LLM boundary, and a test suite that keeps deterministic and generative layers safely separated.",
+          "A publicly hosted game demonstrating tested LLM integration boundaries: bounded game-state prompting, server-side key management, schema validation, and separation of deterministic and generative layers. After diagnosing a too-small Nano completion ceiling, five consecutive generated events at ages 6–10 resolved successfully and the same life returned after reload. This bounded repair check does not establish a reliability SLO, broad narrative quality, cost or cross-device recovery.",
         techStack: [
           "React 19", "JavaScript", "Vite 8", "Supabase Edge Functions", "Firebase Auth", "Firestore",
           "OpenAI", "Vitest", "Vercel",
         ],
         links: [
           { label: "Live Demo", url: "https://simlyfe.vercel.app" },
-          { label: "GitHub Repository", url: "https://github.com/xmike04/SIMLYFE" },
+          { label: "Evidence and limitations", url: `${EVIDENCE_LEDGER_URL}#simlyfe-tests` },
+        { label: "GitHub Repository", url: "https://github.com/xmike04/SIMLYFE" },
         ],
       } satisfies CaseStudy,
     },
@@ -405,3 +426,4 @@ Key Contributions & Technical Details:
 };
 
 export type ResumeData = typeof resumeData;
+
