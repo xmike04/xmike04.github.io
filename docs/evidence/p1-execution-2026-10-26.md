@@ -1,18 +1,17 @@
 # P1 execution checkpoint — October 26, 2026
 
-Six draft PRs remain unmerged for owner review. SIMLYFE's existing backend was
-resumed and its compatible event function deployed. Following owner-reported
-secure key/model replacement, a separately approved one-request Guest canary
-generated an event, resolved a choice and restored age 2 and the chosen outcome
-after same-browser reload. P1 publication and the remaining verification
-boundaries below are still open; the frontend was not redeployed.
+Six draft PRs remain unmerged for owner review. SIMLYFE's compatible backend is
+live. The original Guest reached age 10 after a demonstrated Nano completion-budget
+repair; all five post-fix events at ages 6–10 resolved and persisted through one
+same-browser reload. Earlier errors remain recorded. P1 publication and the
+verification boundaries below remain open; the frontend was not redeployed.
 
 | Work | Review PR | Verified evidence |
 | --- | --- | --- |
 | RAGOps architecture and claim alignment | [RAG_OPS #2](https://github.com/xmike04/RAG_OPS/pull/2) | Head 99e30869d3bf91b42d20aeef7980165793a3f14b; [CI 40390346369](https://github.com/xmike04/RAG_OPS/actions/runs/40390346369) passed |
 | RAGOps service harness and full SciFact baseline | [RAG_OPS #3](https://github.com/xmike04/RAG_OPS/pull/3) | Head df271a5bf9adc8c610fa8ba19f18cedea6c7ee5e; [CI 40383317747](https://github.com/xmike04/RAG_OPS/actions/runs/40383317747) passed; measured source 6a07b41aadbb326eee7c9031a15923246103c2f7 |
 | RAGOps mixed-query load and process resources | [RAG_OPS #4](https://github.com/xmike04/RAG_OPS/pull/4) | Stacked on #3; head 5549d6792a6f5f4c6126c41deb9f1e16ec5e9264; [CI 40390183060](https://github.com/xmike04/RAG_OPS/actions/runs/40390183060) passed; measured source fa5b6fae567d3863eb26af68bd908fc4c8c8f383 |
-| SIMLYFE application CI and operations evidence | [SIMLYFE #11](https://github.com/xmike04/SIMLYFE/pull/11) | Tested head 154e581082482e640224e6d27d7f11dc2f39dac8 /CI 40444810716 passed; [successful one-request canary](https://github.com/xmike04/SIMLYFE/blob/bf5a2389dce49cb73e83ae5741917ac9f5da3f56/docs/evidence/production-nano-canary-2026-10-26.json) at evidence head bf5a2389dce49cb73e83ae5741917ac9f5da3f56 |
+| SIMLYFE application CI and operations evidence | [SIMLYFE #11](https://github.com/xmike04/SIMLYFE/pull/11) | Tested head efff844e0c65a6f3ed4e2bf3fd61d96a61da3d79 /CI 40454214650 passed; [successful one-request canary](https://github.com/xmike04/SIMLYFE/blob/bf5a2389dce49cb73e83ae5741917ac9f5da3f56/docs/evidence/production-nano-canary-2026-10-26.json) at evidence head bf5a2389dce49cb73e83ae5741917ac9f5da3f56 |
 | Portfolio evidence register and navigation | [Portfolio #6](https://github.com/xmike04/xmike04.github.io/pull/6) | Previous head b9e5c4ad902939d171e76c4b6faeb743425f2997 passed CI 40440761873; updated bounded canary evidence is checked by this PR's quality workflow |
 | GitHub profile evidence navigation | [Profile #3](https://github.com/xmike04/xmike04/pull/3) | Documentation-only; immutable report/ledger links; no application test claim |
 
@@ -70,17 +69,16 @@ The README surfaces CI and current deployment evidence.
 
 ## Remaining acceptance gates
 
-- **SIMLYFE remaining boundaries:** the new single-request Guest journey passed:
-  generated event, choice resolution and same-browser reload at age 2 with the
-  outcome and 95% happiness intact. Function v17 matches reviewed source and
-  preserves the separately checked auth/origin boundaries.
-  [Successful canary and limits](https://github.com/xmike04/SIMLYFE/blob/bf5a2389dce49cb73e83ae5741917ac9f5da3f56/docs/operations.md#october-26-2026-replacement-key-canary).
-  API-reported model, usage/cost and server latency were not independently
-  observed; configuration is owner-reported. Fresh frontend source mapping,
-  independent cloud acknowledgment, cross-device recovery, current native
-  gameplay and deployed Firestore rules remain unverified. One short infancy
-  event is not a broad-quality or reliability benchmark. The earlier failed
-  canary's specific provider cause remains unproved.
+- **SIMLYFE remaining boundaries:** the original Guest reached age 10. The
+  instrumented age-5 failure proved output truncation under the 200-token total
+  Quick ceiling. Nano now has a bounded 1,024-token ceiling, with validation and
+  auth/quota behavior intact. Five post-fix events (ages 6–10) resolved successfully;
+  reload restored age 10, complete history and stats.
+  [Repair evidence and limits](https://github.com/xmike04/SIMLYFE/blob/d851546883a84bee28ac0c0dcd0f2a44eef7d20b/docs/operations.md#original-guest-reached-age-10-after-the-repair).
+  API-reported model, tokens/cost, independent cloud acknowledgment, cross-device
+  recovery, current native gameplay, frontend commit mapping and Firestore rules
+  remain unverified. Five successes are not an SLO. Some choices had awkward or
+  mixed-language text. Earlier uninstrumented failures are not reclassified.
 - **NASA attribution resolved:** owner confirmed shared fuzzy-logic gesture design,
   ImGui hardware-setup interface authorship, and Unity connection/integration
   oversight; deployment was outside his role. Private February 11, 2025 source
@@ -96,7 +94,7 @@ The README surfaces CI and current deployment evidence.
   RAG_OPS #3 before its stacked #4. Canonical sites/profile are not yet updated.
   GitHub pins/About cleanup, full visual production review, and post-publication
   public-link checks remain. The cloud browser completed the approved SIMLYFE
-  replacement-key canary successfully within its one-request scope; no live RAG backend is required.
+  original Guest journey through age 10 after the completion-budget repair; no live RAG backend is required.
 - **Security review boundary:** bounded tracked-file and deployed-function
   literal checks were performed; complete Git history/secret/security-alert
   auditing is not claimed. Post-restore quota metadata confirms forced RLS and
@@ -128,7 +126,7 @@ as a verified full installer. Original source-derived diagram labels distinguish
 runtime OSC flow from setup.
 
 The live backend was resumed within the owner's confirmed intended availability.
-Two separately approved Guest canaries were performed: the earlier request
+The initial two separately approved Guest canaries were performed: the earlier request
 failed upstream; the replacement-key/model follow-up generated a real event.
 Each used exactly one request with no retry. No alternate identity, static
 replacement or indirect invocation bypassed either request limit.
@@ -146,3 +144,23 @@ Actual API-reported model, token/cost metadata and independent cloud
 acknowledgment were not visible. The owner reported saving gpt-5-nano and the
 source default matches; no secret value was read. No additional paid request
 is authorized by these observations.
+
+## Completion-budget repair and original Guest age 10
+
+The owner subsequently asked to age the same life to 10 and selected investigation
+after an age-3 rejection. A safe diagnostic log exposed the age-5 rejection as
+incomplete output (finish_reason length). The repaired source
+`efff844e0c65a6f3ed4e2bf3fd61d96a61da3d79` passed full application CI
+[40454214650](https://github.com/xmike04/SIMLYFE/actions/runs/40454214650)
+and independent review, then deployed as v19 with matching readback.
+
+All five remaining events, ages 6–10, generated and resolved successfully. One
+reload restored the original Guest at age 10 with full history and stats.
+[Machine-readable repair receipt](https://github.com/xmike04/SIMLYFE/blob/d851546883a84bee28ac0c0dcd0f2a44eef7d20b/docs/evidence/production-age10-repair-2026-10-27.json) retains the exact sequence:
+eight age-ups total, two pre-fix errors, no retries, and five post-fix successes.
+No new identity or extra age-up was used for verification. A separately proposed
+new-QA-identity/12-call probe was rejected by automatic review and abandoned;
+the already-approved original Guest provided the live proof.
+
+Some accepted choice wording remains rough; output validity and successful
+progression do not establish narrative polish or a reliability SLO.

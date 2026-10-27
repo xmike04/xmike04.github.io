@@ -315,7 +315,7 @@ The installation premiered at the Kennedy Center in Washington, D.C., in March 2
         "Separated deterministic game systems from authenticated OpenAI narrative generation behind a Supabase Edge Function.",
         "Validated bounded requests and model output at the server boundary while keeping provider credentials out of the browser.",
         "Verified 789 Vitest test cases across 38 files in the October 26, 2026 CI run, plus desktop/mobile browser smoke with controlled service responses.",
-        "Public frontend at simlyfe.vercel.app; one approved Guest canary generated an event, resolved a choice and restored age 2 with the chosen outcome after reload.",
+        "Public frontend at simlyfe.vercel.app; repaired a demonstrated Nano response-truncation failure, then verified five events through age 10 and same-browser reload.",
       ],
       detailedContent: `
 SIMLYFE is a shipped, browser-based life simulation game — the kind of project that only works when deterministic game systems and non-deterministic LLM output are engineered to coexist.
@@ -325,7 +325,7 @@ Key Contributions & Technical Details:
 - Server-Side Boundary: A Supabase Edge Function verifies Firebase identity and exact origins, enforces durable quotas, validates requests and responses, and owns the OpenAI provider credential.
 - Deterministic Core: Economy, career progression, relationships, and annual simulation live in pure JavaScript modules that can be tested independently of model calls.
 - Test Discipline: CI passed 789 Vitest test cases across 38 files on October 26, 2026; cases are counted separately from assertions, with controlled Firebase and event responses.
-- Deployment: Public frontend hosted on Vercel. Following secure key/model replacement and compatible function deployment, one approved Guest canary generated an event, resolved a choice and restored age 2, its chosen outcome and 95% happiness after same-browser reload. The ledger retains the earlier failed request, source correspondence and limits.
+- Deployment: Public frontend hosted on Vercel. A diagnosed completion-budget repair gave Nano bounded reasoning/output headroom. The same Guest generated and resolved five consecutive events at ages 6–10, then restored age 10, history and stats after reload. The ledger retains earlier failures and explicit verification limits.
       `,
       links: [
         { label: "Live Demo", url: "https://simlyfe.vercel.app" },
@@ -350,10 +350,10 @@ Key Contributions & Technical Details:
         metrics: [
           { label: "Automated test cases", baseline: "CI checked Oct 26, 2026", achieved: "789 Vitest cases across 38 files" },
           { label: "Provider credential boundary", baseline: "Direct browser calls avoided", achieved: "Authenticated proxy with server-owned OpenAI credentials" },
-          { label: "Live acceptance", baseline: "Guest canary, Oct 26, 2026", achieved: "Generated event, choice and reload verified" },
+          { label: "Live acceptance", baseline: "Bounded original-Guest repair check", achieved: "Five events passed after repair; reload at age 10" },
         ],
         productImpact:
-          "A publicly hosted game demonstrating tested LLM integration boundaries: bounded game-state prompting, server-side key management, schema validation, and separation of deterministic and generative layers. A separately approved October 26 Guest canary generated an event, resolved a choice and restored the same life and outcome after reload. This is one observed flow; broader reliability, cost and cross-device recovery remain unmeasured.",
+          "A publicly hosted game demonstrating tested LLM integration boundaries: bounded game-state prompting, server-side key management, schema validation, and separation of deterministic and generative layers. After diagnosing a too-small Nano completion ceiling, five consecutive generated events at ages 6–10 resolved successfully and the same life returned after reload. This bounded repair check does not establish a reliability SLO, broad narrative quality, cost or cross-device recovery.",
         techStack: [
           "React 19", "JavaScript", "Vite 8", "Supabase Edge Functions", "Firebase Auth", "Firestore",
           "OpenAI", "Vitest", "Vercel",
