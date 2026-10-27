@@ -1,0 +1,42 @@
+{
+  "observedAt": "2026-10-27T16:42:59.583706+00:00",
+  "billableProviderRequests": 0,
+  "newIdentities": 0,
+  "manifest": {
+    "url": "https://simlyfe.vercel.app/build-info.json",
+    "status": 200,
+    "body": {
+      "schemaVersion": 1,
+      "commitSha": "0754a2140c109371fc9a62cdef5baac1a459b207"
+    }
+  },
+  "frontend": {
+    "url": "https://simlyfe.vercel.app",
+    "status": 200,
+    "assetModules": [
+      "/assets/index-BBuWmY7U.js"
+    ]
+  },
+  "portfolio": {
+    "url": "https://michaelmportfolio.org",
+    "status": 200,
+    "has795": true,
+    "hasLedger": true,
+    "has350": true,
+    "hasMixedLoad": true
+  },
+  "githubStatus": {
+    "commitSha": "0754a2140c109371fc9a62cdef5baac1a459b207",
+    "context": "Vercel",
+    "state": "success",
+    "statusId": 57386424944,
+    "updatedAt": "2026-10-27T16:35:47Z",
+    "targetUrl": "https://vercel.com/xmike04s-projects/simlyfe/G6U8oNfyB86s2b2jdcA7H2wESSvU"
+  },
+  "limits": [
+    "HTTP GET and GitHub status observations only; no new gameplay or provider call.",
+    "The original age-10 Guest canary remains historical v19 evidence.",
+    "A matching revision marker proves frontend release attribution, not narrative quality, cloud acknowledgment or a reliability SLO.",
+    "Portfolio flags record the initial automatic rollout before the hardcoded-panel/social-image correction."
+  ]
+}

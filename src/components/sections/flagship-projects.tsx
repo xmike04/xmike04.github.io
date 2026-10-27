@@ -6,7 +6,7 @@ import { RevealGroup, RevealItem } from '@/components/motion/reveal';
 import { SpotlightCard } from '@/components/motion/spotlight-card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { resumeData, type ProjectItem } from '@/lib/resume-data';
+import { EVIDENCE_LEDGER_URL, resumeData, type ProjectItem } from '@/lib/resume-data';
 import { cn } from '@/lib/utils';
 
 /** Trim at a word boundary — never mid-word — and close with an ellipsis. */
@@ -21,11 +21,12 @@ function trimAtWord(text: string, max = 220): string {
 /** Per-project proof panel: honest metrics only, straight from resume-data. */
 function MetricHighlight({ project }: { project: ProjectItem }) {
   if (project.id === 'ragops') {
+    const loadMetric = project.caseStudy?.metrics.find((metric) => metric.label === 'Mixed-query load, local providers');
     return (
       <div className="flex h-full flex-col justify-center gap-4 rounded-xl border border-primary/30 bg-primary/[0.06] p-6">
         <span className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 font-mono text-xs font-medium text-primary">
           <Star className="h-3.5 w-3.5 fill-current" aria-hidden="true" />
-          RRF led the held-out benchmark
+          RRF led the offline SciFact benchmark
         </span>
         <div className="grid grid-cols-2 gap-3">
           <div className="rounded-lg border border-border/60 bg-background/60 p-3">
@@ -42,7 +43,7 @@ function MetricHighlight({ project }: { project: ProjectItem }) {
             <span className="font-mono text-primary">→</span> 5,183 SciFact documents · 300 held-out queries
           </li>
           <li className="flex items-baseline gap-2">
-            <span className="font-mono text-primary">→</span> 24.56 ms p50 · 31.75 ms p95 · 9,234 local-provider requests
+            <span className="font-mono text-primary">→</span> {loadMetric?.baseline} · {loadMetric?.achieved} · local providers
           </li>
           <li className="flex items-baseline gap-2">
             <span className="font-mono text-primary">→</span> Cross-encoder retained as a slower, lower-quality negative result
@@ -54,6 +55,9 @@ function MetricHighlight({ project }: { project: ProjectItem }) {
             Repository
           </a>
         </Button>
+        <a href={`${EVIDENCE_LEDGER_URL}#ragops-retrieval`} className="text-sm text-primary underline underline-offset-4" target="_blank" rel="noopener noreferrer">
+          Sources, conditions and limits
+        </a>
       </div>
     );
   }
@@ -81,6 +85,7 @@ function MetricHighlight({ project }: { project: ProjectItem }) {
   }
 
   if (project.id === 'simlyfe') {
+    const testStat = resumeData.heroStats.find((stat) => stat.evidenceId === 'simlyfe-tests');
     return (
     <div className="flex h-full flex-col justify-center gap-4 rounded-xl border border-border/60 bg-background/40 p-6">
       <span className="inline-flex w-fit items-center gap-2 rounded-full border border-border/60 bg-background/60 px-3 py-1 font-mono text-xs text-muted-foreground">
@@ -104,7 +109,10 @@ function MetricHighlight({ project }: { project: ProjectItem }) {
           </a>
         </Button>
       </div>
-      <p className="font-mono text-xs text-muted-foreground">350+ automated test assertions · Vitest</p>
+      <p className="font-mono text-xs text-muted-foreground">{testStat?.value} Vitest test cases · {testStat?.sub}</p>
+      <a href={`${EVIDENCE_LEDGER_URL}#simlyfe-tests`} className="text-sm text-primary underline underline-offset-4" target="_blank" rel="noopener noreferrer">
+        Sources, conditions and limits
+      </a>
     </div>
     );
   }
