@@ -91,7 +91,7 @@ export const resumeData = {
     "Applied AI and machine learning engineer who builds measurable systems across retrieval, evaluation, computer vision, and AI products. Built RAGOps with reproducible SciFact benchmarking and local-provider load testing; brings complementary 2025 AI/ML product internship experience, NASA PACE computer vision leadership, and a shipped AI-assisted life simulator.",
   heroStats: [
     { value: 5183, label: "Documents benchmarked", sub: "Offline SciFact retrieval evaluation", evidenceId: "ragops-retrieval" },
-    { value: 789, label: "Vitest test cases", sub: "SIMLYFE CI · checked Oct 26, 2026", evidenceId: "simlyfe-tests" },
+    { value: 795, label: "Vitest test cases", sub: "SIMLYFE CI · checked Oct 27, 2026", evidenceId: "simlyfe-tests" },
     { value: 5, label: "Person team led", sub: "NASA PACE capstone exhibit", evidenceId: "nasa-role" },
     { value: 2027, label: "M.S. AI", sub: "expected summer — UNT, ML concentration", evidenceId: "education" },
   ] as HeroStat[],
@@ -314,7 +314,7 @@ The installation premiered at the Kennedy Center in Washington, D.C., in March 2
         "Built and shipped a mobile-first, browser-based life simulation game where players age a character year by year through careers, relationships, finances, and procedurally generated life events.",
         "Separated deterministic game systems from authenticated OpenAI narrative generation behind a Supabase Edge Function.",
         "Validated bounded requests and model output at the server boundary while keeping provider credentials out of the browser.",
-        "Verified 789 Vitest test cases across 38 files in the October 26, 2026 CI run, plus desktop/mobile browser smoke with controlled service responses.",
+        "Verified 795 Vitest test cases across 39 files in the October 27, 2026 CI run, plus desktop/mobile browser smoke with controlled service responses.",
         "Public frontend at simlyfe.vercel.app; repaired a demonstrated Nano response-truncation failure, then verified five events through age 10 and same-browser reload.",
       ],
       detailedContent: `
@@ -324,7 +324,7 @@ Key Contributions & Technical Details:
 - LLM Event Engine: Generated events receive a bounded snapshot of age, career, relationships, and finances so the narrative stays tied to the simulation state.
 - Server-Side Boundary: A Supabase Edge Function verifies Firebase identity and exact origins, enforces durable quotas, validates requests and responses, and owns the OpenAI provider credential.
 - Deterministic Core: Economy, career progression, relationships, and annual simulation live in pure JavaScript modules that can be tested independently of model calls.
-- Test Discipline: CI passed 789 Vitest test cases across 38 files on October 26, 2026; cases are counted separately from assertions, with controlled Firebase and event responses.
+- Test Discipline: CI passed 795 Vitest test cases across 39 files on October 27, 2026; cases are counted separately from assertions, with controlled Firebase and event responses.
 - Deployment: Public frontend hosted on Vercel. A diagnosed completion-budget repair gave Nano bounded reasoning/output headroom. The same Guest generated and resolved five consecutive events at ages 6–10, then restored age 10, history and stats after reload. The ledger retains earlier failures and explicit verification limits.
       `,
       links: [
@@ -348,7 +348,7 @@ Key Contributions & Technical Details:
         architectureNote:
           "React 19 client → deterministic simulation core ⇄ authenticated Supabase Edge Function → OpenAI event service; Firebase Auth and Firestore provide identity and saves",
         metrics: [
-          { label: "Automated test cases", baseline: "CI checked Oct 26, 2026", achieved: "789 Vitest cases across 38 files" },
+          { label: "Automated test cases", baseline: "CI checked Oct 27, 2026", achieved: "795 Vitest cases across 39 files" },
           { label: "Provider credential boundary", baseline: "Direct browser calls avoided", achieved: "Authenticated proxy with server-owned OpenAI credentials" },
           { label: "Live acceptance", baseline: "Bounded original-Guest repair check", achieved: "Five events passed after repair; reload at age 10" },
         ],
@@ -426,3 +426,4 @@ Key Contributions & Technical Details:
 };
 
 export type ResumeData = typeof resumeData;
+

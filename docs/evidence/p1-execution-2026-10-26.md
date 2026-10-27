@@ -1,17 +1,25 @@
-# P1 execution checkpoint — October 26, 2026
+# P1 execution checkpoint — October 27, 2026
 
-Six draft PRs remain unmerged for owner review. SIMLYFE's compatible backend is
-live. The original Guest reached age 10 after a demonstrated Nano completion-budget
+The objective remains interview-proof engineering evidence: reproducible results,
+inspectable source boundaries, a verified product journey, and precise personal
+attribution. RAGOps PRs #3, #4 and #2 have now been integrated, preserving the
+measured-source history. The final combined main source
+`80154be53538d072f0509b5db747ee01f41185e5` passed all four quality jobs in
+[CI 40540427567](https://github.com/xmike04/RAG_OPS/actions/runs/40540427567).
+
+SIMLYFE's original Guest reached age 10 after a demonstrated Nano completion-budget
 repair; all five post-fix events at ages 6–10 resolved and persisted through one
-same-browser reload. Earlier errors remain recorded. P1 publication and the
-verification boundaries below remain open; the frontend was not redeployed.
+same-browser reload. Earlier errors remain recorded. Subsequent request-contract
+and build-provenance checks are separately scoped below. Canonical publication,
+deployment attribution and repository administration remain acceptance gates;
+source integration alone is not a claim that the public frontend was redeployed.
 
 | Work | Review PR | Verified evidence |
 | --- | --- | --- |
 | RAGOps architecture and claim alignment | [RAG_OPS #2](https://github.com/xmike04/RAG_OPS/pull/2) | Head 99e30869d3bf91b42d20aeef7980165793a3f14b; [CI 40390346369](https://github.com/xmike04/RAG_OPS/actions/runs/40390346369) passed |
 | RAGOps service harness and full SciFact baseline | [RAG_OPS #3](https://github.com/xmike04/RAG_OPS/pull/3) | Head df271a5bf9adc8c610fa8ba19f18cedea6c7ee5e; [CI 40383317747](https://github.com/xmike04/RAG_OPS/actions/runs/40383317747) passed; measured source 6a07b41aadbb326eee7c9031a15923246103c2f7 |
 | RAGOps mixed-query load and process resources | [RAG_OPS #4](https://github.com/xmike04/RAG_OPS/pull/4) | Stacked on #3; head 5549d6792a6f5f4c6126c41deb9f1e16ec5e9264; [CI 40390183060](https://github.com/xmike04/RAG_OPS/actions/runs/40390183060) passed; measured source fa5b6fae567d3863eb26af68bd908fc4c8c8f383 |
-| SIMLYFE application CI and operations evidence | [SIMLYFE #11](https://github.com/xmike04/SIMLYFE/pull/11) | Tested head efff844e0c65a6f3ed4e2bf3fd61d96a61da3d79 /CI 40454214650 passed; [successful one-request canary](https://github.com/xmike04/SIMLYFE/blob/bf5a2389dce49cb73e83ae5741917ac9f5da3f56/docs/evidence/production-nano-canary-2026-10-26.json) at evidence head bf5a2389dce49cb73e83ae5741917ac9f5da3f56 |
+| SIMLYFE application CI and operations evidence | [SIMLYFE #11](https://github.com/xmike04/SIMLYFE/pull/11) | Tested source b03d49d9f6d4c5829f2f4ae184f796cfd9a386c4 /[CI 40541646056](https://github.com/xmike04/SIMLYFE/actions/runs/40541646056) passed; [successful one-request canary](https://github.com/xmike04/SIMLYFE/blob/bf5a2389dce49cb73e83ae5741917ac9f5da3f56/docs/evidence/production-nano-canary-2026-10-26.json) at evidence head bf5a2389dce49cb73e83ae5741917ac9f5da3f56 |
 | Portfolio evidence register and navigation | [Portfolio #6](https://github.com/xmike04/xmike04.github.io/pull/6) | Previous head b9e5c4ad902939d171e76c4b6faeb743425f2997 passed CI 40440761873; updated bounded canary evidence is checked by this PR's quality workflow |
 | GitHub profile evidence navigation | [Profile #3](https://github.com/xmike04/xmike04/pull/3) | Documentation-only; immutable report/ledger links; no application test claim |
 
@@ -42,7 +50,7 @@ verify counter deltas. The failed collection remains retained and invalid.
 Both collectors are now manual-only and read-only, with temporary artifact
 publishers removed.
 
-SIMLYFE's full CI passed 789 Vitest test cases /38 files, lint, build, docs, and
+SIMLYFE's October 27 full CI passed 795 Vitest test cases /39 files, lint, build, docs, and
 controlled desktop/mobile browser flows. Counts are cases, not assertions.
 Mocks do not establish production authorization or provider behavior.
 The README surfaces CI and current deployment evidence.
@@ -63,7 +71,7 @@ The README surfaces CI and current deployment evidence.
   and warmup traceability were corrected with appropriate tests.
 - The final load head passed 67 backend and 49 cross-component tests, including
   independent raw checksum/count/quantile/CPU/PID-counter recomputation.
-- The current RAGOps Pages workflow run 39512640946 built successfully at main
+- Historical RAGOps Pages workflow run 39512640946 built successfully at main
   6269fb009a9910a846fc1a55be3fa8ee57c1f88d but skipped deployment. Build success is
   not a hosted-demo claim. Screenshots/video remain the demonstrated entry points.
 
@@ -87,26 +95,37 @@ The README surfaces CI and current deployment evidence.
   Suitable organization images are authorized by the owner, but the linked
   organization repositories are inaccessible and inspected images are Git LFS
   references. No protected code or third-party image was republished.
-- **Repository policy:** SIMLYFE main has no protection/rulesets. CI can report
-  failure but cannot enforce merge blocking without an owner policy decision.
-  License choice is also the owner's; no reuse rights were granted automatically.
-- **Publication and navigation:** review/merge the concrete PRs, integrating
-  RAG_OPS #3 before its stacked #4. Canonical sites/profile are not yet updated.
-  GitHub pins/About cleanup, full visual production review, and post-publication
-  public-link checks remain. The cloud browser completed the approved SIMLYFE
-  original Guest journey through age 10 after the completion-budget repair; no live RAG backend is required.
+- **Repository policy:** the inspected SIMLYFE main has no protection/rulesets.
+  The exact required-check policy is prepared, but authenticated administration
+  is still needed to save and verify enforcement. CI success alone does not
+  establish merge blocking. SIMLYFE is described as publicly viewable source;
+  no open-source reuse grant was added.
+- **Publication and navigation:** RAG_OPS #3, #4 and #2 are merged with passing
+  combined CI. Remaining SIMLYFE, portfolio and profile integration is guarded
+  by their final source checks. At the publication inspection, the canonical
+  portfolio and public profile still showed the earlier P0 copy; a merge or
+  successful build does not independently prove the live site changed. Public
+  GitHub pins already show exactly RAGOps, SIMLYFE and the portfolio source.
+  SIMLYFE About still has historical 350+ assertion wording; authenticated
+  editing and post-publication visual/link checks remain. No live RAG backend
+  is required for these evidence goals.
 - **Security review boundary:** bounded tracked-file and deployed-function
   literal checks were performed; complete Git history/secret/security-alert
   auditing is not claimed. Post-restore quota metadata confirms forced RLS and
-  service-role-only RPC execution. An advisor flags broad EXECUTE grants on the
-  separate automatic-RLS event-trigger helper; its type/definition were inspected
-  without changing permissions, and grant review remains documented. Owner
-  dashboard checks remain necessary where tools cannot inspect alerts.
+  service-role-only RPC execution. An advisor previously flagged broad EXECUTE
+  grants on the separate automatic-RLS event-trigger helper. Its excess grants have now
+  been narrowed to postgres only, with automatic-RLS behavior verified and no
+  remaining WARN findings in a fresh advisor read. This is a bounded privilege
+  repair, not a demonstrated RPC exploit or a complete audit.
+  [Policy, SQL and inspection limits](https://github.com/xmike04/SIMLYFE/blob/ca3c1c371c1c482af6a231cf3a1baca3aeec577b/docs/evidence/repository-policy-2026-10-27.md).
+  GitHub alert counts remain unavailable, not zero; authenticated administration
+  is still needed for required CI checks and the About correction. Public source
+  remains publicly viewable without adding an open-source reuse license.
 
 ## Evidence decisions
 
 Historical results remain intact and explicitly scoped. The single-query load
-headline is superseded in draft presentation by the qualified mixed-query matrix.
+headline is superseded in the evidence presentation by the qualified mixed-query matrix.
 No important improvement is inferred from unmatched configurations, ordered load
 conditions, or tiny cold samples. Bootstrap tooling supports paired comparisons
 when appropriate; no positive service-quality improvement is asserted here.
@@ -164,3 +183,23 @@ the already-approved original Guest provided the live proof.
 
 Some accepted choice wording remains rough; output validity and successful
 progression do not establish narrative polish or a reliability SLO.
+
+
+## Subsequent output-contract and provenance work
+
+Function v20 read back exactly against source
+`ca3c1c371c1c482af6a231cf3a1baca3aeec577b` (bundle SHA-256
+`92236048ca835a19998d5a0281694d6dae737c4b65c390ed084208fdeae3b9f0`).
+The provider contract now requests short complete English action labels;
+request regression coverage exercises Quick and Narrative modes. The five
+historical bad labels measured 80, 80, 79, 80 and 80 characters. Their decoding
+mechanism was not independently observed, and the parser does not truncate text.
+Nonbillable probes returned web/native OPTIONS 204, missing identity 401 and
+unlisted origin 403. No extra paid provider request or identity was used.
+[Contract deployment receipt and limits](https://github.com/xmike04/SIMLYFE/blob/b03d49d9f6d4c5829f2f4ae184f796cfd9a386c4/docs/evidence/production-choice-contract-2026-10-27.json).
+
+Builds now emit a validated Git revision marker, tested with full and short
+revisions, precedence, invalid input and missing metadata. This prepares a
+commit-specific deployment check; the marker's existence in a local/CI build
+is not proof that Vercel published it. The Vercel preview status remained
+Canceled from the Dashboard during this inspection.
