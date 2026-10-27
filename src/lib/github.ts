@@ -1,4 +1,5 @@
 import 'server-only';
+import { resumeData } from './resume-data';
 /**
  * Slim GitHub REST client for the homepage showcase.
  * Server-only: called from the GithubShowcase server component with 6h ISR.
@@ -29,6 +30,16 @@ export interface SlimRepo {
 const FEATURED_REPOS = ['RAG_OPS', 'SIMLYFE', 'xmike04.github.io'] as const;
 const FEATURED_SET = new Set<string>(FEATURED_REPOS);
 
+// GitHub owns repository activity metadata. Public technical descriptions come
+// from the same local editorial data as the case studies, not mutable About text.
+const CURATED_DESCRIPTIONS: Record<typeof FEATURED_REPOS[number], string> = {
+  RAG_OPS: resumeData.projects.find((project) => project.id === 'ragops')?.description[0]
+    ?? 'Retrieval engineering platform with inspectable evaluation evidence.',
+  SIMLYFE: resumeData.projects.find((project) => project.id === 'simlyfe')?.description[0]
+    ?? 'AI-assisted life simulator with inspectable implementation evidence.',
+  'xmike04.github.io': 'Applied AI and ML portfolio with evidence-backed case studies and interactive in-browser demonstrations.',
+};
+
 /**
  * Curated original, public repos for github.com/xmike04.
  * Revalidates metadata every 6 hours; throws on network/API failure so callers
@@ -53,7 +64,7 @@ export async function getRecentRepos(): Promise<SlimRepo[]> {
       id: repo.id,
       name: repo.name,
       url: repo.html_url,
-      description: repo.description,
+      description: CURATED_DESCRIPTIONS[repo.name as typeof FEATURED_REPOS[number]],
       language: repo.language,
       stars: repo.stargazers_count,
       pushedAt: repo.pushed_at,
