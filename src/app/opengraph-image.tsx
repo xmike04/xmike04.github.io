@@ -1,12 +1,15 @@
 import { ImageResponse } from 'next/og';
+import { resumeData } from '@/lib/resume-data';
 
 export const alt = 'Michael E. Marin — applied AI and machine learning engineer';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
+const testStat = resumeData.heroStats.find((stat) => stat.evidenceId === 'simlyfe-tests');
+
 const stats = [
   { value: 'NASA PACE', label: 'Kennedy Center exhibit' },
-  { value: '350+', label: 'test assertions' },
+  { value: String(testStat?.value ?? 'CI'), label: 'Vitest cases' },
   { value: 'SIMLYFE', label: 'shipped AI product' },
   { value: 'Summer 2027', label: 'M.S. AI expected' },
 ];

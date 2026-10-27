@@ -10,9 +10,10 @@ measured-source history. The final combined main source
 SIMLYFE's original Guest reached age 10 after a demonstrated Nano completion-budget
 repair; all five post-fix events at ages 6–10 resolved and persisted through one
 same-browser reload. Earlier errors remain recorded. Subsequent request-contract
-and build-provenance checks are separately scoped below. Canonical publication,
-deployment attribution and repository administration remain acceptance gates;
-source integration alone is not a claim that the public frontend was redeployed.
+and build-provenance checks are separately scoped below. All six original PRs have now been integrated. SIMLYFE frontend release
+attribution and the first canonical portfolio rollout were observed separately
+from the source merges. Repository administration remains an access gate, and
+the focused public-surface correction below still requires its own rollout check.
 
 | Work | Review PR | Verified evidence |
 | --- | --- | --- |
@@ -84,8 +85,9 @@ The README surfaces CI and current deployment evidence.
   reload restored age 10, complete history and stats.
   [Repair evidence and limits](https://github.com/xmike04/SIMLYFE/blob/d851546883a84bee28ac0c0dcd0f2a44eef7d20b/docs/operations.md#original-guest-reached-age-10-after-the-repair).
   API-reported model, tokens/cost, independent cloud acknowledgment, cross-device
-  recovery, current native gameplay, frontend commit mapping and Firestore rules
-  remain unverified. Five successes are not an SLO. Some choices had awkward or
+  recovery, current native gameplay and Firestore rules remain unverified.
+  Frontend commit mapping was subsequently proved for 0754a214 by its live
+  revision marker and successful Vercel status; no new gameplay call was used. Five successes are not an SLO. Some choices had awkward or
   mixed-language text. Earlier uninstrumented failures are not reclassified.
 - **NASA attribution resolved:** owner confirmed shared fuzzy-logic gesture design,
   ImGui hardware-setup interface authorship, and Unity connection/integration
@@ -100,15 +102,18 @@ The README surfaces CI and current deployment evidence.
   is still needed to save and verify enforcement. CI success alone does not
   establish merge blocking. SIMLYFE is described as publicly viewable source;
   no open-source reuse grant was added.
-- **Publication and navigation:** RAG_OPS #3, #4 and #2 are merged with passing
-  combined CI. Remaining SIMLYFE, portfolio and profile integration is guarded
-  by their final source checks. At the publication inspection, the canonical
-  portfolio and public profile still showed the earlier P0 copy; a merge or
-  successful build does not independently prove the live site changed. Public
-  GitHub pins already show exactly RAGOps, SIMLYFE and the portfolio source.
-  SIMLYFE About still has historical 350+ assertion wording; authenticated
-  editing and post-publication visual/link checks remain. No live RAG backend
-  is required for these evidence goals.
+- **Publication and navigation:** all six original PRs are merged, including
+  portfolio main 1b971aab2b95faad6df1e8f19f7b3e5e95b9c593 and profile main
+  bc9cb7b24124ad8657b1ee1234d80d2f6731b8c3. At 16:42:59 UTC the canonical
+  portfolio returned the new 795-case claim, ledger and mixed-load data, but
+  still exposed old 350+ assertions in independently hardcoded flagship/social
+  surfaces. This follow-up removes those duplicates, reads existing canonical
+  data, and expands the audit to every public TS/TSX source surface. The audit
+  failed on the old real repository and passed after the correction. Its final
+  production rollout must be checked independently. Public GitHub pins already
+  show exactly RAGOps, SIMLYFE and the portfolio source. SIMLYFE About still has
+  historical 350+ assertion wording; that separate authenticated metadata edit
+  remains blocked. No live RAG backend is required for these evidence goals.
 - **Security review boundary:** bounded tracked-file and deployed-function
   literal checks were performed; complete Git history/secret/security-alert
   auditing is not claimed. Post-restore quota metadata confirms forced RLS and
@@ -201,5 +206,9 @@ unlisted origin 403. No extra paid provider request or identity was used.
 Builds now emit a validated Git revision marker, tested with full and short
 revisions, precedence, invalid input and missing metadata. This prepares a
 commit-specific deployment check; the marker's existence in a local/CI build
-is not proof that Vercel published it. The Vercel preview status remained
-Canceled from the Dashboard during this inspection.
+is not proof that Vercel published it. The pre-merge preview had been canceled;
+after guarded integration, main 0754a2140c109371fc9a62cdef5baac1a459b207 received
+successful Vercel status at 16:35:47 UTC. The canonical app subsequently returned
+that exact revision in build-info.json and loaded index-BBuWmY7U.js.
+[Timestamped release observation and limits](./simlyfe-release-2026-10-27.json).
+No additional provider call, identity or live narrative-quality claim was added.

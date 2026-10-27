@@ -1,4 +1,4 @@
-import { readFile } from 'node:fs/promises';
+import { readFile, readdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { auditEvidence } from './audit-evidence.mjs';
@@ -18,6 +18,7 @@ const files = {
   hero: 'src/components/hero/hero-section.tsx',
   contact: 'src/components/sections/contact-section.tsx',
   item: 'src/app/item/[id]/page.tsx',
+  flagship: 'src/components/sections/flagship-projects.tsx',
 };
 
 const content = Object.fromEntries(
@@ -29,7 +30,18 @@ const content = Object.fromEntries(
   )
 );
 
-const combined = Object.values(content).join('\n');
+// Inspect every public source surface, including social images and project panels.
+// A fixed allowlist missed independent hardcoded claims in those two surfaces.
+async function readPublicSource(directory) {
+  const parts = [];
+  for (const entry of await readdir(directory, { withFileTypes: true })) {
+    const absolutePath = path.join(directory, entry.name);
+    if (entry.isDirectory()) parts.push(...await readPublicSource(absolutePath));
+    else if (/\.tsx?$/.test(entry.name)) parts.push(await readFile(absolutePath, 'utf8'));
+  }
+  return parts;
+}
+const combined = (await readPublicSource(path.join(root, 'src'))).join('\n');
 const failures = [];
 
 function requireMatch(label, text, pattern) {
@@ -97,7 +109,8 @@ failures.push(...await auditEvidence(evidence, {
   } : undefined,
 }));
 requireMatch('commit-specific SIMLYFE test-case count', content.data, /795.*test cases|test cases.*795/is);
-forbidMatch('ambiguous SIMLYFE assertion count', content.data, /350\+|Automated test assertions/);
+forbidMatch('ambiguous SIMLYFE assertion count on a public surface', combined, /350\+|Automated test assertions/);
+forbidMatch('historical single-query load used as the flagship headline', content.flagship, /24\.56|31\.75|9,234/);
 requireMatch('offline RAGOps quality boundary', content.data, /offline.*SciFact|SciFact.*offline/is);
 
 if (failures.length > 0) {
