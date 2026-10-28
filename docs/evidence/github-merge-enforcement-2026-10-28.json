@@ -1,0 +1,61 @@
+{
+  "recorded_at_utc": "2026-10-28T21:56:08.711Z",
+  "before_required_checks_completed": {
+    "repository": "xmike04/SIMLYFE",
+    "pr_number": 13,
+    "head_sha": "b5bc83f8f2a534a60d536d71f73047a9e8e8ed2b",
+    "draft": false,
+    "mergeable_state": "blocked",
+    "checks": [
+      {
+        "name": "Lint, unit tests, build, docs",
+        "status": "in_progress",
+        "conclusion": null
+      },
+      {
+        "name": "Vercel Preview Comments",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    ],
+    "interpretation": "A normal ready PR was blocked while a required quality check was in progress. No attempted failing merge or bypass was used.",
+    "observation_recorded_at_utc": "2026-10-28T21:54:43.095Z"
+  },
+  "after_required_checks_completed": {
+    "repository": "xmike04/SIMLYFE",
+    "pr_number": 13,
+    "head_sha": "b5bc83f8f2a534a60d536d71f73047a9e8e8ed2b",
+    "mergeable_state": "unstable",
+    "checks": [
+      {
+        "name": "Desktop and mobile browser smoke",
+        "status": "completed",
+        "conclusion": "success",
+        "completed_at": "2026-10-28T21:55:00Z",
+        "url": "https://github.com/xmike04/SIMLYFE/actions/runs/40775573987/job/123124254102",
+        "app_id": 15368
+      },
+      {
+        "name": "Lint, unit tests, build, docs",
+        "status": "completed",
+        "conclusion": "success",
+        "completed_at": "2026-10-28T21:53:51Z",
+        "url": "https://github.com/xmike04/SIMLYFE/actions/runs/40775573987/job/123123882691",
+        "app_id": 15368
+      }
+    ]
+  },
+  "normal_merge": {
+    "url": "https://github.com/xmike04/SIMLYFE/pull/13",
+    "merge_sha": "cb51057e4e97b380dfddf9e3b8393c0394dd67fd",
+    "method": "merge",
+    "expected_head_sha": "b5bc83f8f2a534a60d536d71f73047a9e8e8ed2b",
+    "result": "Pull Request successfully merged",
+    "bypass_requested": false
+  },
+  "limits": [
+    "No intentionally failing merge was attempted.",
+    "Mergeable state was unstable after required checks succeeded; only the two named Actions checks were required.",
+    "This records PR source/CI integration, not a new production gameplay or security-audit result."
+  ]
+}

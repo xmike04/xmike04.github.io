@@ -26,7 +26,7 @@ Software results are self-produced, artifact-backed evidence unless stated other
 - Source: [Application quality run](https://github.com/xmike04/SIMLYFE/actions/runs/40541646056), [Tested PR head](https://github.com/xmike04/SIMLYFE/commit/b03d49d9f6d4c5829f2f4ae184f796cfd9a386c4)
 - Revision: Tested source b03d49d9f6d4c5829f2f4ae184f796cfd9a386c4; workflow run 40541646056. This includes the short-English-choice request regression and build-revision marker tests. Historical age-10 acceptance used the earlier 789-case / 38-file revision.
 - Scope: Node 22 and locked dependencies; lint, full Vitest suite, production build, docs, desktop/mobile Playwright. Counts test cases, not expect assertions.
-- Limits: Controlled Firebase/event responses do not prove live JWT validation, deployed Firestore authorization, production connectivity, or model quality. Short complete English labels are now explicit provider instructions and schema descriptions; request-contract tests do not establish the quality of future live narratives. Main has no required checks yet; the concrete policy and source-visible licensing decision are documented separately. Historical larger test counts are separate reported milestones.
+- Limits: Controlled Firebase/event responses do not prove live JWT validation, deployed Firestore authorization, production connectivity, or model quality. Short complete English labels are now explicit provider instructions and schema descriptions; request-contract tests do not establish the quality of future live narratives. Main now requires its two GitHub Actions quality jobs through active ruleset 26079093, without bypass actors; the October 28 administration receipt records configuration and alert-access limits. The source-visible licensing decision remains separately documented. Historical larger test counts are separate reported milestones.
 - Checked: 2026-10-27
 
 ## simlyfe-production
@@ -110,3 +110,12 @@ Software results are self-produced, artifact-backed evidence unless stated other
 - Limits: Closed-loop throughput is not an arrival-rate/capacity SLA. One ordered collection per concurrency does not establish a causal/statistically stable scaling effect. Five different first queries do not support a cold-tail percentile or paired cold penalty. RSS endpoints are not peak memory; worker CPU was observed while idle after ingestion. Database/Redis CPU, query plans, billing, learned inference, generation, and production reliability were not measured. The rejected first collection remains separate and invalid.
 - Checked: 2026-10-26
 
+
+## repository-policy
+- Wording: SIMLYFE and RAG_OPS main require pull requests, up-to-date GitHub Actions quality checks, and block force pushes/deletion without bypass actors.
+- Verification: artifact-backed
+- Source: [SIMLYFE ruleset](https://github.com/xmike04/SIMLYFE/rules/26079093), [RAG_OPS ruleset](https://github.com/xmike04/RAG_OPS/rules/26079096), [October 28 readback and limits](https://github.com/xmike04/SIMLYFE/blob/b5bc83f8f2a534a60d536d71f73047a9e8e8ed2b/docs/evidence/github-administration-2026-10-28.json), [Ordinary integration PR](https://github.com/xmike04/SIMLYFE/pull/13)
+- Revision: Active repository rulesets 26079093 / 26079096, independently read on October 28, 2026; owner CLI execution began 21:48:20 UTC.
+- Scope: Two named SIMLYFE jobs and four named RAG_OPS jobs, bound to GitHub Actions app 15368. No mandatory reviewer count for the solo maintainer. SIMLYFE About independently verified with count-free wording.
+- Limits: This is server configuration and ordinary PR evidence, not an intentionally failing-merge experiment or a full security audit. Owner CLI reported zero open secret-scanning alerts for SIMLYFE, RAG_OPS and the profile. Nine other alert-access results are unavailable, not zero; feature enablement versus missing permission remains unresolved.
+- Checked: 2026-10-28

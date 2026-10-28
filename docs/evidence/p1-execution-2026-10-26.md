@@ -1,4 +1,61 @@
-# P1 execution checkpoint — October 27, 2026
+# P1 execution checkpoint — October 28, 2026
+
+## Current status after GitHub administration
+
+The two remaining partial acceptance gates are closed within their evidence
+scope. The owner ran the local CLI fallback at 21:48:20 UTC October 28.
+Independent GitHub API reads confirmed active main rulesets
+[SIMLYFE 26079093](https://github.com/xmike04/SIMLYFE/rules/26079093) and
+[RAG_OPS 26079096](https://github.com/xmike04/RAG_OPS/rules/26079096), protected
+main branches, exact two/four required GitHub Actions jobs, up-to-date branch
+requirements, blocked deletion/force pushes, and no bypass actors.
+SIMLYFE's count-free About description was independently re-read, closing the
+stale assertion wording at the repository metadata source used by its pinned card.
+[Administration receipt and limits](https://github.com/xmike04/SIMLYFE/blob/b5bc83f8f2a534a60d536d71f73047a9e8e8ed2b/docs/evidence/github-administration-2026-10-28.json).
+
+The ordinary ready [SIMLYFE PR13](https://github.com/xmike04/SIMLYFE/pull/13)
+was observed blocked while a required check was in progress. Both named Actions
+jobs then completed successfully on head b5bc83f8; a guarded normal merge
+succeeded as cb51057e4e97b380dfddf9e3b8393c0394dd67fd without a bypass.
+[Recorded blocked/checks/merge observations](./github-merge-enforcement-2026-10-28.json).
+No intentionally failing merge was attempted. This follow-up is the implementing
+agent's verified closeout, not a new independent review of the whole project.
+The October 27 independent review and its historical findings remain retained.
+
+The original nine evidence gates are now **met with stated scope**:
+
+| Gate | Evidence boundary |
+| --- | --- |
+| 1 — Numerical claims | Exact source/limits linked; stale About assertion wording removed. |
+| 2 — RAGOps architecture | Diagrams align with the implemented sequential retrieval path. |
+| 3 — Retrieval evaluation | Reproducible offline and deterministic HTTP-service results remain distinct. |
+| 4 — Performance evidence | Seeded mixed-query load, failures and bounded CPU/RSS observations retained. |
+| 5 — Automatic quality and merge gate | Current checks passed; active rules enforce ordinary main integration. |
+| 6 — Production user journey | One real v20 event resolved and survived same-browser reload; historical age-10 proof kept separate. |
+| 7 — NASA contribution/assets | Precise owner-attested role; original diagram; no unapproved third-party asset. |
+| 8 — Public evidence access | Canonical website, profile navigation and three intended pins verified in the preceding rollout checks. |
+| 9 — Explainable tradeoffs | Prior independent review supports the principal technical explanations. |
+
+### Security follow-up remains open
+
+The owner CLI report lists zero open secret-scanning alerts for SIMLYFE,
+RAG_OPS and the profile repository. Dependabot and code-scanning reads for all
+four P1 repositories, and portfolio secret-scanning, were unavailable: nine
+unknown results, not zero. The first script suppressed API error bodies, so
+feature enablement versus missing permission is not yet established. These
+results do not support security clearance, a full Git-history audit, or automatic
+dismissal of findings. No scan setting, OAuth scope or alert state was changed.
+
+The objective remains interview-proof engineering evidence. This closeout does
+not establish a production SLO, broad model/narrative quality, billed token cost,
+learned-model serving quality, cross-device/native acceptance, independent cloud
+save acknowledgment, or independently proven NASA component authorship.
+No new paid provider request or gameplay test was used for administration.
+
+## Historical October 27 checkpoint
+
+The following dated implementation history retains earlier pending states.
+The October 28 section supersedes only the specifically verified gates above.
 
 ## Current status after the v20 production canary
 
