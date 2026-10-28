@@ -1,5 +1,32 @@
 # P1 execution checkpoint — October 27, 2026
 
+## Current status after the v20 production canary
+
+The owner requested finishing the remaining P1 gates. At 9:35 p.m. CDT October
+27 (02:35 UTC October 28), the verified frontend `0754a214` and active function
+v20 completed one real Guest event, resolution and same-browser reload. The
+life **P1 V20 Canary Oct27** returned at age 1 with selected history and stats;
+happiness changed from 98% to 99%. Both displayed choices were complete English
+action labels. [Current v20 receipt and limits](https://github.com/xmike04/SIMLYFE/blob/64eeaae8cec14640dfa12a623895a2707b78ff88/docs/evidence/production-v20-canary-2026-10-27.json).
+
+The earlier final review was six of nine original gates met, two partial and
+one unmet. This bounded current-release journey closes that last unmet gate:
+**seven met with scope, two partial**. GitHub required-check enforcement,
+security-alert inspection, and stale About/pinned-card metadata remain pending.
+The cloud-browser viewer could not connect; one refreshed handoff did not fix
+it and the secure sign-in request returned declined. No credentials were read
+or entered. These access limits do not affect the successful application test.
+
+All nine prior implementation/publication PRs were merged with green checks;
+portfolio source `6c850ad3` passed CI and its Firebase rollout, and final HTTP/DOM
+inspection confirmed no stale 350+ text on the owned website. Its GitHub showcase
+uses maintained local descriptions, preserving external repository metadata.
+The sections below are dated implementation history and retain earlier pending
+states. This current status supersedes those states without rewriting evidence.
+A single v20 sample does not establish broad prose quality, token cost, SLO,
+independent cloud acknowledgment, cross-device or native-device acceptance.
+
+
 The objective remains interview-proof engineering evidence: reproducible results,
 inspectable source boundaries, a verified product journey, and precise personal
 attribution. RAGOps PRs #3, #4 and #2 have now been integrated, preserving the

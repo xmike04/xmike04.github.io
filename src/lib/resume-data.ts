@@ -325,7 +325,7 @@ Key Contributions & Technical Details:
 - Server-Side Boundary: A Supabase Edge Function verifies Firebase identity and exact origins, enforces durable quotas, validates requests and responses, and owns the OpenAI provider credential.
 - Deterministic Core: Economy, career progression, relationships, and annual simulation live in pure JavaScript modules that can be tested independently of model calls.
 - Test Discipline: CI passed 795 Vitest test cases across 39 files on October 27, 2026; cases are counted separately from assertions, with controlled Firebase and event responses.
-- Deployment: Public frontend hosted on Vercel. A diagnosed completion-budget repair gave Nano bounded reasoning/output headroom. The same Guest generated and resolved five consecutive events at ages 6–10, then restored age 10, history and stats after reload. The ledger retains earlier failures and explicit verification limits.
+- Deployment: Public frontend hosted on Vercel. A diagnosed completion-budget repair gave Nano bounded reasoning/output headroom. The same Guest generated and resolved five consecutive events at ages 6–10, then restored age 10, history and stats after reload. A subsequent v20 canary on the verified current frontend generated and resolved one event and restored age 1/history/stats after reload. The ledger retains earlier failures and explicit verification limits.
       `,
       links: [
         { label: "Live Demo", url: "https://simlyfe.vercel.app" },
@@ -350,10 +350,10 @@ Key Contributions & Technical Details:
         metrics: [
           { label: "Automated test cases", baseline: "CI checked Oct 27, 2026", achieved: "795 Vitest cases across 39 files" },
           { label: "Provider credential boundary", baseline: "Direct browser calls avoided", achieved: "Authenticated proxy with server-owned OpenAI credentials" },
-          { label: "Live acceptance", baseline: "Bounded original-Guest repair check", achieved: "Five events passed after repair; reload at age 10" },
+          { label: "Live acceptance", baseline: "Historical v19 repair check retained", achieved: "Current v20 event resolved; same-browser reload passed" },
         ],
         productImpact:
-          "A publicly hosted game demonstrating tested LLM integration boundaries: bounded game-state prompting, server-side key management, schema validation, and separation of deterministic and generative layers. After diagnosing a too-small Nano completion ceiling, five consecutive generated events at ages 6–10 resolved successfully and the same life returned after reload. This bounded repair check does not establish a reliability SLO, broad narrative quality, cost or cross-device recovery.",
+          "A publicly hosted game demonstrating tested LLM integration boundaries: bounded game-state prompting, server-side key management, schema validation, and separation of deterministic and generative layers. After diagnosing a too-small Nano completion ceiling, five consecutive generated events at ages 6–10 resolved successfully and the same life returned after reload. A subsequent current v20 event resolved and restored age 1/history/stats after reload. These bounded checks do not establish a reliability SLO, broad narrative quality, cost or cross-device recovery.",
         techStack: [
           "React 19", "JavaScript", "Vite 8", "Supabase Edge Functions", "Firebase Auth", "Firestore",
           "OpenAI", "Vitest", "Vercel",
